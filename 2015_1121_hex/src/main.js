@@ -103,10 +103,10 @@ function draw(){
     var py     = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
 
     if( ( py >= -( HEX_MAX_RADIUS ) ) && ( py <= ch + ( HEX_MAX_RADIUS * 1.5 ) ) ){
-      radius[ y ] += ( HEX_MAX_RADIUS - radius[ y ] ) / 12;
+      radius[ y ] += ( HEX_MAX_RADIUS - radius[ y ] ) / 6;
     }
     else{
-      radius[ y ] += ( 0 - radius[ y ] ) / 12;
+      radius[ y ] += ( 0 - radius[ y ] ) / 6;
     }
 
     for( var x = 0; x < cols; ++x ){
