@@ -53,7 +53,7 @@ function init(){
 	window.addEventListener( 'mousemove', mouseMove );
 
 	// set draw function interval ( 60fps )
-	setInterval( draw, 1000 / 60 );
+	setInterval( draw, 1000 / 30 );
 }
 
 function resize(){
