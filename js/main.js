@@ -11,10 +11,6 @@ var HEX_NUM_ANGLES    = 6,
     HEX_MAX_IN_RADIUS = 0.0,
     HEX_MAX_RADIUS    = 0.0,
     radius            = [],
-    selX              = null,
-    selY              = null,
-    pSelX             = null,
-    pSelY             = null,
     selRadius         = 0.0;
 
 var HEX_BG_PALLET = [
@@ -60,16 +56,16 @@ var HEX_BG_PALLET = [
   ["rgb(217,70,78)","rgb(255,255,255)","rgb(238,132,140)","rgb(255,246,151)","rgb(238,132,140)","rgb(240,155,165)","rgb(238,132,140)","rgb(240,155,165)","rgb(240,155,165)","rgb(224,54,74)","rgb(66,90,166)","rgb(66,90,166)"],
   ["rgb(255,252,228)","rgb(222,234,247)","rgb(249,218,217)","rgb(249,218,217)","rgb(255,252,228)","rgb(255,252,228)","rgb(249,218,217)","rgb(240,155,165)","rgb(249,218,217)","rgb(162,179,219)","rgb(162,179,219)"],
   ["rgb(240,155,165)","rgb(249,218,217)","rgb(222,234,247)","rgb(222,234,247)","rgb(249,218,217)","rgb(255,252,228)","rgb(249,218,217)","rgb(249,218,217)","rgb(162,179,219)","rgb(249,218,217)","rgb(255,252,228)","rgb(162,179,219)"],
-  ["rgb(222,234,247)","rgb(249,218,217)","rgb(222,234,247)","rgb(255,252,228)","rgb(255,252,228)","rgb(162,179,219)","rgb(222,234,247)","rgb(162,179,219)","rgb(222,234,247)","rgb(222,234,247)","rgb(255,252,228)"],
-  ["rgb(240,155,165)","rgb(255,252,228)","rgb(249,218,217)","rgb(249,218,217)","rgb(222,234,247)","rgb(162,179,219)","rgb(255,252,228)","rgb(255,252,228)","rgb(132,109,174)","rgb(255,252,228)","rgb(222,234,247)","rgb(162,179,219)"],
-  ["rgb(222,234,247)","rgb(162,179,219)","rgb(132,109,174)","rgb(222,234,247)","rgb(255,252,228)","rgb(249,218,217)","rgb(249,218,217)","rgb(162,179,219)","rgb(249,218,217)","rgb(255,252,228)","rgb(255,249,179)"],
-  ["rgb(132,109,174)","rgb(222,234,247)","rgb(162,179,219)","rgb(249,218,217)","rgb(162,179,219)","rgb(255,252,228)","rgb(255,252,228)","rgb(249,218,217)","rgb(255,252,228)","rgb(162,179,219)","rgb(222,234,247)","rgb(249,218,217)"],
-  ["rgb(162,179,219)","rgb(255,252,228)","rgb(255,252,228)","rgb(249,218,217)","rgb(255,255,255)","rgb(255,255,255)","rgb(255,255,255)","rgb(249,218,217)","rgb(249,218,217)","rgb(222,234,247)","rgb(162,179,219)"],
-  ["rgb(232,84,107)","rgb(162,179,219)","rgb(222,234,247)","rgb(255,252,228)","rgb(249,218,217)","rgb(255,255,255)","rgb(255,255,255)","rgb(255,252,228)","rgb(255,252,228)","rgb(162,179,219)","rgb(255,252,228)","rgb(132,109,174)"],
-  ["rgb(238,132,140)","rgb(255,252,228)","rgb(249,218,217)","rgb(162,179,219)","rgb(255,252,228)","rgb(255,252,228)","rgb(249,218,217)","rgb(249,218,217)","rgb(249,218,217)","rgb(132,109,174)","rgb(132,109,174)"],
-  ["rgb(232,84,107)","rgb(222,234,247)","rgb(222,234,247)","rgb(255,252,228)","rgb(249,218,217)","rgb(255,252,228)","rgb(222,234,247)","rgb(255,252,228)","rgb(255,252,228)","rgb(162,179,219)","rgb(249,218,217)","rgb(162,179,219)"],
-  ["rgb(162,179,219)","rgb(162,179,219)","rgb(132,109,174)","rgb(222,234,247)","rgb(255,252,228)","rgb(249,218,217)","rgb(162,179,219)","rgb(249,218,217)","rgb(222,234,247)","rgb(255,252,228)","rgb(238,132,140)"],
-  ["rgb(238,132,140)","rgb(238,132,140)","rgb(222,234,247)","rgb(162,179,219)","rgb(222,234,247)","rgb(222,234,247)","rgb(255,252,228)","rgb(255,252,228)","rgb(162,179,219)","rgb(238,132,140)","rgb(238,132,140)","rgb(132,109,174)"],
+  ["rgb(222,234,247)","rgb(39,134,187)","rgb(128,180,216)","rgb(252,209,62)","rgb(252,209,62)","rgb(166,145,196)","rgb(128,180,216)","rgb(166,145,196)","rgb(128,180,216)","rgb(39,134,187)","rgb(255,252,228)"],
+  ["rgb(240,155,165)","rgb(252,209,62)","rgb(242,129,132)","rgb(241,154,164)","rgb(198,216,236)","rgb(216,205,228)","rgb(255,241,172)","rgb(255,241,172)","rgb(242,151,57)","rgb(252,209,62)","rgb(198,216,236)","rgb(162,179,219)"],
+  ["rgb(222,234,247)","rgb(166,145,196)","rgb(210,221,125)","rgb(198,216,236)","rgb(255,241,172)","rgb(246,217,215)","rgb(241,154,164)","rgb(216,205,228)","rgb(241,154,164)","rgb(252,209,62)","rgb(255,249,179)"],
+  ["rgb(132,109,174)","rgb(198,216,236)","rgb(216,205,228)","rgb(241,154,164)","rgb(216,205,228)","rgb(255,241,172)","rgb(255,241,172)","rgb(198,216,236)","rgb(255,241,172)","rgb(166,145,196)","rgb(198,216,236)","rgb(249,218,217)"],
+  ["rgb(128,180,216)","rgb(252,209,62)","rgb(255,241,172)","rgb(246,217,215)","rgb(255,255,255)","rgb(255,255,255)","rgb(255,255,255)","rgb(246,217,215)","rgb(241,154,164)","rgb(242,129,132)","rgb(128,180,216)"],
+  ["rgb(232,84,107)","rgb(166,145,196)","rgb(198,216,236)","rgb(255,241,172)","rgb(246,217,215)","rgb(255,255,255)","rgb(255,255,255)","rgb(255,241,172)","rgb(255,241,172)","rgb(166,145,196)","rgb(252,209,62)","rgb(132,109,174)"],
+  ["rgb(238,132,140)","rgb(252,209,62)","rgb(242,129,132)","rgb(216,205,228)","rgb(255,241,172)","rgb(255,241,172)","rgb(246,217,215)","rgb(246,217,215)","rgb(241,154,164)","rgb(128,177,55)","rgb(132,109,174)"],
+  ["rgb(232,84,107)","rgb(198,216,236)","rgb(198,216,236)","rgb(255,241,172)","rgb(241,154,164)","rgb(255,241,172)","rgb(198,216,236)","rgb(255,241,172)","rgb(252,209,62)","rgb(166,145,196)","rgb(39,134,187)","rgb(162,179,219)"],
+  ["rgb(162,179,219)","rgb(166,145,196)","rgb(210,221,125)","rgb(198,216,236)","rgb(252,209,62)","rgb(241,154,164)","rgb(166,145,196)","rgb(242,129,132)","rgb(128,180,216)","rgb(252,209,62)","rgb(238,132,140)"],
+  ["rgb(238,132,140)","rgb(39,134,187)","rgb(128,180,216)","rgb(166,145,196)","rgb(128,180,216)","rgb(198,216,236)","rgb(252,209,62)","rgb(252,209,62)","rgb(166,145,196)","rgb(166,145,196)","rgb(238,132,140)","rgb(132,109,174)"],
   ["rgb(232,84,107)","rgb(240,155,165)","rgb(240,155,165)","rgb(255,252,228)","rgb(249,218,217)","rgb(240,155,165)","rgb(249,218,217)","rgb(249,218,217)","rgb(240,155,165)","rgb(240,155,165)","rgb(132,109,174)"],
   ["rgb(232,84,107)","rgb(238,132,140)","rgb(240,155,165)","rgb(255,252,228)","rgb(249,218,217)","rgb(249,218,217)","rgb(240,155,165)","rgb(255,252,228)","rgb(255,252,228)","rgb(255,252,228)","rgb(249,218,217)","rgb(222,234,247)"],
   ["rgb(238,132,140)","rgb(132,109,174)","rgb(249,218,217)","rgb(249,218,217)","rgb(255,252,228)","rgb(255,252,228)","rgb(249,218,217)","rgb(249,218,217)","rgb(255,252,228)","rgb(249,218,217)","rgb(222,234,247)"],
@@ -233,16 +229,16 @@ var HEX_WORKS = [
   [0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,0,1,1,1,1,1,1,1,1,0],
+  [0,1,1,1,1,1,1,1,1,1,0],
   [0,1,1,1,1,1,1,1,1,1,1,0],
   [0,1,1,1,1,1,1,1,1,1,0],
   [0,1,1,1,1,1,1,1,1,1,1,0],
-  [0,1,1,1,0,0,0,1,1,1,0],
+  [1,1,1,1,0,0,0,1,1,1,1],
   [0,1,1,1,1,0,0,1,1,1,1,0],
   [0,1,1,1,1,1,1,1,1,1,0],
   [0,1,1,1,1,1,1,1,1,1,1,0],
   [0,1,1,1,1,1,1,1,1,1,0],
-  [0,0,1,1,1,1,1,1,1,0,0,0],
+  [0,1,1,1,1,1,1,1,1,1,0,0],
   [0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0],
@@ -277,48 +273,46 @@ var HEX_WORKS = [
 ];
 
 
-var wIdx   = [];
-var nWorks = 0;
+var works  = [];
 var selIdx = null;
 
 // center of works [ 46 ][ 5 ]
 var wcY = 46,
     wcX = 5;
 
-
 var images = [];
-var imgSrc = [];
+
 
 
 //---------------------------------------------------------------------------------------------------- loading
 $( function(){
-  Array.prototype.remove = function( element ){
+  Array.prototype.remove = function( _element ){
     for( var i = 0; i < this.length; ++i ){
-      if( this[ i ] == element ) this.splice( i, 1 );
+      if( this[ i ] == _element ) this.splice( i, 1 );
     }
   };
 
-  function preload( images, progress ){
-    var total = images.length;
-    $( images ).each( function(){
+  function preload( _images, _progress ){
+    var total = _images.length;
+    $( _images ).each( function(){
       var src = this;
       $( '<img/>' ).attr( 'src', src )
                    .load( function(){
-                     images.remove( src );
-                     progress( total, total - images.length );
+                     _images.remove( src );
+                     _progress( total, total - images.length );
                    } );
     } );
   }
 
   var targetPct  = 0;
   var currentPct = 0;
-
-  $( '.work' ).each( function( index ){
-    imgSrc[ index ] = $( this ).data( "image" );
+  var imgSrc     = [];
+  $( '.work' ).each( function( _index ){
+    imgSrc[ _index ] = $( this ).data( "image" );
   } );
 
-  preload( imgSrc, function( total, loaded ){
-    targetPct = Math.ceil( ( loaded / total ) * 100 );
+  preload( imgSrc, function( _total, _loaded ){
+    targetPct = Math.ceil( ( _loaded / _total ) * 100 );
   } );
 
   var lCanvas = document.getElementById( 'loadingCanvas' );
@@ -332,25 +326,11 @@ $( function(){
   var r          = 40;
   var inR        = r * Math.cos( Math.PI / HEX_NUM_ANGLES );
   var a          = ( Math.PI * 2 ) / HEX_NUM_ANGLES;
-  var cs         = [ "rgb( 232, 84, 107 )", "rgb( 240, 155, 165 )", "rgb( 116, 131, 192 )", "rgb( 249, 218, 217 )", "rgb( 255, 246, 151 )", "rgb( 162, 179, 219 )"  ];
+  var cs         = [ "rgb( 232, 84, 107 )", "rgb( 240, 155, 165 )", "rgb( 116, 131, 192 )", "rgb( 249, 218, 217 )", "rgb( 255, 246, 151 )", "rgb( 162, 179, 219 )" ];
 
   var timer = window.setInterval( function(){
-    // load complete
-    if( currentPct >= 100 ){
-      window.clearInterval( timer );
-
-      $( '#loadWrapper' ).fadeOut( 'slow', function(){
-        $( '.work' ).each( function( index ){
-          $( '<img/>' ).attr( 'src', $( this ).data( "image" ) )
-                       .appendTo( this );
-        } );
-        $( '#wrapper' ).fadeIn( 'slow' );
-
-        init();
-      } );
-    }
     // loading
-    else{
+    if( currentPct < 100 ){
       if( currentPct < targetPct ){
         ++currentPct;
         $( '#load_text' ).html( currentPct + '%' );
@@ -363,26 +343,37 @@ $( function(){
         for( var i = 0; i < HEX_NUM_ANGLES; ++i ){
           var x   = cx + ( Math.cos( i * a ) * inR * 2 );
           var y   = cy + ( Math.sin( i * a ) * inR * 2 );
-          var pct = ( currentPct > ( i * Math.floor( 100 / HEX_NUM_ANGLES ) ) ) ? 1: 0;
 
-          lCtx.fillStyle = cs[ i % cs.length ];
-          drawHexIndicator( x, y, r * 0.9, pct, i * a );
+          if( currentPct > ( i * Math.floor( 100 / HEX_NUM_ANGLES ) ) ){
+            lCtx.fillStyle = cs[ i ];
+            drawHexIndicator( x, y, r * 0.9, i * a );
 
-          if( i == 5 ){
-            lCtx.fillStyle = "rgba( 255, 255, 255, 0.27 )";
-            drawHexIndicator( x, y, r * 0.9 * 0.7, pct, i * a );
+            if( i == 5 ){
+              lCtx.fillStyle = "rgba( 255, 255, 255, 0.27 )";
+              drawHexIndicator( x, y, r * 0.9 * 0.7, i * a );
+            }
           }
         }
       }
     }
+    // load complete
+    else{
+      window.clearInterval( timer );
+
+      $( '#loadWrapper' ).fadeOut( 'slow', function(){
+        $( '#wrapper' ).fadeIn( 'slow' );
+
+        init();
+      } );
+    }
   }, 20 );
 
-  function drawHexIndicator( _x, _y, _r, _pct, _rot ){
+  function drawHexIndicator( _x, _y, _r, _rot ){
     lCtx.save();
     lCtx.translate( _x, _y );
     lCtx.rotate( _rot );
 
-    drawHexPolygon( lCtx, _r * _pct );
+    drawHexPolygon( lCtx, _r );
     lCtx.fill();
 
     lCtx.restore();
@@ -465,22 +456,18 @@ function setCanvasSize(){
   $( '.content_access' ).css( "height", ( 16 * ( HEX_MAX_RADIUS * 1.5 ) ) );
   $( '.content_contact' ).css( "height", ( 12 * ( HEX_MAX_RADIUS * 1.5 ) ) );
 
-
-  // set radius 0.0
+  // setup works
   var idx = 0;
-  for( var y = 0; y < HEX_BG_PALLET.length; ++y ){
+  for( var y = 0; y < HEX_WORKS.length; ++y ){
     radius[ y ] = 0.0;
 
-    wIdx[ y ] = new Array();
-    for( var x = 0; x < HEX_BG_PALLET.length; ++x ){
+    for( var x = 0; x < HEX_WORKS.length; ++x ){
       if( HEX_WORKS[ y ][ x ] == 1 ){
-        wIdx[ y ][ x ] = idx;
+        works[ idx ] = { y: y, x: x };
         ++idx;
       }
     }
   }
-
-  nWorks = idx + 1;
 }
 
 
@@ -493,60 +480,60 @@ function mouseMove( e ){
 
 //---------------------------------------------------------------------------------------------------- mouseClick
 function mouseClick(){
-  if( ( selX != null ) && ( selY != null ) ){
+  if( selIdx != null ){
     var isOdd = ( wcY % 2 == 1 ) ? true: false;
     var cy    = -scrollTop + ( wcY * ( HEX_MAX_RADIUS * 1.5 ) );
     var cx    = ( isOdd ) ? ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) );
-    var r     = HEX_MAX_RADIUS * 3.1;
-    var a     = ( Math.PI * 2 ) / 3;
-    var x     = new Array();
-    var y     = new Array();
+
+    cy = hh + HEX_MAX_RADIUS * 0.77;
+    cx = hw;
+
+    var r  = HEX_MAX_RADIUS * 3.1;
+    var _r = selRadius;
+    var a  = ( Math.PI * 2 ) / 3;
+    var bOut  = true;
     for( var i = 0; i < 3; ++i ){
-      x[ i ] = cx + ( Math.cos( ( i * a ) - Math.PI / 2 ) * r );
-      y[ i ] = cy + ( Math.sin( ( i * a ) - Math.PI / 2 ) * r );
+      var x = cx + ( Math.cos( ( i * a ) - Math.PI / 2 ) * r );
+      var y = cy + ( Math.sin( ( i * a ) - Math.PI / 2 ) * r );
 
-      drawHexagon( x[ i ], y[ i ], selRadius );
-
+      ctx.save();
+      ctx.translate( x, y );
+      drawHexPolygon( ctx, _r );
       if( ctx.isPointInPath( mouseX, mouseY ) ){
-        if( i == 0 ){
-          selX      = null;
-          selY      = null;
-          selRadius = 0.0;
-        }
-        return;
+        bOut = false;
       }
+      ctx.restore();
     }
-    selX      = null;
-    selY      = null;
-    selRadius = 0.0;
+
+    if( bOut ){
+      selIdx    = null;
+      selRadius = 0.0;
+    }
     return;
   }
 
-  var wIdx = 0;
-  for( var y = 0; y < HEX_BG_PALLET.length; ++y ){
-    var isOdd = ( y % 2 == 1 ) ? true: false;
-    var py    = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
+  // select
+  var bSelect = false;
+  for( var i = 0; i < works.length; ++i ){
+    var y  = works[ i ].y;
+    var x  = works[ i ].x;
+    var py = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
+    var px = ( y % 2 == 1 ) ? ( x * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( x * ( HEX_MAX_IN_RADIUS * 2 ) );
 
-    for( var x = 0; x < HEX_BG_PALLET[ y ].length; ++x ){
-      var px = ( isOdd ) ? ( x * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( x * ( HEX_MAX_IN_RADIUS * 2 ) );
-
-      if( HEX_WORKS[ y ][ x ] == 1 ){
-        drawHexagon( px, py, radius[ y ] );
-
-        if( ctx.isPointInPath( mouseX, mouseY ) ){
-          selX = x;
-          selY = y;
-          return;
-        }
-
-        ++wIdx;
-      }
+    ctx.save();
+    ctx.translate( px, py );
+    drawHexPolygon( ctx, radius[ y ] );
+    if( ctx.isPointInPath( mouseX, mouseY ) ){
+      selIdx = i;
+      bSelect = true;
     }
+    ctx.restore();
   }
 
-  selX      = null;
-  selY      = null;
-  selRadius = 0.0;
+  if( !bSelect ){
+    selIdx    = null;
+    selRadius = 0.0;
+  }
 }
 
 
@@ -558,12 +545,10 @@ function draw(){
 	ctx.fillStyle   = "rgb( 255, 255, 255 )";
 	ctx.fillRect( 0, 0, cw, ch );
 
-	// ctx.strokeStyle = "rgb( 255, 255, 255 )";
-
   for( var y = 0; y < HEX_BG_PALLET.length; ++y ){
-    var isOdd = ( y % 2 == 1 ) ? true: false;
-    var py    = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
+    var py = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
 
+    // update radius
     if( ( py >= -( HEX_MAX_RADIUS ) ) && ( py <= ch + HEX_MAX_RADIUS ) ){
       if( radius[ y ] > HEX_MAX_RADIUS - 0.1 ){
         radius[ y ] = HEX_MAX_RADIUS;
@@ -581,8 +566,13 @@ function draw(){
       }
     }
 
+    // draw hexagons
     for( var x = 0; x < HEX_BG_PALLET[ y ].length; ++x ){
-      var px = ( isOdd ) ? ( x * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( x * ( HEX_MAX_IN_RADIUS * 2 ) );
+      if( ( HEX_BG_PALLET[ y ][ x ] == "rgb(255,255,255)" ) || ( HEX_WORKS[ y ][ x ] == 1 ) ){
+        continue;
+      }
+
+      var px = ( y % 2 == 1 ) ? ( x * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( x * ( HEX_MAX_IN_RADIUS * 2 ) );
 
       // bg
       ctx.fillStyle   = HEX_BG_PALLET[ y ][ x ];
@@ -599,36 +589,23 @@ function draw(){
   }
 
   // works
-  for( var y = 0; y < HEX_BG_PALLET.length; ++y ){
-    var isOdd = ( y % 2 == 1 ) ? true: false;
-    var py    = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
-
-    for( var x = 0; x < HEX_BG_PALLET[ y ].length; ++x ){
-      var px = ( isOdd ) ? ( x * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( x * ( HEX_MAX_IN_RADIUS * 2 ) );
-
-      if( HEX_WORKS[ y ][ x ] == 1 ){
-        ctx.fillStyle   = HEX_BG_PALLET[ y ][ x ];
-        ctx.strokeStyle = "rgb( 255, 255, 255 )";
-        ctx.lineWidth   = HEX_MAX_RADIUS / 6;
-        drawImageHexagon( px, py, radius[ y ], images[ wIdx[ y ][ x ] % images.length ], ( ( y == selY ) && ( x == selX ) ) );
-      }
-    }
+  ctx.strokeStyle = "rgb( 255, 255, 255 )";
+  ctx.lineWidth   = HEX_MAX_RADIUS / 6;
+  for( var i = 0; i < works.length; ++i ){
+    var y  = works[ i ].y;
+    var x  = works[ i ].x;
+    var py = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
+    var px = ( y % 2 == 1 ) ? ( x * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( x * ( HEX_MAX_IN_RADIUS * 2 ) );
+    ctx.fillStyle = HEX_BG_PALLET[ y ][ x ];
+    drawImageHexagon( px, py, radius[ y ], images[ i % images.length ], ( i == selIdx ) );
   }
 
   // select
-  if( ( selX!= null ) && ( selY != null ) ){
-
-    var isOdd = ( selY % 2 == 1 ) ? true: false;
-    var py    = -scrollTop + ( selY * ( HEX_MAX_RADIUS * 1.5 ) );
-    var px    = ( isOdd ) ? ( selX * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( selX * ( HEX_MAX_IN_RADIUS * 2 ) );
-    ctx.fillStyle   = HEX_BG_PALLET[ selY ][ selX ];
-    ctx.strokeStyle = "rgb( 255, 255, 255 )";
-    ctx.lineWidth   = HEX_MAX_RADIUS / 6;
-    // drawImageHexagon( px, py, radius[ selY ], images[ wIdx[ selY ][ selX ] % images.length ] );
-
+  if( selIdx != null ){
     ctx.fillStyle = "rgba( 0, 0, 0, 0.3 )";
     ctx.fillRect( 0, 0, cw, ch );
 
+    // update select radius
     if( selRadius > ( ( HEX_MAX_RADIUS * 3 ) - 0.1 ) ){
       selRadius = HEX_MAX_RADIUS * 3;
     }
@@ -636,21 +613,24 @@ function draw(){
       selRadius += ( ( HEX_MAX_RADIUS * 3 ) - selRadius ) / 12;
     }
 
-    var isOdd = ( wcY % 2 == 1 ) ? true: false;
-    var cy    = -scrollTop + ( wcY * ( HEX_MAX_RADIUS * 1.5 ) );
-    var cx    = ( isOdd ) ? ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) );
+    // center of works
+    var cy = -scrollTop + ( wcY * ( HEX_MAX_RADIUS * 1.5 ) );
+    var cx = ( wcY % 2 == 1 ) ? ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) );
+
+    cy = hh + HEX_MAX_RADIUS * 0.77;
+    cx = hw;
 
     var r  = HEX_MAX_RADIUS * 3.1;
     var _r = selRadius;
     var a  = ( Math.PI * 2 ) / 3;
-    var x = new Array();
-    var y = new Array();
+    var x  = [];
+    var y  = [];
     for( var i = 0; i < 3; ++i ){
       x[ i ] = cx + ( Math.cos( ( i * a ) - Math.PI / 2 ) * r );
       y[ i ] = cy + ( Math.sin( ( i * a ) - Math.PI / 2 ) * r );
     }
 
-    var i = images[ wIdx[ selY ][ selX ] % images.length ];
+    var i = images[ selIdx % images.length ];
 
     // image
     ctx.save();
@@ -677,13 +657,14 @@ function drawImageHexagon( _x, _y, _r, _i, _s ){
   drawHexPolygon( ctx, _r );
   ctx.fill();
   ctx.stroke();
+
   if( _s ){
     drawHexPolygon( ctx, _r - ctx.lineWidth / 2 );
     ctx.clip();
     ctx.drawImage( _i, 0, 0, _i.width, _i.height, -_r, -_r, _r * 2, _r * 2 );
   }
   else{
-    if( ( selX == null ) && ( selY == null ) ){
+    if( selIdx == null ){
       if( ctx.isPointInPath( mouseX, mouseY ) ){
         drawHexPolygon( ctx, _r - ctx.lineWidth / 2 );
         ctx.clip();
