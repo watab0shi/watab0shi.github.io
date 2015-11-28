@@ -480,32 +480,15 @@ function mouseMove( e ){
 
 //---------------------------------------------------------------------------------------------------- mouseClick
 function mouseClick(){
+  // close popup
   if( selIdx != null ){
-    var isOdd = ( wcY % 2 == 1 ) ? true: false;
-    var cy    = -scrollTop + ( wcY * ( HEX_MAX_RADIUS * 1.5 ) );
-    var cx    = ( isOdd ) ? ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) );
-
-    cy = hh + HEX_MAX_RADIUS * 0.77;
-    cx = hw;
-
-    var r  = HEX_MAX_RADIUS * 3.1;
-    var _r = selRadius;
-    var a  = ( Math.PI * 2 ) / 3;
-    var bOut  = true;
-    for( var i = 0; i < 3; ++i ){
-      var x = cx + ( Math.cos( ( i * a ) - Math.PI / 2 ) * r );
-      var y = cy + ( Math.sin( ( i * a ) - Math.PI / 2 ) * r );
-
-      ctx.save();
-      ctx.translate( x, y );
-      drawHexPolygon( ctx, _r );
-      if( ctx.isPointInPath( mouseX, mouseY ) ){
-        bOut = false;
-      }
-      ctx.restore();
-    }
-
-    if( bOut ){
+    var btnX = cw - HEX_MAX_RADIUS * 1.5;
+    var btnY = HEX_MAX_RADIUS;
+    var lr   = HEX_MAX_IN_RADIUS * 0.5;
+    ctx.beginPath();
+    ctx.arc( btnX, btnY, lr * 1.414, 0, Math.PI*2, false );
+    ctx.closePath();
+    if( ctx.isPointInPath( mouseX, mouseY ) ){
       selIdx    = null;
       selRadius = 0.0;
     }
@@ -646,6 +629,20 @@ function draw(){
 
     //left
     drawHexagon( x[ 2 ], y[ 2 ], _r );
+
+
+    var btnX = cw - HEX_MAX_RADIUS * 1.5;
+    var btnY = HEX_MAX_RADIUS;
+    var lr   = HEX_MAX_IN_RADIUS * 0.5;
+    ctx.beginPath();
+    ctx.arc( btnX, btnY, lr * 1.414, 0, Math.PI*2, false );
+    ctx.closePath();
+
+    ctx.lineWidth = ( ctx.isPointInPath( mouseX, mouseY ) ) ? 2: 1;
+    ctx.strokeStyle = "rgb( 255, 255, 255 )";
+    drawCross( btnX, btnY, lr );
+
+
   }
 }
 
@@ -707,4 +704,25 @@ function drawHexPolygon( _ctx, _r ){
 		}
 	}
 	_ctx.closePath();
+}
+
+
+//---------------------------------------------------------------------------------------------------- drawCross
+function drawCross( _x, _y, _r ){
+  ctx.save();
+  ctx.translate( _x, _y );
+
+  ctx.beginPath();
+  ctx.moveTo( -_r, -_r );
+  ctx.lineTo( _r, _r );
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo( _r, -_r );
+  ctx.lineTo( -_r, _r );
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.restore();
 }
