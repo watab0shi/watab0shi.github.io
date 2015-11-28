@@ -10,7 +10,7 @@ var scrollTop = 0,
 var HEX_NUM_ANGLES    = 6,
     HEX_MAX_IN_RADIUS = 0.0,
     HEX_MAX_RADIUS    = 0.0,
-    radius            = new Array(),
+    radius            = [],
     selX              = null,
     selY              = null,
     pSelX             = null,
@@ -277,32 +277,125 @@ var HEX_WORKS = [
 ];
 
 
-var wIdx = new Array();
+var wIdx   = [];
+var nWorks = 0;
+var selIdx = null;
 
 // center of works [ 46 ][ 5 ]
 var wcY = 46,
     wcX = 5;
 
 
-var img    = new Image();
-var images = new Array();
+var images = [];
+var imgSrc = [];
 
-//---------------------------------------------------------------------------------------------------- onload
-window.onload = function(){
 
-  init();
-};
+//---------------------------------------------------------------------------------------------------- loading
+$( function(){
+  Array.prototype.remove = function( element ){
+    for( var i = 0; i < this.length; ++i ){
+      if( this[ i ] == element ) this.splice( i, 1 );
+    }
+  };
+
+  function preload( images, progress ){
+    var total = images.length;
+    $( images ).each( function(){
+      var src = this;
+      $( '<img/>' ).attr( 'src', src )
+                   .load( function(){
+                     images.remove( src );
+                     progress( total, total - images.length );
+                   } );
+    } );
+  }
+
+  var targetPct  = 0;
+  var currentPct = 0;
+
+  $( '.work' ).each( function( index ){
+    imgSrc[ index ] = $( this ).data( "image" );
+  } );
+
+  preload( imgSrc, function( total, loaded ){
+    targetPct = Math.ceil( ( loaded / total ) * 100 );
+  } );
+
+  var lCanvas = document.getElementById( 'loadingCanvas' );
+  if( !lCanvas || !lCanvas.getContext ){
+    return false;
+  }
+
+  var lCtx       = lCanvas.getContext( '2d' );
+  lCanvas.width  = window.innerWidth;
+  lCanvas.height = window.innerHeight;
+  var r          = 40;
+  var inR        = r * Math.cos( Math.PI / HEX_NUM_ANGLES );
+  var a          = ( Math.PI * 2 ) / HEX_NUM_ANGLES;
+  var cs         = [ "rgb( 232, 84, 107 )", "rgb( 240, 155, 165 )", "rgb( 116, 131, 192 )", "rgb( 249, 218, 217 )", "rgb( 255, 246, 151 )", "rgb( 162, 179, 219 )"  ];
+
+  var timer = window.setInterval( function(){
+    // load complete
+    if( currentPct >= 100 ){
+      window.clearInterval( timer );
+
+      $( '#loadWrapper' ).fadeOut( 'slow', function(){
+        $( '.work' ).each( function( index ){
+          $( '<img/>' ).attr( 'src', $( this ).data( "image" ) )
+                       .appendTo( this );
+        } );
+        $( '#wrapper' ).fadeIn( 'slow' );
+
+        init();
+      } );
+    }
+    // loading
+    else{
+      if( currentPct < targetPct ){
+        ++currentPct;
+        $( '#load_text' ).html( currentPct + '%' );
+
+        lCtx.clearRect( 0, 0, lCanvas.width, lCanvas.height );
+
+        var cx = lCanvas.width / 2;
+        var cy = lCanvas.height / 2;
+
+        for( var i = 0; i < HEX_NUM_ANGLES; ++i ){
+          var x   = cx + ( Math.cos( i * a ) * inR * 2 );
+          var y   = cy + ( Math.sin( i * a ) * inR * 2 );
+          var pct = ( currentPct > ( i * Math.floor( 100 / HEX_NUM_ANGLES ) ) ) ? 1: 0;
+
+          lCtx.fillStyle = cs[ i % cs.length ];
+          drawHexIndicator( x, y, r * 0.9, pct, i * a );
+
+          if( i == 5 ){
+            lCtx.fillStyle = "rgba( 255, 255, 255, 0.27 )";
+            drawHexIndicator( x, y, r * 0.9 * 0.7, pct, i * a );
+          }
+        }
+      }
+    }
+  }, 20 );
+
+  function drawHexIndicator( _x, _y, _r, _pct, _rot ){
+    lCtx.save();
+    lCtx.translate( _x, _y );
+    lCtx.rotate( _rot );
+
+    drawHexPolygon( lCtx, _r * _pct );
+    lCtx.fill();
+
+    lCtx.restore();
+  }
+} );
 
 
 //---------------------------------------------------------------------------------------------------- init
 function init(){
-  var idx = 0;
-  $( '.work' ).each( function(){
-    images[ idx ] = new Image();
-    images[ idx ].src = $( this ).data( "image" ) + "?" + new Date().getTime();
-    ++idx;
+  $( '.work' ).each( function( index ){
+    images[ index ] = new Image();
+    images[ index ].src = $( this ).data( "image" );
   } );
-  img.src = $( '.work' ).data( "image" ) + "?" + new Date().getTime();
 
   scrollTop = $( document ).scrollTop();
 
@@ -365,7 +458,7 @@ function setCanvasSize(){
 
 
   // resize list height
-  $( '.content_title' ).css( "height", ( 13 * ( HEX_MAX_RADIUS * 1.5 ) ) - HEX_MAX_RADIUS*0.5 );
+  $( '.content_title' ).css( "height", ( 13 * ( HEX_MAX_RADIUS * 1.5 ) ) - HEX_MAX_RADIUS * 0.5 );
   $( '.content_about' ).css( "height", ( 13 * ( HEX_MAX_RADIUS * 1.5 ) ) );
   $( '.content_party' ).css( "height", ( 14 * ( HEX_MAX_RADIUS * 1.5 ) ) );
   $( '.content_works' ).css( "height", ( 14 * ( HEX_MAX_RADIUS * 1.5 ) ) );
@@ -386,6 +479,8 @@ function setCanvasSize(){
       }
     }
   }
+
+  nWorks = idx + 1;
 }
 
 
@@ -515,7 +610,7 @@ function draw(){
         ctx.fillStyle   = HEX_BG_PALLET[ y ][ x ];
         ctx.strokeStyle = "rgb( 255, 255, 255 )";
         ctx.lineWidth   = HEX_MAX_RADIUS / 6;
-        drawImageHexagon( px, py, radius[ y ], images[ wIdx[ y ][ x ] % 4 ] );
+        drawImageHexagon( px, py, radius[ y ], images[ wIdx[ y ][ x ] % images.length ], ( ( y == selY ) && ( x == selX ) ) );
       }
     }
   }
@@ -529,7 +624,7 @@ function draw(){
     ctx.fillStyle   = HEX_BG_PALLET[ selY ][ selX ];
     ctx.strokeStyle = "rgb( 255, 255, 255 )";
     ctx.lineWidth   = HEX_MAX_RADIUS / 6;
-    drawImageHexagon( px, py, radius[ selY ], images[ wIdx[ selY ][ selX ] % 4 ] );
+    // drawImageHexagon( px, py, radius[ selY ], images[ wIdx[ selY ][ selX ] % images.length ] );
 
     ctx.fillStyle = "rgba( 0, 0, 0, 0.3 )";
     ctx.fillRect( 0, 0, cw, ch );
@@ -555,15 +650,14 @@ function draw(){
       y[ i ] = cy + ( Math.sin( ( i * a ) - Math.PI / 2 ) * r );
     }
 
-    var i = images[ wIdx[ selY ][ selX ] % 4 ];
-
+    var i = images[ wIdx[ selY ][ selX ] % images.length ];
 
     // image
     ctx.save();
     ctx.translate( x[ 0 ], y[ 0 ] );
-    drawHexPolygon( _r );
+    drawHexPolygon( ctx, _r );
     ctx.clip();
-    ctx.drawImage( i, 0, 0, img.width, img.height, -_r, -_r, _r * 2, _r * 2 );
+    ctx.drawImage( i, 0, 0, i.width, i.height, -_r, -_r, _r * 2, _r * 2 );
     ctx.restore();
 
     // right
@@ -576,19 +670,25 @@ function draw(){
 }
 
 //---------------------------------------------------------------------------------------------------- drawImageHexagon
-function drawImageHexagon( _x, _y, _r, _i ){
+function drawImageHexagon( _x, _y, _r, _i, _s ){
   ctx.save();
 
   ctx.translate( _x, _y );
-  drawHexPolygon( _r );
+  drawHexPolygon( ctx, _r );
   ctx.fill();
   ctx.stroke();
-
-  if( ( selX == null ) && ( selY == null ) ){
-    if( ctx.isPointInPath( mouseX, mouseY ) ){
-      ctx.clip();
-      ctx.drawImage( _i, 0, 0, _i.width, _i.height, -_r, -_r, _r * 2, _r * 2 );
-      ctx.stroke();
+  if( _s ){
+    drawHexPolygon( ctx, _r - ctx.lineWidth / 2 );
+    ctx.clip();
+    ctx.drawImage( _i, 0, 0, _i.width, _i.height, -_r, -_r, _r * 2, _r * 2 );
+  }
+  else{
+    if( ( selX == null ) && ( selY == null ) ){
+      if( ctx.isPointInPath( mouseX, mouseY ) ){
+        drawHexPolygon( ctx, _r - ctx.lineWidth / 2 );
+        ctx.clip();
+        ctx.drawImage( _i, 0, 0, _i.width, _i.height, -_r, -_r, _r * 2, _r * 2 );
+      }
     }
   }
 
@@ -601,7 +701,7 @@ function drawHexagon( _x, _y, _r ){
   ctx.save();
   ctx.translate( _x, _y );
 
-  drawHexPolygon( _r );
+  drawHexPolygon( ctx, _r );
   ctx.fill();
 
   ctx.restore();
@@ -609,21 +709,21 @@ function drawHexagon( _x, _y, _r ){
 
 
 //---------------------------------------------------------------------------------------------------- drawHexPolygon
-function drawHexPolygon( _r ){
+function drawHexPolygon( _ctx, _r ){
 	var angle  = ( ( Math.PI * 2 ) / HEX_NUM_ANGLES );
 
-	ctx.beginPath();
+	_ctx.beginPath();
 	for( var i = 0; i <= HEX_NUM_ANGLES; ++i ){
 		var a = ( i + 0.5 ) * angle;
 		var x = Math.cos( a ) * _r,
 		    y = Math.sin( a ) * _r;
 
 		if( i == 0 ){
-			ctx.moveTo( x, y );
+			_ctx.moveTo( x, y );
 		}
 		else{
-			ctx.lineTo( x, y );
+			_ctx.lineTo( x, y );
 		}
 	}
-	ctx.closePath();
+	_ctx.closePath();
 }
