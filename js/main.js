@@ -5,8 +5,9 @@ var scrollTop = 0,
 		hw, hh,
 		mouseX = 0,
     mouseY = 0,
+    lQueue = null,
 		queue  = null,
-		wait   = 300;
+		wait   = 100;
 
 var HEX_NUM_ANGLES    = 6,
     HEX_MAX_IN_RADIUS = 0.0,
@@ -321,6 +322,16 @@ $( function(){
     return false;
   }
 
+  window.addEventListener( 'resize', lResize, false );
+
+  function lResize(){
+  	clearTimeout( lQueue );
+  	lQueue = setTimeout( function(){
+      lCanvas.width  = window.innerWidth;
+      lCanvas.height = window.innerHeight;
+  	}, 20 );
+  }
+
   var lCtx       = lCanvas.getContext( '2d' );
   lCanvas.width  = window.innerWidth;
   lCanvas.height = window.innerHeight;
@@ -449,7 +460,6 @@ function setCanvasSize(){
   HEX_MAX_IN_RADIUS = ( cw / HEX_BG_PALLET[ 0 ].length ) / 2;
   HEX_MAX_RADIUS    = HEX_MAX_IN_RADIUS / Math.cos( Math.PI / 6 );
 
-
   // resize list height
   $( '.content_title' ).css( "height", ( 13 * ( HEX_MAX_RADIUS * 1.5 ) ) - HEX_MAX_RADIUS * 0.5 );
   $( '.content_about' ).css( "height", ( 13 * ( HEX_MAX_RADIUS * 1.5 ) ) );
@@ -507,6 +517,7 @@ function mouseClick(){
       ctx.arc( HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
       ctx.closePath();
       if( ctx.isPointInPath( mouseX, mouseY ) ){
+        selRadius = 0.0;
         --selIdx;
       }
     }
@@ -516,6 +527,7 @@ function mouseClick(){
       ctx.arc( cw - ( HEX_MAX_RADIUS * 1.2 ), hh, lr * 2.0, 0, Math.PI * 2, false );
       ctx.closePath();
       if( ctx.isPointInPath( mouseX, mouseY ) ){
+        selRadius = 0.0;
         ++selIdx;
       }
     }
@@ -615,7 +627,7 @@ function draw(){
 
   // select
   if( selIdx != null ){
-    ctx.fillStyle = "rgba( 0, 0, 0, 0.5 )";
+    ctx.fillStyle = "rgba( 0, 0, 0, 0.6 )";
     ctx.fillRect( 0, 0, cw, ch );
 
     // update select radius
