@@ -37,7 +37,7 @@
       #wrapper{
         display: none;
       }
-      .contents{
+      #contents{
         display: block;
         position: relative;
         top: 0;
@@ -46,7 +46,12 @@
         height: auto;
         list-style: none;
       }
-      .contents>li{
+      #contents.noScroll{
+        position: fixed;
+        overflow-y: scroll;
+        width: 100%;
+      }
+      #contents>li{
         display: block;
         width: auto;
       }
@@ -71,7 +76,7 @@
     </div>
     <div id="wrapper">
       <canvas id="canvas" width="300" height="300"></canvas>
-      <ul class="contents">
+      <ul id="contents">
         <li class="content_title">
           <h1 style="color:#222">DMDEx2015</h1>
         </li>
