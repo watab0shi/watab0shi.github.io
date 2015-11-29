@@ -482,13 +482,14 @@ function mouseMove( e ){
 
 //---------------------------------------------------------------------------------------------------- mouseClick
 function mouseClick(){
-  // close popup
+  // popup
   if( selIdx != null ){
+    // close button
     var btnX = cw - HEX_MAX_RADIUS * 1.5;
     var btnY = HEX_MAX_RADIUS;
     var lr   = HEX_MAX_IN_RADIUS * 0.5;
     ctx.beginPath();
-    ctx.arc( btnX, btnY, lr * 1.414, 0, Math.PI*2, false );
+    ctx.arc( btnX, btnY, lr, 0, Math.PI * 2, false );
     ctx.closePath();
     if( ctx.isPointInPath( mouseX, mouseY ) ){
       selIdx    = null;
@@ -497,6 +498,26 @@ function mouseClick(){
       // resume scroll
       $( '#contents' ).removeClass( 'noScroll' ).css( 'top', 0 );
       $( document ).scrollTop( scrollTop );
+      return;
+    }
+
+    // left arrow
+    if( selIdx > 0 ){
+      ctx.beginPath();
+      ctx.arc( HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
+      ctx.closePath();
+      if( ctx.isPointInPath( mouseX, mouseY ) ){
+        --selIdx;
+      }
+    }
+    // right arrow
+    if( selIdx < ( works.length - 1 ) ){
+      ctx.beginPath();
+      ctx.arc( cw - ( HEX_MAX_RADIUS * 1.2 ), hh, lr * 2.0, 0, Math.PI * 2, false );
+      ctx.closePath();
+      if( ctx.isPointInPath( mouseX, mouseY ) ){
+        ++selIdx;
+      }
     }
     return;
   }
@@ -594,7 +615,7 @@ function draw(){
 
   // select
   if( selIdx != null ){
-    ctx.fillStyle = "rgba( 0, 0, 0, 0.3 )";
+    ctx.fillStyle = "rgba( 0, 0, 0, 0.5 )";
     ctx.fillRect( 0, 0, cw, ch );
 
     // update select radius
@@ -605,12 +626,9 @@ function draw(){
       selRadius += ( ( HEX_MAX_RADIUS * 3 ) - selRadius ) / 12;
     }
 
-    // center of works
-    var cy = -scrollTop + ( wcY * ( HEX_MAX_RADIUS * 1.5 ) );
-    var cx = ( wcY % 2 == 1 ) ? ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( wcX * ( HEX_MAX_IN_RADIUS * 2 ) );
-
-    cy = hh + HEX_MAX_RADIUS * 0.77;
-    cx = hw;
+    // center of window
+    var cy = hh + HEX_MAX_RADIUS * 0.77;
+    var cx = hw;
 
     var r  = HEX_MAX_RADIUS * 3.1;
     var _r = selRadius;
@@ -639,19 +657,39 @@ function draw(){
     //left
     drawHexagon( x[ 2 ], y[ 2 ], _r );
 
-
+    // close button
     var btnX = cw - HEX_MAX_RADIUS * 1.5;
     var btnY = HEX_MAX_RADIUS;
     var lr   = HEX_MAX_IN_RADIUS * 0.5;
     ctx.beginPath();
-    ctx.arc( btnX, btnY, lr * 1.414, 0, Math.PI*2, false );
+    ctx.arc( btnX, btnY, lr, 0, Math.PI * 2, false );
     ctx.closePath();
 
-    ctx.lineWidth = ( ctx.isPointInPath( mouseX, mouseY ) ) ? 2: 1;
+    ctx.lineWidth = ( ctx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
     ctx.strokeStyle = "rgb( 255, 255, 255 )";
     drawCross( btnX, btnY, lr );
+    ctx.lineWidth = 1;
 
+    // left arrow
+    if( selIdx > 0 ){
+      ctx.beginPath();
+      ctx.arc( HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
+      ctx.closePath();
+      ctx.lineWidth = ( ctx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
 
+      drawArrow( HEX_MAX_RADIUS, hh, lr * 1.5, true );
+    }
+
+    // right arrow
+    if( selIdx < ( works.length - 1 ) ){
+      ctx.beginPath();
+      ctx.arc( cw - HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
+      ctx.closePath();
+      ctx.lineWidth = ( ctx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
+
+      drawArrow( cw - HEX_MAX_RADIUS, hh, lr * 1.5, false );
+      ctx.lineWidth = 1;
+    }
   }
 }
 
@@ -722,14 +760,36 @@ function drawCross( _x, _y, _r ){
   ctx.translate( _x, _y );
 
   ctx.beginPath();
-  ctx.moveTo( -_r, -_r );
-  ctx.lineTo( _r, _r );
+  ctx.moveTo( Math.cos( Math.PI * 1.25 ) * _r, Math.sin( Math.PI * 1.25 ) * _r );
+  ctx.lineTo( Math.cos( Math.PI * 0.25 ) * _r, Math.sin( Math.PI * 0.25 ) * _r );
   ctx.closePath();
   ctx.stroke();
 
   ctx.beginPath();
-  ctx.moveTo( _r, -_r );
-  ctx.lineTo( -_r, _r );
+  ctx.moveTo( Math.cos( Math.PI * 1.75 ) * _r, Math.sin( Math.PI * 1.75 ) * _r );
+  ctx.lineTo( Math.cos( Math.PI * 0.75 ) * _r, Math.sin( Math.PI * 0.75 ) * _r );
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+
+//---------------------------------------------------------------------------------------------------- drawCross
+function drawArrow( _x, _y, _r, _l ){
+  ctx.save();
+  ctx.translate( _x, _y );
+  ctx.scale( ( _l ) ? 1: -1, 1 );
+
+  ctx.beginPath();
+  ctx.moveTo( 0, 0 );
+  ctx.lineTo( Math.cos( -( Math.PI / 3 ) ) * _r, Math.sin( -( Math.PI / 3 ) ) * _r );
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo( 0, 0 );
+  ctx.lineTo( Math.cos( Math.PI / 3 ) * _r, Math.sin( Math.PI / 3 ) * _r );
   ctx.closePath();
   ctx.stroke();
 
