@@ -1,4 +1,5 @@
 var scrollTop = 0,
+    lastScrollTop = 0,
     canvas, ctx,
 		cw, ch,
 		hw, hh,
@@ -391,7 +392,8 @@ function init(){
   scrollTop = $( document ).scrollTop();
 
   $( document ).scroll( function(){
-    scrollTop = $( this ).scrollTop();
+    // $( this ).scrollTop( 200 );
+    if( selIdx == null ) scrollTop = $( this ).scrollTop();
   } );
 
 
@@ -491,6 +493,10 @@ function mouseClick(){
     if( ctx.isPointInPath( mouseX, mouseY ) ){
       selIdx    = null;
       selRadius = 0.0;
+
+      // resume scroll
+      $( '#contents' ).removeClass( 'noScroll' ).css( 'top', 0 );
+      $( document ).scrollTop( scrollTop );
     }
     return;
   }
@@ -509,6 +515,9 @@ function mouseClick(){
     if( ctx.isPointInPath( mouseX, mouseY ) ){
       selIdx = i;
       bSelect = true;
+
+      // disable scroll
+      $( '#contents' ).addClass( 'noScroll' ).css( 'top', -scrollTop );
     }
     ctx.restore();
   }
