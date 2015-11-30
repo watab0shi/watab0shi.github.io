@@ -1,19 +1,3 @@
-var scrollTop = 0,
-    lastScrollTop = 0,
-    canvas, ctx,
-		cw, ch,
-		hw, hh,
-		mouseX = 0,
-    mouseY = 0,
-    lQueue = null,
-		queue  = null,
-		wait   = 100;
-
-var HEX_NUM_ANGLES    = 6,
-    HEX_MAX_IN_RADIUS = 0.0,
-    HEX_MAX_RADIUS    = 0.0,
-    radius            = [],
-    selRadius         = 0.0;
 
 var HEX_BG_PALLET = [
   ["rgb(240,155,165)","rgb(249,218,217)","rgb(240,155,165)","rgb(238,132,140)","rgb(238,132,140)","rgb(249,218,217)","rgb(162,179,219)","rgb(162,179,219)","rgb(58,67,152)","rgb(116,131,192)","rgb(222,234,247)"],
@@ -274,6 +258,37 @@ var HEX_WORKS = [
   [0,0,0,0,0,0,0,0,0,0,0]
 ];
 
+var HEX_WORKS_GRADES = [
+  3,3,1,1,4,3,4,3,3,
+  1,2,2,3,4,1,1,5,1,3,
+  4,6,3,1,2,2,4,2,1,
+  3,4,2,4,1,1,3,1,4,3,
+  3,1,1,2,2,2,2,3,
+  4,3,1,2,1,1,4,1,
+  1,2,4,1,1,2,2,2,6,
+  3,3,1,2,1,3,1,1,4,3,
+  4,6,3,1,2,4,2,3,1,
+  3,3,4,3,3,1,1,4,4,
+];
+
+var HEX_NUM_ANGLES    = 6,
+    HEX_MAX_IN_RADIUS = 0.0,
+    HEX_MAX_RADIUS    = 0.0,
+    radius            = [],
+    SEL_MAX_RADIUS    = 0.0,
+    SEL_MAX_IN_RADIUS = 0.0,
+    selRadius         = 0.0;
+
+var scrollTop     = 0,
+    canvas, sCanvas,
+    ctx, sCtx,
+		cw, ch,
+		hw, hh,
+		mouseX = 0,
+    mouseY = 0,
+    lQueue = null,
+		queue  = null,
+		wait   = 200;
 
 var works  = [];
 var selIdx = null;
@@ -296,13 +311,12 @@ $( function(){
 
   function preload( _images, _progress ){
     var total = _images.length;
-    $( _images ).each( function(){
-      var src = this;
-      $( '<img/>' ).attr( 'src', src )
-                   .load( function(){
-                     _images.remove( src );
-                     _progress( total, total - images.length );
-                   } );
+    $( _images ).each( function( index ){
+      var src = _images[ index ];
+      $( '<img/>' ).attr( 'src', src ).load( function(){
+        _images.remove( src );
+        _progress( total, total - _images.length );
+      } );
     } );
   }
 
@@ -408,13 +422,17 @@ function init(){
   } );
 
 
-	canvas = document.getElementById( 'canvas' );
+  canvas  = document.getElementById( 'canvas' );
+	sCanvas = document.getElementById( 'sCanvas' );
 
-	if( !canvas || !canvas.getContext ){
+	if( !canvas || !canvas.getContext || !sCanvas || !sCanvas.getContext ){
 		return false;
 	}
 
-	ctx = canvas.getContext( '2d' );
+  ctx  = canvas.getContext( '2d' );
+	sCtx = sCanvas.getContext( '2d' );
+
+
 
 	// set canvas size
 	setCanvasSize();
@@ -452,6 +470,8 @@ function resize(){
 function setCanvasSize(){
 	canvas.width   = window.innerWidth;
 	canvas.height  = window.innerHeight;
+  sCanvas.width  = window.innerWidth;
+  sCanvas.height = window.innerHeight;
 	cw             = canvas.width;
 	ch             = canvas.height;
 	hw             = cw / 2;
@@ -459,6 +479,26 @@ function setCanvasSize(){
 
   HEX_MAX_IN_RADIUS = ( cw / HEX_BG_PALLET[ 0 ].length ) / 2;
   HEX_MAX_RADIUS    = HEX_MAX_IN_RADIUS / Math.cos( Math.PI / 6 );
+
+  SEL_MAX_RADIUS    = 180;
+  SEL_MAX_IN_RADIUS = SEL_MAX_RADIUS * Math.cos( Math.PI / 6 );
+
+  // setup works
+  var idx = 0;
+  for( var y = 0; y < HEX_WORKS.length; ++y ){
+    radius[ y ] = 0.0;
+
+    for( var x = 0; x < HEX_WORKS.length; ++x ){
+      if( HEX_WORKS[ y ][ x ] == 1 ){
+        works[ idx ] = {
+          x: x,
+          y: y,
+          grade: HEX_WORKS_GRADES[ idx ]
+        };
+        ++idx;
+      }
+    }
+  }
 
   // resize list height
   $( '.content_title' ).css( "height", ( 13 * ( HEX_MAX_RADIUS * 1.5 ) ) - HEX_MAX_RADIUS * 0.5 );
@@ -468,18 +508,23 @@ function setCanvasSize(){
   $( '.content_access' ).css( "height", ( 16 * ( HEX_MAX_RADIUS * 1.5 ) ) );
   $( '.content_contact' ).css( "height", ( 12 * ( HEX_MAX_RADIUS * 1.5 ) ) );
 
-  // setup works
-  var idx = 0;
-  for( var y = 0; y < HEX_WORKS.length; ++y ){
-    radius[ y ] = 0.0;
 
-    for( var x = 0; x < HEX_WORKS.length; ++x ){
-      if( HEX_WORKS[ y ][ x ] == 1 ){
-        works[ idx ] = { y: y, x: x };
-        ++idx;
-      }
-    }
-  }
+  $( '.left' ).css( {
+    top: hh + ( HEX_MAX_RADIUS * 0.77 ) + ( Math.sin( Math.PI / 6 ) * HEX_MAX_RADIUS * 0.1 ),
+    left: hw - ( Math.cos( Math.PI / 6 ) * HEX_MAX_RADIUS * 0.1 + ( SEL_MAX_IN_RADIUS * 2 ) ),
+    width: ( SEL_MAX_IN_RADIUS ) * 2,
+    height: SEL_MAX_RADIUS,
+  } );
+  $( '.left_box' ).css( 'width', SEL_MAX_IN_RADIUS * 1.75 );
+
+  $( '.right' ).css( {
+    top: hh + ( HEX_MAX_RADIUS * 0.77 ) + ( Math.sin( Math.PI / 6 ) * HEX_MAX_RADIUS * 0.1 ),
+    left: hw + Math.cos( Math.PI / 6 ) * HEX_MAX_RADIUS * 0.1,
+    width: SEL_MAX_IN_RADIUS * 2,
+    height: SEL_MAX_RADIUS,
+    fontSize: SEL_MAX_RADIUS * 0.07,
+  } );
+  $( '.caption' ).css( 'width', SEL_MAX_IN_RADIUS * 1.7 );
 }
 
 
@@ -508,6 +553,9 @@ function mouseClick(){
       // resume scroll
       $( '#contents' ).removeClass( 'noScroll' ).css( 'top', 0 );
       $( document ).scrollTop( scrollTop );
+
+      $( '.left' ).css( 'display', 'none' );
+      $( '.right' ).css( 'display', 'none' );
       return;
     }
 
@@ -519,6 +567,13 @@ function mouseClick(){
       if( ctx.isPointInPath( mouseX, mouseY ) ){
         selRadius = 0.0;
         --selIdx;
+
+        var work = '.grade_' + ( works[ selIdx ].grade );
+
+        $( '.left' ).css( 'display', 'none' );
+        $( '.right' ).css( 'display', 'none' );
+        $( work + '>.left' ).css( 'display', 'none' ).delay( 400 ).fadeIn( 'slow' );
+        $( work + '>.right' ).css( 'display', 'none' ).delay( 400 ).fadeIn( 'slow' );
       }
     }
     // right arrow
@@ -529,6 +584,13 @@ function mouseClick(){
       if( ctx.isPointInPath( mouseX, mouseY ) ){
         selRadius = 0.0;
         ++selIdx;
+
+        var work = '.grade_' + ( works[ selIdx ].grade );
+
+        $( '.left' ).css( 'display', 'none' );
+        $( '.right' ).css( 'display', 'none' );
+        $( work + '>.left' ).css( 'display', 'none' ).delay( 400 ).fadeIn( 'slow' );
+        $( work + '>.right' ).css( 'display', 'none' ).delay( 400 ).fadeIn( 'slow' );
       }
     }
     return;
@@ -551,6 +613,13 @@ function mouseClick(){
 
       // disable scroll
       $( '#contents' ).addClass( 'noScroll' ).css( 'top', -scrollTop );
+
+      var work = '.grade_' + ( works[ selIdx ].grade );
+      console.log( work );
+
+      $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
+      $( work + '>.right' ).delay( 400 ).fadeIn( 'slow' );
+      // $( '.right' ).css( 'display', 'flex' );
     }
     ctx.restore();
   }
@@ -603,12 +672,12 @@ function draw(){
       ctx.fillStyle   = HEX_BG_PALLET[ y ][ x ];
       ctx.lineWidth   = 0.0;
       ctx.globalAlpha = 1.0;
-      drawHexagon( px, py, radius[ y ] );
+      drawHexagon( ctx, px, py, radius[ y ] );
 
       // add
       if( HEX_ADD_PALLET[ y ][ x ] !== "rgba(0,0,0,0.00)" ){
         ctx.fillStyle   = HEX_ADD_PALLET[ y ][ x ];
-        drawHexagon( px, py, radius[ y ] * 0.7 );
+        drawHexagon( ctx, px, py, radius[ y ] * 0.7 );
       }
     }
   }
@@ -622,28 +691,31 @@ function draw(){
     var py = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
     var px = ( y % 2 == 1 ) ? ( x * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( x * ( HEX_MAX_IN_RADIUS * 2 ) );
     ctx.fillStyle = HEX_BG_PALLET[ y ][ x ];
-    drawImageHexagon( px, py, radius[ y ], images[ i % images.length ], ( i == selIdx ) );
+    drawImageHexagon( px, py, radius[ y ], images[ works[ i ].grade - 1 ], ( i == selIdx ) );
   }
 
   // select
+  sCtx.clearRect( 0, 0, cw, ch );
+
   if( selIdx != null ){
-    ctx.fillStyle = "rgba( 0, 0, 0, 0.6 )";
-    ctx.fillRect( 0, 0, cw, ch );
+    sCtx.fillStyle = "rgba( 0, 0, 0, 0.6 )";
+    sCtx.fillRect( 0, 0, cw, ch );
 
     // update select radius
-    if( selRadius > ( ( HEX_MAX_RADIUS * 3 ) - 0.1 ) ){
-      selRadius = HEX_MAX_RADIUS * 3;
+    if( selRadius > ( SEL_MAX_RADIUS - 0.1 ) ){
+      selRadius = SEL_MAX_RADIUS;
     }
     else{
-      selRadius += ( ( HEX_MAX_RADIUS * 3 ) - selRadius ) / 12;
+      selRadius += ( SEL_MAX_RADIUS - selRadius ) / 12;
     }
 
     // center of window
     var cy = hh + HEX_MAX_RADIUS * 0.77;
     var cx = hw;
 
-    var r  = HEX_MAX_RADIUS * 3.1;
+    var r  = SEL_MAX_RADIUS + HEX_MAX_RADIUS * 0.1;
     var _r = selRadius;
+    // _r = SEL_MAX_RADIUS;
     var a  = ( Math.PI * 2 ) / 3;
     var x  = [];
     var y  = [];
@@ -652,55 +724,55 @@ function draw(){
       y[ i ] = cy + ( Math.sin( ( i * a ) - Math.PI / 2 ) * r );
     }
 
-    var i = images[ selIdx % images.length ];
-
+    var i = images[ works[ selIdx ].grade - 1 ];
+    sCtx.globalAlpha = selRadius;
     // image
-    ctx.save();
-    ctx.translate( x[ 0 ], y[ 0 ] );
-    drawHexPolygon( ctx, _r );
-    ctx.clip();
-    ctx.drawImage( i, 0, 0, i.width, i.height, -_r, -_r, _r * 2, _r * 2 );
-    ctx.restore();
+    sCtx.save();
+    sCtx.translate( x[ 0 ], y[ 0 ] );
+    drawHexPolygon( sCtx, _r );
+    sCtx.clip();
+    sCtx.drawImage( i, 0, 0, i.width, i.height, -_r, -_r, _r * 2, _r * 2 );
+    sCtx.restore();
 
     // right
-    ctx.fillStyle = "rgb( 255, 255, 255 )";
-    drawHexagon( x[ 1 ], y[ 1 ], _r );
+    sCtx.fillStyle = "rgb( 255, 255, 255 )";
+    drawHexagon( sCtx, x[ 1 ], y[ 1 ], _r );
 
     //left
-    drawHexagon( x[ 2 ], y[ 2 ], _r );
+    drawHexagon( sCtx, x[ 2 ], y[ 2 ], _r );
 
     // close button
     var btnX = cw - HEX_MAX_RADIUS * 1.5;
     var btnY = HEX_MAX_RADIUS;
     var lr   = HEX_MAX_IN_RADIUS * 0.5;
-    ctx.beginPath();
-    ctx.arc( btnX, btnY, lr, 0, Math.PI * 2, false );
-    ctx.closePath();
+    sCtx.beginPath();
+    sCtx.arc( btnX, btnY, lr, 0, Math.PI * 2, false );
+    sCtx.closePath();
 
-    ctx.lineWidth = ( ctx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
-    ctx.strokeStyle = "rgb( 255, 255, 255 )";
+    sCtx.lineWidth = ( sCtx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
+    sCtx.strokeStyle = "rgb( 255, 255, 255 )";
     drawCross( btnX, btnY, lr );
-    ctx.lineWidth = 1;
+    sCtx.lineWidth = 1;
 
     // left arrow
     if( selIdx > 0 ){
-      ctx.beginPath();
-      ctx.arc( HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
-      ctx.closePath();
-      ctx.lineWidth = ( ctx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
+      sCtx.beginPath();
+      sCtx.arc( HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
+      sCtx.closePath();
+      sCtx.lineWidth = ( sCtx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
 
       drawArrow( HEX_MAX_RADIUS, hh, lr * 1.5, true );
     }
 
     // right arrow
     if( selIdx < ( works.length - 1 ) ){
-      ctx.beginPath();
-      ctx.arc( cw - HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
-      ctx.closePath();
-      ctx.lineWidth = ( ctx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
+      sCtx.beginPath();
+      sCtx.arc( cw - HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
+      sCtx.closePath();
+      sCtx.lineWidth = ( sCtx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
 
       drawArrow( cw - HEX_MAX_RADIUS, hh, lr * 1.5, false );
-      ctx.lineWidth = 1;
+      sCtx.lineWidth = 1;
     }
   }
 }
@@ -734,14 +806,14 @@ function drawImageHexagon( _x, _y, _r, _i, _s ){
 
 
 //---------------------------------------------------------------------------------------------------- drawHexagon
-function drawHexagon( _x, _y, _r ){
-  ctx.save();
-  ctx.translate( _x, _y );
+function drawHexagon( _ctx, _x, _y, _r ){
+  _ctx.save();
+  _ctx.translate( _x, _y );
 
-  drawHexPolygon( ctx, _r );
-  ctx.fill();
+  drawHexPolygon( _ctx, _r );
+  _ctx.fill();
 
-  ctx.restore();
+  _ctx.restore();
 }
 
 
@@ -768,42 +840,42 @@ function drawHexPolygon( _ctx, _r ){
 
 //---------------------------------------------------------------------------------------------------- drawCross
 function drawCross( _x, _y, _r ){
-  ctx.save();
-  ctx.translate( _x, _y );
+  sCtx.save();
+  sCtx.translate( _x, _y );
 
-  ctx.beginPath();
-  ctx.moveTo( Math.cos( Math.PI * 1.25 ) * _r, Math.sin( Math.PI * 1.25 ) * _r );
-  ctx.lineTo( Math.cos( Math.PI * 0.25 ) * _r, Math.sin( Math.PI * 0.25 ) * _r );
-  ctx.closePath();
-  ctx.stroke();
+  sCtx.beginPath();
+  sCtx.moveTo( Math.cos( Math.PI * 1.25 ) * _r, Math.sin( Math.PI * 1.25 ) * _r );
+  sCtx.lineTo( Math.cos( Math.PI * 0.25 ) * _r, Math.sin( Math.PI * 0.25 ) * _r );
+  sCtx.closePath();
+  sCtx.stroke();
 
-  ctx.beginPath();
-  ctx.moveTo( Math.cos( Math.PI * 1.75 ) * _r, Math.sin( Math.PI * 1.75 ) * _r );
-  ctx.lineTo( Math.cos( Math.PI * 0.75 ) * _r, Math.sin( Math.PI * 0.75 ) * _r );
-  ctx.closePath();
-  ctx.stroke();
+  sCtx.beginPath();
+  sCtx.moveTo( Math.cos( Math.PI * 1.75 ) * _r, Math.sin( Math.PI * 1.75 ) * _r );
+  sCtx.lineTo( Math.cos( Math.PI * 0.75 ) * _r, Math.sin( Math.PI * 0.75 ) * _r );
+  sCtx.closePath();
+  sCtx.stroke();
 
-  ctx.restore();
+  sCtx.restore();
 }
 
 
 //---------------------------------------------------------------------------------------------------- drawCross
 function drawArrow( _x, _y, _r, _l ){
-  ctx.save();
-  ctx.translate( _x, _y );
-  ctx.scale( ( _l ) ? 1: -1, 1 );
+  sCtx.save();
+  sCtx.translate( _x, _y );
+  sCtx.scale( ( _l ) ? 1: -1, 1 );
 
-  ctx.beginPath();
-  ctx.moveTo( 0, 0 );
-  ctx.lineTo( Math.cos( -( Math.PI / 3 ) ) * _r, Math.sin( -( Math.PI / 3 ) ) * _r );
-  ctx.closePath();
-  ctx.stroke();
+  sCtx.beginPath();
+  sCtx.moveTo( 0, 0 );
+  sCtx.lineTo( Math.cos( -( Math.PI / 3 ) ) * _r, Math.sin( -( Math.PI / 3 ) ) * _r );
+  sCtx.closePath();
+  sCtx.stroke();
 
-  ctx.beginPath();
-  ctx.moveTo( 0, 0 );
-  ctx.lineTo( Math.cos( Math.PI / 3 ) * _r, Math.sin( Math.PI / 3 ) * _r );
-  ctx.closePath();
-  ctx.stroke();
+  sCtx.beginPath();
+  sCtx.moveTo( 0, 0 );
+  sCtx.lineTo( Math.cos( Math.PI / 3 ) * _r, Math.sin( Math.PI / 3 ) * _r );
+  sCtx.closePath();
+  sCtx.stroke();
 
-  ctx.restore();
+  sCtx.restore();
 }

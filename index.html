@@ -29,10 +29,15 @@
         text-align: center;
         color: #222;
       }
-      #wrapper #canvas{
+      #wrapper>canvas{
         position: fixed;
+        top: 0;
+        left: 0;
         width: auto;
         height: auto;
+      }
+      #sCanvas{
+        /*z-index: 1;*/
       }
       #wrapper{
         display: none;
@@ -62,7 +67,42 @@
         height: auto;
       }
       .work{
+        /*display: none;*/
+      }
+      .left, .right{
         display: none;
+        position: fixed;
+        height: auto;
+        /*background-color: #ddd;*/
+        /*z-index: 2;*/
+      }
+      .left{
+        text-align: center;
+      }
+      .left_box{
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate( -50%, -50% );
+      }
+      .right{
+        font-size: 14px;
+      }
+      .title{
+        font-size: 16px;
+      }
+      .name{
+        font-size: 14px;
+      }
+      .caption{
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate( -50%, -50% );
       }
     </style>
   </head>
@@ -76,6 +116,7 @@
     </div>
     <div id="wrapper">
       <canvas id="canvas" width="300" height="300"></canvas>
+      <canvas id="sCanvas" width="300" height="300"></canvas>
       <ul id="contents">
         <li class="content_title">
           <h1 style="color:#222">DMDEx2015</h1>
@@ -89,17 +130,98 @@
         <li class="content_works">
           <div id="works">
             <h2 style="color:#222">Works</h2>
-            <div class="work grade_1" data-image="http://watab0shi.github.io/images/00.png">
+            <div class="work grade_1" data-image="http://watab0shi.github.io/images/1533021_林優衣奈.png">
+              <div class="left">
+                <div class="left_box">
+                  <p class="title">憂鬱</p>
+                  <br />
+                  <p class="name">林優衣奈</p>
+                </div>
+              </div>
+              <div class="right">
+                <p class="caption">
+                  明るい少女は魅力的ですが、暗い雰囲気の少女もまた異なる魅力を持っています。暗い雰囲気を全面に押し出して思春期の悩める少女を表現しました。少女は魅力的です。いろんな可能性を秘めていると思います。
+                </p>
+              </div>
             </div>
-            <div class="work grade_2" data-image="http://watab0shi.github.io/images/01.png">
+            <div class="work grade_2" data-image="http://watab0shi.github.io/images/1433024_松井美帆.png">
+              <div class="left">
+                <div class="left_box">
+                  <p class="title">onomatopée</p>
+                  <br />
+                  <p class="name">松井　美帆</p>
+                  <p class="name">田島　里紗</p>
+                  <p class="name">東　真由</p>
+                  <p class="name">正木　汀子</p>
+                  <p class="name">安江　佳菜</p>
+                </div>
+              </div>
+              <div class="right">
+                <p class="caption">
+                  普段生活している中で自然と耳にしている”音”をテーマに映像、音声を使って表現しました。テンポよく切り替わるオノマトペを映像と音声でお楽しみください!
+                </p>
+              </div>
             </div>
-            <div class="work grade_3" data-image="http://watab0shi.github.io/images/02.png">
+            <div class="work grade_3" data-image="http://watab0shi.github.io/images/1333010_川添美奈.png">
+              <div class="left">
+                <div class="left_box">
+                  <p class="title">あるこまきプロジェクト</p>
+                  <br />
+                  <p class="name">川添　美奈</p>
+                  <p class="name">五十嵐　真由</p>
+                  <p class="name">西岡　美穂</p>
+                  <p class="name">柳　賢智</p>
+                  <p class="name">高井　麻未</p>
+                </div>
+              </div>
+              <div class="right">
+                <p class="caption">
+                  「あるこまきプロジェクト」は大学の所在地である小牧市をとりあげた観光ゲームアプリです。GPSでユーザの位置情報を取得し、現実とバーチャルの世界がリンクしながら物語が展開していきます。物語は小牧市に伝わる昔話をモチーフに、ターゲットである若い世代に愛されるキャラクターデザインにも力を入れています。
+                </p>
+              </div>
             </div>
-            <div class="work grade_4" data-image="http://watab0shi.github.io/images/03.png">
+            <div class="work grade_4" data-image="http://watab0shi.github.io/images/1233301_落葉麻由美.jpg">
+              <div class="left">
+                <div class="left_box">
+                  <p class="title">4K高精細モニターを応用した</p>
+                  <p class="title">テーブルトップ型サービスのデザイン</p>
+                  <br />
+                  <p class="name">落葉　麻由美</p>
+                </div>
+              </div>
+              <div class="right">
+                <p class="caption">
+                  飲食店に行った時、複数人で来店している人達が、スマートフォンを触っている食事風景を見ました。そこで、「飲食店にメディアを導入し、来店者にも飲食店側にもプラスになるシステムを作ることができないか?」ということを思いつき、制作しました。
+                </p>
+              </div>
             </div>
-            <div class="work grade_5" data-image="http://watab0shi.github.io/images/04.png">
+            <div class="work grade_5" data-image="http://watab0shi.github.io/images/aki_meiji.png">
+              <div class="left">
+                <div class="left_box">
+                  <p class="title">あかりの明治村</p>
+                  <br />
+                  <p class="name">プロジェクションマッピングプロジェクト</p>
+                </div>
+              </div>
+              <div class="right">
+                <p class="caption">
+                  2015年、あかりの明治村で行われたプロジェクションマッピングです。昨年同様に聖ザビエル天主堂を使用し、今年の宵街映写の続編を制作を行いました。実写と手描きアニメーションを混ぜた表現や、曲の雰囲気に合わせた映像制作にこだわりました。その完成映像を模型に投影し展示しています。
+                </p>
+              </div>
             </div>
-            <div class="work grade_5" data-image="http://watab0shi.github.io/images/05.png">
+            <div class="work grade_6" data-image="http://watab0shi.github.io/images/1481003_可児亘.png">
+              <div class="left">
+                <div class="left_box">
+                  <p class="title">on your palm</p>
+                  <br />
+                  <p class="name">可児　亘</p>
+                </div>
+              </div>
+              <div class="right">
+                <p class="caption">
+                  画面の中で動き回っているいきものたちの上に手を出すことで、いきものたちをすくい上げることができます。すくわれたいきものたちはヒトの掌の上にいる間に徐々に変化していき、元の世界（画面）に戻したときに協調性を失っていたりほかのいきものたちが寄ってきたり離れていったり、ヒトが関わることによって画面の中の生態系が変化していきます。
+                </p>
+              </div>
             </div>
           </div>
         </li>
