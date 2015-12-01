@@ -282,9 +282,17 @@ var HEX_NUM_ANGLES    = 6,
     HEX_MAX_IN_RADIUS = 0.0,
     HEX_MAX_RADIUS    = 0.0,
     radius            = [],
+    easeTime          = [],
+    easeStartTime     = [],
+    easeLength        = 1000,
     SEL_MAX_RADIUS    = 0.0,
     SEL_MAX_IN_RADIUS = 0.0,
-    selRadius         = 0.0;
+    selRadius         = 0.0,
+    selEaseTime       = 0,
+    selEaseStartTime  = 0,
+    selEaseLength     = 1000;
+
+var enableClick = true;
 
 var scrollTop     = 0,
     canvas, sCanvas,
@@ -355,7 +363,7 @@ $( function(){
   var inR        = r * Math.cos( Math.PI / HEX_NUM_ANGLES );
   var a          = ( Math.PI * 2 ) / HEX_NUM_ANGLES;
   var cs         = [ "rgb( 232, 84, 107 )", "rgb( 240, 155, 165 )", "rgb( 116, 131, 192 )", "rgb( 249, 218, 217 )", "rgb( 255, 246, 151 )", "rgb( 162, 179, 219 )" ];
-
+  
   var timer = window.setInterval( function(){
     // loading
     if( currentPct < 100 ){
@@ -493,7 +501,9 @@ function setCanvasSize(){
   var idx  = 0;
   var gIdx = [ 0, 0, 0, 0, 0, 0 ];
   for( var y = 0; y < HEX_WORKS.length; ++y ){
-    radius[ y ] = 0.0;
+    radius[ y ]        = 0.0;
+    easeTime[ y ]      = 0;
+    easeStartTime[ y ] = new Date().getTime();
 
     for( var x = 0; x < HEX_WORKS.length; ++x ){
       if( HEX_WORKS[ y ][ x ] == 1 ){
@@ -551,59 +561,73 @@ function mouseMove( e ){
 function mouseClick(){
   // popup
   if( selIdx != null ){
-    // close button
-    var btnX = cw - HEX_MAX_RADIUS * 1.5;
-    var btnY = HEX_MAX_RADIUS;
-    var lr   = HEX_MAX_IN_RADIUS * 0.5;
-    ctx.beginPath();
-    ctx.arc( btnX, btnY, lr, 0, Math.PI * 2, false );
-    ctx.closePath();
-    if( ctx.isPointInPath( mouseX, mouseY ) ){
-      selIdx    = null;
-      selRadius = 0.0;
-
-      // resume scroll
-      $( '#contents' ).removeClass( 'noScroll' ).css( 'top', 0 );
-      $( document ).scrollTop( scrollTop );
-
-      $( '.left' ).css( 'display', 'none' );
-      $( '.right' ).css( 'display', 'none' );
-      return;
-    }
-
-    // left arrow
-    if( selIdx > 0 ){
+    if( enableClick ){
+      // close button
+      var btnX = cw - HEX_MAX_RADIUS * 1.5;
+      var btnY = HEX_MAX_RADIUS;
+      var lr   = HEX_MAX_IN_RADIUS * 0.5;
       ctx.beginPath();
-      ctx.arc( HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
+      ctx.arc( btnX, btnY, lr, 0, Math.PI * 2, false );
       ctx.closePath();
-      if( ctx.isPointInPath( mouseX, mouseY ) ){
-        selRadius = 0.0;
-        --selIdx;
 
-        var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
+      if( ctx.isPointInPath( mouseX, mouseY ) ){
+        selIdx    = null;
+        selRadius = 0.0;
+
+        // resume scroll
+        $( '#contents' ).removeClass( 'noScroll' ).css( 'top', 0 );
+        $( document ).scrollTop( scrollTop );
 
         $( '.left' ).css( 'display', 'none' );
         $( '.right' ).css( 'display', 'none' );
-        $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
-        $( work + '>.right' ).delay( 400 ).fadeIn( 'slow' );
+        return;
       }
-    }
-    // right arrow
-    if( selIdx < ( works.length - 1 ) ){
-      ctx.beginPath();
-      ctx.arc( cw - ( HEX_MAX_RADIUS * 1.2 ), hh, lr * 2.0, 0, Math.PI * 2, false );
-      ctx.closePath();
-      if( ctx.isPointInPath( mouseX, mouseY ) ){
-        selRadius = 0.0;
-        ++selIdx;
 
-        var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
+      // left arrow
+      if( selIdx > 0 ){
+        ctx.beginPath();
+        ctx.arc( HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
+        ctx.closePath();
+        if( ctx.isPointInPath( mouseX, mouseY ) ){
+          selRadius = 0.0;
+          selEaseStartTime = new Date().getTime();
+          --selIdx;
 
-        $( '.left' ).css( 'display', 'none' );
-        $( '.right' ).css( 'display', 'none' );
-        $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
-        $( work + '>.right' ).delay( 400 ).fadeIn( 'slow' );
+          enableClick = false;
+
+          var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
+
+          $( '.left' ).css( 'display', 'none' );
+          $( '.right' ).css( 'display', 'none' );
+          $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
+          $( work + '>.right' ).delay( 400 ).fadeIn( 'slow', function(){
+            enableClick = true;
+          } );
+        }
       }
+      // right arrow
+      if( selIdx < ( works.length - 1 ) ){
+        ctx.beginPath();
+        ctx.arc( cw - ( HEX_MAX_RADIUS * 1.2 ), hh, lr * 2.0, 0, Math.PI * 2, false );
+        ctx.closePath();
+        if( ctx.isPointInPath( mouseX, mouseY ) ){
+          selRadius = 0.0;
+          selEaseStartTime = new Date().getTime();
+          ++selIdx;
+
+          enableClick = false;
+
+          var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
+
+          $( '.left' ).css( 'display', 'none' );
+          $( '.right' ).css( 'display', 'none' );
+          $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
+          $( work + '>.right' ).delay( 400 ).fadeIn( 'slow', function(){
+            enableClick = true;
+          } );
+        }
+      }
+
     }
     return;
   }
@@ -618,10 +642,14 @@ function mouseClick(){
 
     ctx.save();
     ctx.translate( px, py );
-    drawHexPolygon( ctx, radius[ y ] );
-    if( ctx.isPointInPath( mouseX, mouseY ) ){
-      selIdx = i;
-      bSelect = true;
+    drawHexPolygon( ctx, radius[ y ] - 0.5 );
+    if( !bSelect && ctx.isPointInPath( mouseX, mouseY ) ){
+      selIdx           = i;
+      bSelect          = true;
+      selRadius        = 0.0;
+      selEaseStartTime = new Date().getTime();
+
+      enableClick = false;
 
       // disable scroll
       $( '#contents' ).addClass( 'noScroll' ).css( 'top', -scrollTop );
@@ -629,14 +657,15 @@ function mouseClick(){
       var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
 
       $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
-      $( work + '>.right' ).delay( 400 ).fadeIn( 'slow' );
+      $( work + '>.right' ).delay( 400 ).fadeIn( 'slow', function(){
+        enableClick = true;
+      } );
     }
     ctx.restore();
   }
 
   if( !bSelect ){
-    selIdx    = null;
-    selRadius = 0.0;
+    selIdx = null;
   }
 }
 
@@ -652,22 +681,20 @@ function draw(){
   for( var y = 0; y < HEX_BG_PALLET.length; ++y ){
     var py = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
 
-    // update radius
+    // update radius with easing
     if( ( py >= -( HEX_MAX_RADIUS ) ) && ( py <= ch + HEX_MAX_RADIUS ) ){
-      if( radius[ y ] > HEX_MAX_RADIUS - 0.1 ){
+      easeTime[ y ] = new Date().getTime() - easeStartTime[ y ];
+      var e = easeOutQuart( easeTime[ y ], easeLength, 1.0, 0.0 );
+      if( easeTime[ y ] >= easeLength ){
         radius[ y ] = HEX_MAX_RADIUS;
       }
       else{
-        radius[ y ] += ( HEX_MAX_RADIUS - radius[ y ] ) / 12;
+        radius[ y ] = e * HEX_MAX_RADIUS;
       }
     }
     else{
-      if( radius[ y ] < 0.1 ){
-        radius[ y ] = 0.0;
-      }
-      else{
-        radius[ y ] += ( 0.0 - radius[ y ] ) / 12;
-      }
+      easeStartTime[ y ] = new Date().getTime();
+      radius[ y ] = 0.0;
     }
 
     // draw hexagons
@@ -681,7 +708,6 @@ function draw(){
       // bg
       ctx.fillStyle   = HEX_BG_PALLET[ y ][ x ];
       ctx.lineWidth   = 0.0;
-      ctx.globalAlpha = 1.0;
       drawHexagon( ctx, px, py, radius[ y ] );
 
       // add
@@ -716,12 +742,14 @@ function draw(){
     sCtx.fillStyle = "rgba( 0, 0, 0, 0.6 )";
     sCtx.fillRect( 0, 0, cw, ch );
 
-    // update select radius
-    if( selRadius > ( SEL_MAX_RADIUS - 0.1 ) ){
+    // update select radius with easing
+    selEaseTime = new Date().getTime() - selEaseStartTime;
+    var e = easeOutQuart( selEaseTime, selEaseLength, 1.0, 0.0 );
+    if( selEaseTime >= selEaseLength ){
       selRadius = SEL_MAX_RADIUS;
     }
     else{
-      selRadius += ( SEL_MAX_RADIUS - selRadius ) / 12;
+      selRadius = e * SEL_MAX_RADIUS;
     }
 
     // center of window
@@ -823,6 +851,7 @@ function drawImageHexagon( _x, _y, _r, _i, _s ){
   }
   else{
     if( selIdx == null ){
+      drawHexPolygon( ctx, _r - 0.5 );
       if( ctx.isPointInPath( mouseX, mouseY ) ){
         drawHexPolygon( ctx, _r - ctx.lineWidth / 2 );
         ctx.clip();
@@ -910,4 +939,12 @@ function drawArrow( _x, _y, _r, _l ){
   sCtx.stroke();
 
   sCtx.restore();
+}
+
+
+//---------------------------------------------------------------------------------------------------- easeOutQuart
+function easeOutQuart( t, total, max, min ){
+  max -= min;
+  t    = ( t / total ) - 1;
+  return -max * ( ( t * t * t * t ) - 1 ) + min;
 }
