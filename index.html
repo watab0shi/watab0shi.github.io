@@ -36,10 +36,6 @@
         display: none;
       }
       #canvas{
-        z-index: 0;
-      }
-      #sCanvas{
-        z-index: 2;
       }
       #contents{
         display: block;
@@ -49,7 +45,8 @@
         width: auto;
         height: auto;
         list-style: none;
-        z-index: 1;
+      }
+      #sCanvas{
       }
       #contents.noScroll{
         position: fixed;
@@ -60,7 +57,6 @@
         position: relative;
         display: block;
         width: auto;
-        z-index: auto;
       }
       #works{
         display: block;
@@ -131,7 +127,6 @@
     </div>
     <div id="wrapper">
       <canvas id="canvas" width="300" height="300"></canvas>
-      <canvas id="sCanvas" width="300" height="300"></canvas>
       <ul id="contents">
         <li class="content_title">
           <h1 style="color:#222">DMDEx2015</h1>
@@ -1483,6 +1478,7 @@
           <h2 style="color:#222">Contact</h2>
         </li>
       </ul>
+      <canvas id="sCanvas" width="300" height="300"></canvas>
     </div>
   </body>
 </html>
