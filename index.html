@@ -9,13 +9,16 @@
       *{
         margin: 0;
         padding: 0;
+        z-index: auto;
       }
       div{
         display: block;
         position: relative;
       }
-      #loadWrapper #loadingCanvas{
+      #loadWrapper, #loadingCanvas, #wrapper>canvas{
         position: fixed;
+        top: 0;
+        left: 0;
         width: auto;
         height: auto;
       }
@@ -29,18 +32,14 @@
         text-align: center;
         color: #222;
       }
-      #wrapper>canvas{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-      }
-      #sCanvas{
-        /*z-index: 1;*/
-      }
       #wrapper{
         display: none;
+      }
+      #canvas{
+        z-index: 0;
+      }
+      #sCanvas{
+        z-index: 2;
       }
       #contents{
         display: block;
@@ -50,6 +49,7 @@
         width: auto;
         height: auto;
         list-style: none;
+        z-index: 1;
       }
       #contents.noScroll{
         position: fixed;
@@ -57,24 +57,28 @@
         width: 100%;
       }
       #contents>li{
+        position: relative;
         display: block;
         width: auto;
+        z-index: auto;
       }
       #works{
+        display: block;
+        position: relative;
         top: 0;
         left: 0;
         width: auto;
         height: auto;
+        z-index: 3;
       }
       .work{
-        /*display: none;*/
+        /*position: relative;*/
       }
       .left, .right{
         display: none;
         position: fixed;
         height: auto;
-        /*background-color: #ddd;*/
-        /*z-index: 2;*/
+        background-color: #ddd;
       }
       .left{
         text-align: center;
@@ -93,6 +97,9 @@
       }
       .right{
         font-size: 14px;
+      }
+      .title, .name, .caption{
+        cursor: text;
       }
       .title{
         font-size: 16px;
@@ -136,8 +143,8 @@
           <h2 style="color:#222">Welcome Party</h2>
         </li>
         <li class="content_works">
+          <h2 style="color:#222">Works</h2>
           <div id="works">
-            <h2 style="color:#222">Works</h2>
             <!-- grade_1 -->
             <div class="work grade_1_1" data-image="http://watab0shi.github.io/images/1533001_伊吹悠.png">
               <div class="left">
