@@ -271,6 +271,13 @@ var HEX_WORKS_GRADES = [
   3,3,4,3,3,1,1,4,4,
 ];
 
+// grade_1 : 28
+// grade_2 : 18
+// grade_3 : 24
+// grade_4 : 17
+// grade_5 : 1
+// grade_6 : 3
+
 var HEX_NUM_ANGLES    = 6,
     HEX_MAX_IN_RADIUS = 0.0,
     HEX_MAX_RADIUS    = 0.0,
@@ -290,14 +297,9 @@ var scrollTop     = 0,
 		queue  = null,
 		wait   = 200;
 
+var images = [];
 var works  = [];
 var selIdx = null;
-
-// center of works [ 46 ][ 5 ]
-var wcY = 46,
-    wcX = 5;
-
-var images = [];
 
 
 
@@ -324,7 +326,7 @@ $( function(){
   var currentPct = 0;
   var imgSrc     = [];
   $( '.work' ).each( function( _index ){
-    imgSrc[ _index ] = $( this ).data( "image" );
+    imgSrc[ _index ] = $( this ).data( 'image' );
   } );
 
   preload( imgSrc, function( _total, _loaded ){
@@ -409,15 +411,19 @@ $( function(){
 
 //---------------------------------------------------------------------------------------------------- init
 function init(){
-  $( '.work' ).each( function( index ){
-    images[ index ] = new Image();
-    images[ index ].src = $( this ).data( "image" );
-  } );
+  var gIdx = [ 0, 0, 0, 0, 0, 0 ];
+  for( var i = 0; i < HEX_WORKS_GRADES.length; ++i ){
+    ++gIdx[ HEX_WORKS_GRADES[ i ] - 1 ];
+
+    var selector  = '.grade_' + ( HEX_WORKS_GRADES[ i ] ) + '_' + ( gIdx[ HEX_WORKS_GRADES[ i ] - 1 ] );
+    images[ i ]     = new Image();
+    images[ i ].src = $( selector ).data( 'image' );
+    // console.log( images[ i ].src );
+  }
 
   scrollTop = $( document ).scrollTop();
 
   $( document ).scroll( function(){
-    // $( this ).scrollTop( 200 );
     if( selIdx == null ) scrollTop = $( this ).scrollTop();
   } );
 
@@ -484,16 +490,22 @@ function setCanvasSize(){
   SEL_MAX_IN_RADIUS = SEL_MAX_RADIUS * Math.cos( Math.PI / 6 );
 
   // setup works
-  var idx = 0;
+  var idx  = 0;
+  var gIdx = [ 0, 0, 0, 0, 0, 0 ];
   for( var y = 0; y < HEX_WORKS.length; ++y ){
     radius[ y ] = 0.0;
 
     for( var x = 0; x < HEX_WORKS.length; ++x ){
       if( HEX_WORKS[ y ][ x ] == 1 ){
+
+        var g = HEX_WORKS_GRADES[ idx ];
+        ++gIdx[ g - 1 ];
+
         works[ idx ] = {
           x: x,
           y: y,
-          grade: HEX_WORKS_GRADES[ idx ]
+          grade: HEX_WORKS_GRADES[ idx ],
+          index: gIdx[ g - 1 ]
         };
         ++idx;
       }
@@ -568,12 +580,12 @@ function mouseClick(){
         selRadius = 0.0;
         --selIdx;
 
-        var work = '.grade_' + ( works[ selIdx ].grade );
+        var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
 
         $( '.left' ).css( 'display', 'none' );
         $( '.right' ).css( 'display', 'none' );
-        $( work + '>.left' ).css( 'display', 'none' ).delay( 400 ).fadeIn( 'slow' );
-        $( work + '>.right' ).css( 'display', 'none' ).delay( 400 ).fadeIn( 'slow' );
+        $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
+        $( work + '>.right' ).delay( 400 ).fadeIn( 'slow' );
       }
     }
     // right arrow
@@ -585,12 +597,12 @@ function mouseClick(){
         selRadius = 0.0;
         ++selIdx;
 
-        var work = '.grade_' + ( works[ selIdx ].grade );
+        var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
 
         $( '.left' ).css( 'display', 'none' );
         $( '.right' ).css( 'display', 'none' );
-        $( work + '>.left' ).css( 'display', 'none' ).delay( 400 ).fadeIn( 'slow' );
-        $( work + '>.right' ).css( 'display', 'none' ).delay( 400 ).fadeIn( 'slow' );
+        $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
+        $( work + '>.right' ).delay( 400 ).fadeIn( 'slow' );
       }
     }
     return;
@@ -614,12 +626,10 @@ function mouseClick(){
       // disable scroll
       $( '#contents' ).addClass( 'noScroll' ).css( 'top', -scrollTop );
 
-      var work = '.grade_' + ( works[ selIdx ].grade );
-      console.log( work );
+      var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
 
       $( work + '>.left' ).delay( 400 ).fadeIn( 'slow' );
       $( work + '>.right' ).delay( 400 ).fadeIn( 'slow' );
-      // $( '.right' ).css( 'display', 'flex' );
     }
     ctx.restore();
   }
@@ -683,6 +693,9 @@ function draw(){
   }
 
   // works
+  // set curcor default
+  $( 'body' ).css( 'cursor', 'default' );
+
   ctx.strokeStyle = "rgb( 255, 255, 255 )";
   ctx.lineWidth   = HEX_MAX_RADIUS / 6;
   for( var i = 0; i < works.length; ++i ){
@@ -691,13 +704,15 @@ function draw(){
     var py = -scrollTop + ( y * ( HEX_MAX_RADIUS * 1.5 ) );
     var px = ( y % 2 == 1 ) ? ( x * ( HEX_MAX_IN_RADIUS * 2 ) ): HEX_MAX_IN_RADIUS + ( x * ( HEX_MAX_IN_RADIUS * 2 ) );
     ctx.fillStyle = HEX_BG_PALLET[ y ][ x ];
-    drawImageHexagon( px, py, radius[ y ], images[ works[ i ].grade - 1 ], ( i == selIdx ) );
+    drawImageHexagon( px, py, radius[ y ], images[ i ], ( i == selIdx ) );
   }
 
   // select
   sCtx.clearRect( 0, 0, cw, ch );
 
   if( selIdx != null ){
+    $( 'body' ).css( 'cursor', 'default' );
+
     sCtx.fillStyle = "rgba( 0, 0, 0, 0.6 )";
     sCtx.fillRect( 0, 0, cw, ch );
 
@@ -724,7 +739,7 @@ function draw(){
       y[ i ] = cy + ( Math.sin( ( i * a ) - Math.PI / 2 ) * r );
     }
 
-    var i = images[ works[ selIdx ].grade - 1 ];
+    var i = images[ selIdx ];
     sCtx.globalAlpha = selRadius;
     // image
     sCtx.save();
@@ -749,6 +764,11 @@ function draw(){
     sCtx.arc( btnX, btnY, lr, 0, Math.PI * 2, false );
     sCtx.closePath();
 
+    // hover
+    if( sCtx.isPointInPath( mouseX, mouseY ) ){
+      $( 'body' ).css( 'cursor', 'pointer' );
+    }
+
     sCtx.lineWidth = ( sCtx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
     sCtx.strokeStyle = "rgb( 255, 255, 255 )";
     drawCross( btnX, btnY, lr );
@@ -761,6 +781,11 @@ function draw(){
       sCtx.closePath();
       sCtx.lineWidth = ( sCtx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
 
+      // hover
+      if( sCtx.isPointInPath( mouseX, mouseY ) ){
+        $( 'body' ).css( 'cursor', 'pointer' );
+      }
+
       drawArrow( HEX_MAX_RADIUS, hh, lr * 1.5, true );
     }
 
@@ -770,6 +795,11 @@ function draw(){
       sCtx.arc( cw - HEX_MAX_RADIUS * 1.2, hh, lr * 2.0, 0, Math.PI * 2, false );
       sCtx.closePath();
       sCtx.lineWidth = ( sCtx.isPointInPath( mouseX, mouseY ) ) ? 2.5: 1;
+
+      // hover
+      if( sCtx.isPointInPath( mouseX, mouseY ) ){
+        $( 'body' ).css( 'cursor', 'pointer' );
+      }
 
       drawArrow( cw - HEX_MAX_RADIUS, hh, lr * 1.5, false );
       sCtx.lineWidth = 1;
@@ -797,6 +827,8 @@ function drawImageHexagon( _x, _y, _r, _i, _s ){
         drawHexPolygon( ctx, _r - ctx.lineWidth / 2 );
         ctx.clip();
         ctx.drawImage( _i, 0, 0, _i.width, _i.height, -_r, -_r, _r * 2, _r * 2 );
+
+        $( 'body' ).css( 'cursor', 'pointer' );
       }
     }
   }
