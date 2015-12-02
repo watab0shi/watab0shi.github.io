@@ -536,8 +536,8 @@ function setCanvasSize(){
     width: ( SEL_MAX_IN_RADIUS ) * 2,
     height: SEL_MAX_RADIUS,
   } );
-  $( '.left_box' ).css( 'width', SEL_MAX_IN_RADIUS * 1.75 );
-  $( '.left_box' ).css( 'width', '100%\9' );
+  // $( '.left_box' ).css( 'width', SEL_MAX_IN_RADIUS * 1.75 );
+  $( '.left_box' ).css( 'width', '100%' );
 
   // transform left
   // $( '.left_box' ).each( function( index ){
