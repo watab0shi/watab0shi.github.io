@@ -419,20 +419,6 @@ $( function(){
 
 //---------------------------------------------------------------------------------------------------- init
 function init(){
-  for( var i = 1; i <= 6; ++i ){
-    var n = 0;
-    $( '.grade_' + ( i ) + ' .tab_name' ).each( function( index ){
-      $( this ).click( function(){
-        var selector = '.grade_' + ( i ) + '_' + ( index + 1 );
-        $( selector ).slideUp();
-      } );
-
-              n++;
-    } );
-
-    console.log( n );
-  }
-
   var gIdx = [ 0, 0, 0, 0, 0, 0 ];
   for( var i = 0; i < HEX_WORKS_GRADES.length; ++i ){
     ++gIdx[ HEX_WORKS_GRADES[ i ] - 1 ];
@@ -440,7 +426,6 @@ function init(){
     var selector  = '.grade_' + ( HEX_WORKS_GRADES[ i ] ) + '_' + ( gIdx[ HEX_WORKS_GRADES[ i ] - 1 ] );
     images[ i ]     = new Image();
     images[ i ].src = $( selector ).data( 'image' );
-    // console.log( images[ i ].src );
   }
 
   scrollTop = $( document ).scrollTop();
@@ -496,10 +481,10 @@ function resize(){
 
 //---------------------------------------------------------------------------------------------------- setCanvasSize
 function setCanvasSize(){
-	canvas.width   = $( window ).width();
-	canvas.height  = $( window ).height();
-  sCanvas.width  = $( window ).width();
-  sCanvas.height = $( window ).height();
+	canvas.width   = window.innerWidth;
+	canvas.height  = window.innerHeight;
+  sCanvas.width  = window.innerWidth;
+  sCanvas.height = window.innerHeight;
 	cw             = canvas.width;
 	ch             = canvas.height;
 	hw             = cw / 2;
@@ -553,6 +538,20 @@ function setCanvasSize(){
   } );
   $( '.left_box' ).css( 'width', SEL_MAX_IN_RADIUS * 1.75 );
 
+  // transform left
+  $( '.left_box' ).each( function( index ){
+    var left = $( '.left' ).get( index );
+    if( $( left ).css( 'display' ) == 'none' ){
+      $( left ).css( 'display', 'block' );
+      $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
+      $( left ).css( 'display', 'none' );
+    }
+    else{
+      $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
+    }
+  } );
+
+
   $( '.right' ).css( {
     top: hh + ( HEX_MAX_RADIUS * 0.77 ) + ( Math.sin( Math.PI / 6 ) * HEX_MAX_RADIUS * 0.1 ),
     left: hw + Math.cos( Math.PI / 6 ) * HEX_MAX_RADIUS * 0.1,
@@ -561,6 +560,21 @@ function setCanvasSize(){
     fontSize: SEL_MAX_RADIUS * 0.07,
   } );
   $( '.caption' ).css( 'width', SEL_MAX_IN_RADIUS * 1.7 );
+  // $( '.caption' ).css( { transform: 'translate( ' + ( -$( '.caption' ).width() / 2 ) + 'px, ' + ( -$( '.caption' ).height() / 2 ) + 'px )' } );
+
+  // transform right
+  $( '.caption' ).each( function( index ){
+    var right = $( '.right' ).get( index );
+    if( $( right ).css( 'display' ) == 'none' ){
+      $( right ).css( 'display', 'block' );
+      $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
+      $( right ).css( 'display', 'none' );
+    }
+    else{
+      $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
+    }
+  } );
+
 }
 
 
