@@ -363,7 +363,7 @@ $( function(){
   var inR        = r * Math.cos( Math.PI / HEX_NUM_ANGLES );
   var a          = ( Math.PI * 2 ) / HEX_NUM_ANGLES;
   var cs         = [ "rgb( 232, 84, 107 )", "rgb( 240, 155, 165 )", "rgb( 116, 131, 192 )", "rgb( 249, 218, 217 )", "rgb( 255, 246, 151 )", "rgb( 162, 179, 219 )" ];
-  
+
   var timer = window.setInterval( function(){
     // loading
     if( currentPct < 100 ){
@@ -419,6 +419,20 @@ $( function(){
 
 //---------------------------------------------------------------------------------------------------- init
 function init(){
+  for( var i = 1; i <= 6; ++i ){
+    var n = 0;
+    $( '.grade_' + ( i ) + ' .tab_name' ).each( function( index ){
+      $( this ).click( function(){
+        var selector = '.grade_' + ( i ) + '_' + ( index + 1 );
+        $( selector ).slideUp();
+      } );
+
+              n++;
+    } );
+
+    console.log( n );
+  }
+
   var gIdx = [ 0, 0, 0, 0, 0, 0 ];
   for( var i = 0; i < HEX_WORKS_GRADES.length; ++i ){
     ++gIdx[ HEX_WORKS_GRADES[ i ] - 1 ];
@@ -575,7 +589,7 @@ function mouseClick(){
         selRadius = 0.0;
 
         // resume scroll
-        $( '#contents' ).removeClass( 'noScroll' ).css( 'top', 0 );
+        $( '#wrapper' ).removeClass( 'noScroll' ).css( 'top', 0 );
         $( document ).scrollTop( scrollTop );
 
         $( '.left' ).css( 'display', 'none' );
@@ -652,7 +666,7 @@ function mouseClick(){
       enableClick = false;
 
       // disable scroll
-      $( '#contents' ).addClass( 'noScroll' ).css( 'top', -scrollTop );
+      $( '#wrapper' ).addClass( 'noScroll' ).css( 'top', -scrollTop );
 
       var work = '.grade_' + ( works[ selIdx ].grade ) + '_' + ( works[ selIdx ].index );
 

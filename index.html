@@ -35,31 +35,17 @@
       #wrapper{
         display: none;
       }
-      #contents{
-        display: block;
-        position: relative;
-        top: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        list-style: none;
-      }
-      #contents.noScroll{
+      #wrapper.noScroll{
         position: fixed;
         overflow-y: scroll;
         width: 100%;
-      }
-      #contents>li{
-        position: relative;
-        display: block;
-        width: auto;
       }
       #works{
         top: 0;
         left: 0;
         width: auto;
         height: auto;
-        /*z-index: 1;*/
+        z-index: 1;
       }
       .left, .right{
         display: none;
@@ -105,6 +91,9 @@
         -o-transform: translate( -50%, -50% );
         -ms-transform: translate( -50%, -50% );
       }
+      .tab_grade, .tab_name{
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -117,1358 +106,1666 @@
     </div>
     <div id="wrapper">
       <canvas id="canvas" width="300" height="300"></canvas>
-      <ul id="contents">
-        <li class="content_title">
-          <h1 style="color:#222">DMDEx2015</h1>
-        </li>
-        <li class="content_about">
-          <h2 style="color:#222">About</h2>
-        </li>
-        <li class="content_party">
-          <h2 style="color:#222">Welcome Party</h2>
-        </li>
-        <li class="content_works">
-          <h2 style="color:#222">Works</h2>
-        </li>
-        <li class="content_access">
-          <h2 style="color:#222">Access</h2>
-        </li>
-        <li class="content_contact">
-          <h2 style="color:#222">Contact</h2>
-        </li>
-      </ul>
-      <canvas id="sCanvas" width="300" height="300"></canvas>
+      <div class="content_title">
+        <h1 style="color:#222">DMDEx2015</h1>
+      </div>
+      <div class="content_about">
+        <h2 style="color:#222">About</h2>
+      </div>
+      <div class="content_party">
+        <h2 style="color:#222">Welcome Party</h2>
+      </div>
+      <div class="content_works">
+        <h2 style="color:#222">Works</h2>
+      </div>
       <div id="works">
         <!-- grade_1 -->
-        <div class="work grade_1_1" data-image="http://watab0shi.github.io/images/1533001_伊吹悠.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Fantasy Girl/不秩序-no melody-</p>
-              <br />
-              <p class="name">伊吹　悠</p>
+        <div class="tab_grade tab_1">
+          <span>１年生</span>
+        </div>
+        <div class="grade_1">
+          <div class="tab_name tab_1_1">
+            <span>伊吹悠</span>
+          </div>
+          <div class="work grade_1_1" data-image="http://watab0shi.github.io/images/1533001_伊吹悠.png">
+            <!-- <img src="" alt="" /> -->
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Fantasy Girl/不秩序-no melody-</p>
+                <br />
+                <p class="name">伊吹　悠</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                2015年夏に開催された「宵街映写 2015」プロジェクションマッピングに使用された楽曲を中心に、今年個人で制作した楽曲群を集めてみました。一番聞いて欲しい所は冒頭1～2分から終盤3～4分の部分です。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              2015年夏に開催された「宵街映写 2015」プロジェクションマッピングに使用された楽曲を中心に、今年個人で制作した楽曲群を集めてみました。一番聞いて欲しい所は冒頭1～2分から終盤3～4分の部分です。
-            </p>
+          <div class="tab_name tab_1_2">
+            <span>今尾祐月</span>
           </div>
-        </div>
-        <div class="work grade_1_2" data-image="http://watab0shi.github.io/images/1533002_今尾祐月.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">雨上がり</p>
-              <br />
-              <p class="name">今尾　祐月</p>
+          <div class="work grade_1_2" data-image="http://watab0shi.github.io/images/1533002_今尾祐月.png">
+            <img src="" alt="" />
+            <div class="left">
+              <div class="left_box">
+                <p class="title">雨上がり</p>
+                <br />
+                <p class="name">今尾　祐月</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                雨上がりあなたはどんな気持ちになりますか...
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              雨上がりあなたはどんな気持ちになりますか...
-            </p>
+          <div class="tab_name tab_1_3">
+            <span>岩田莉奈</span>
           </div>
-        </div>
-        <div class="work grade_1_3" data-image="http://watab0shi.github.io/images/1533003_岩田莉奈.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">随想</p>
-              <br />
-              <p class="name">岩田　莉奈</p>
+          <div class="work grade_1_3" data-image="http://watab0shi.github.io/images/1533003_岩田莉奈.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">随想</p>
+                <br />
+                <p class="name">岩田　莉奈</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                雨上がりにあれこれと心に浮かぶ、明るい気持ちや少し沈む思いをイメージしながら、二つの視点からそれぞれ色味や光に気をつけて一枚ずつ、２枚の植物を主体としたを写真を撮影しました。見る人の雨上がりの気分を少しでも表現できているといいなと思います。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              雨上がりにあれこれと心に浮かぶ、明るい気持ちや少し沈む思いをイメージしながら、二つの視点からそれぞれ色味や光に気をつけて一枚ずつ、２枚の植物を主体としたを写真を撮影しました。見る人の雨上がりの気分を少しでも表現できているといいなと思います。
-            </p>
+          <div class="tab_name tab_1_4">
+            <span>臼井秀征</span>
           </div>
-        </div>
-        <div class="work grade_1_4" data-image="http://watab0shi.github.io/images/1533004_ 臼井秀征.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">cyborg×armor</p>
-              <br />
-              <p class="name">臼井　秀征</p>
+          <div class="work grade_1_4" data-image="http://watab0shi.github.io/images/1533004_ 臼井秀征.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">cyborg×armor</p>
+                <br />
+                <p class="name">臼井　秀征</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                サイボーグ化した剣士。戦いを重ねるごとに自分の人工皮膚が硬化していくという設定で描きました。特に質感を重視しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              サイボーグ化した剣士。戦いを重ねるごとに自分の人工皮膚が硬化していくという設定で描きました。特に質感を重視しました。
-            </p>
+          <div class="tab_name tab_1_5">
+            <span>大崎笑佳</span>
           </div>
-        </div>
-        <div class="work grade_1_5" data-image="http://watab0shi.github.io/images/1533005_大崎笑佳.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">イチョウ</p>
-              <br />
-              <p class="name">大崎　笑佳</p>
+          <div class="work grade_1_5" data-image="http://watab0shi.github.io/images/1533005_大崎笑佳.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">イチョウ</p>
+                <br />
+                <p class="name">大崎　笑佳</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                日にあたり、今にも葉っぱが黄色に染まっていくようなイチョウの姿を撮りました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              日にあたり、今にも葉っぱが黄色に染まっていくようなイチョウの姿を撮りました。
-            </p>
+          <div class="tab_name tab_1_6">
+            <span>纐纈響子</span>
           </div>
-        </div>
-        <div class="work grade_1_6" data-image="http://watab0shi.github.io/images/1533007_纐纈響子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ひかりをあつめて</p>
-              <br />
-              <p class="name">纐纈　響子</p>
+          <div class="work grade_1_6" data-image="http://watab0shi.github.io/images/1533007_纐纈響子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ひかりをあつめて</p>
+                <br />
+                <p class="name">纐纈　響子</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                撮影する場所によって、いろんな色に姿を変えるグラスの美しさを表現できるように撮影しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              撮影する場所によって、いろんな色に姿を変えるグラスの美しさを表現できるように撮影しました。
-            </p>
+          <div class="tab_name tab_1_7">
+            <span>児玉晴香</span>
           </div>
-        </div>
-        <div class="work grade_1_7" data-image="http://watab0shi.github.io/images/1533008_児玉晴香.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">おいてけぼり</p>
-              <br />
-              <p class="name">児玉　晴香</p>
+          <div class="work grade_1_7" data-image="http://watab0shi.github.io/images/1533008_児玉晴香.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">おいてけぼり</p>
+                <br />
+                <p class="name">児玉　晴香</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                タイトルから連想した“取り残されたもの”や、“忘れ去られたもの”などの言葉のイメージに沿って、寂しい感じが出せるように工夫して撮影しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              タイトルから連想した“取り残されたもの”や、“忘れ去られたもの”などの言葉のイメージに沿って、寂しい感じが出せるように工夫して撮影しました。
-            </p>
+          <div class="tab_name tab_1_8">
+            <span>後藤弘樹</span>
           </div>
-        </div>
-        <div class="work grade_1_8" data-image="http://watab0shi.github.io/images/1533009_後藤弘樹.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">STUDY</p>
-              <br />
-              <p class="name">後藤　弘樹</p>
+          <div class="work grade_1_8" data-image="http://watab0shi.github.io/images/1533009_後藤弘樹.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">STUDY</p>
+                <br />
+                <p class="name">後藤　弘樹</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                自然の物寂しさ、静けさを写真で表現しました。緑の鬱葱とした空気を感じていただければうれしいです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              自然の物寂しさ、静けさを写真で表現しました。緑の鬱葱とした空気を感じていただければうれしいです。
-            </p>
+          <div class="tab_name tab_1_9">
+            <span>酒井久栄</span>
           </div>
-        </div>
-        <div class="work grade_1_9" data-image="http://watab0shi.github.io/images/1533010_酒井久栄.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">My Favorite</p>
-              <br />
-              <p class="name">酒井　久栄</p>
+          <div class="work grade_1_9" data-image="http://watab0shi.github.io/images/1533010_酒井久栄.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">My Favorite</p>
+                <br />
+                <p class="name">酒井　久栄</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                授業で一眼レフを初めて触って写真を撮ることに興味を持ち今回は 『女の子』をテーマに女の子の可愛い、格好いい、綺麗を集めました。それぞれの女の子の様々な表情を見て写真に少しても興味を持ってもらい楽しんでいただけたらと思います。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              授業で一眼レフを初めて触って写真を撮ることに興味を持ち今回は 『女の子』をテーマに女の子の可愛い、格好いい、綺麗を集めました。それぞれの女の子の様々な表情を見て写真に少しても興味を持ってもらい楽しんでいただけたらと思います。
-            </p>
+          <div class="tab_name tab_1_10">
+            <span>佐々木佑弥</span>
           </div>
-        </div>
-        <div class="work grade_1_10" data-image="http://watab0shi.github.io/images/1533011_佐々木佑弥.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">頭の中はモンスターでいっぱい</p>
-              <br />
-              <p class="name">佐々木　佑弥</p>
+          <div class="work grade_1_10" data-image="http://watab0shi.github.io/images/1533011_佐々木佑弥.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">頭の中はモンスターでいっぱい</p>
+                <br />
+                <p class="name">佐々木　佑弥</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                頭の中はモンスターでいっぱい
+                <br />
+                頭の中のモンンスターが大集合!
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              頭の中はモンスターでいっぱい
-              <br />
-              頭の中のモンンスターが大集合!
-            </p>
+          <div class="tab_name tab_1_11">
+            <span>髙橋真由</span>
           </div>
-        </div>
-        <div class="work grade_1_11" data-image="http://watab0shi.github.io/images/1533012_髙橋真由.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">急がなきゃ</p>
-              <br />
-              <p class="name">髙橋　真由</p>
+          <div class="work grade_1_11" data-image="http://watab0shi.github.io/images/1533012_髙橋真由.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">急がなきゃ</p>
+                <br />
+                <p class="name">髙橋　真由</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                物語を意識した3枚の写真の組み写真です。待ってくれない時がある。時間に追われた女の子の、日常の中のほんの一部の物語。なぜ少女は急いでいるのか、少女は何をつぶやいているのか、　写真の中の少女がどんな人物なのかをイメージしながら見ていただきたいです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              物語を意識した3枚の写真の組み写真です。待ってくれない時がある。時間に追われた女の子の、日常の中のほんの一部の物語。なぜ少女は急いでいるのか、少女は何をつぶやいているのか、　写真の中の少女がどんな人物なのかをイメージしながら見ていただきたいです。
-            </p>
+          <div class="tab_name tab_1_12">
+            <span>竹内舞乃</span>
           </div>
-        </div>
-        <div class="work grade_1_12" data-image="http://watab0shi.github.io/images/1533013_竹内舞乃.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">魔法がとける</p>
-              <br />
-              <p class="name">竹内　舞乃</p>
+          <div class="work grade_1_12" data-image="http://watab0shi.github.io/images/1533013_竹内舞乃.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">魔法がとける</p>
+                <br />
+                <p class="name">竹内　舞乃</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                木材や鉄材には、色鮮やかな魔法がかかっています。しかしその魔法は、時間が経つにつれゆっくりと解けてしまうのです。
+                <br />
+                本来の姿に戻っていく木材や鉄材たちの憂鬱な様子を表現しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              木材や鉄材には、色鮮やかな魔法がかかっています。しかしその魔法は、時間が経つにつれゆっくりと解けてしまうのです。
-              <br />
-              本来の姿に戻っていく木材や鉄材たちの憂鬱な様子を表現しました。
-            </p>
+          <div class="tab_name tab_1_13">
+            <span>田中奎悟</span>
           </div>
-        </div>
-        <div class="work grade_1_13" data-image="http://watab0shi.github.io/images/1533014_田中奎悟.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Merry Christmas</p>
-              <br />
-              <p class="name">田中　奎悟</p>
+          <div class="work grade_1_13" data-image="http://watab0shi.github.io/images/1533014_田中奎悟.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Merry Christmas</p>
+                <br />
+                <p class="name">田中　奎悟</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                12月ということで、クリスマスをテーマにイラストを描きました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              12月ということで、クリスマスをテーマにイラストを描きました。
-            </p>
+          <div class="tab_name tab_1_14">
+            <span>辻ひかる</span>
           </div>
-        </div>
-        <div class="work grade_1_14" data-image="http://watab0shi.github.io/images/1533015_辻ひかる.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">希望</p>
-              <br />
-              <p class="name">辻　ひかる</p>
+          <div class="work grade_1_14" data-image="http://watab0shi.github.io/images/1533015_辻ひかる.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">希望</p>
+                <br />
+                <p class="name">辻　ひかる</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                太陽の光を希望として、暗いところから光を見てそこへめざして今日も頑張ろうと感じさせるように撮影しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              太陽の光を希望として、暗いところから光を見てそこへめざして今日も頑張ろうと感じさせるように撮影しました。
-            </p>
+          <div class="tab_name tab_1_15">
+            <span>出口暁与</span>
           </div>
-        </div>
-        <div class="work grade_1_15" data-image="http://watab0shi.github.io/images/1533016_出口暁与.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">I like this</p>
-              <br />
-              <p class="name">出口　暁与</p>
+          <div class="work grade_1_15" data-image="http://watab0shi.github.io/images/1533016_出口暁与.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">I divke this</p>
+                <br />
+                <p class="name">出口　暁与</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                自分の好きな雰囲気を写真で表しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              自分の好きな雰囲気を写真で表しました。
-            </p>
+          <div class="tab_name tab_1_16">
+            <span>中村南美</span>
           </div>
-        </div>
-        <div class="work grade_1_16" data-image="http://watab0shi.github.io/images/1533018_中村南美.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">二頭のイルカ</p>
-              <br />
-              <p class="name">中村　南美</p>
+          <div class="work grade_1_16" data-image="http://watab0shi.github.io/images/1533018_中村南美.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">二頭のイルカ</p>
+                <br />
+                <p class="name">中村　南美</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                草木のきれいな背景をぼかし手前の二頭のイルカをくっきり映すことでより幻想的な空間を表現しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              草木のきれいな背景をぼかし手前の二頭のイルカをくっきり映すことでより幻想的な空間を表現しました。
-            </p>
+          <div class="tab_name tab_1_17">
+            <span>永谷友梨</span>
           </div>
-        </div>
-        <div class="work grade_1_17" data-image="http://watab0shi.github.io/images/1533019_永谷友梨.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">雨の足跡</p>
-              <br />
-              <p class="name">永谷　友梨</p>
+          <div class="work grade_1_17" data-image="http://watab0shi.github.io/images/1533019_永谷友梨.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">雨の足跡</p>
+                <br />
+                <p class="name">永谷　友梨</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                梅雨の跡を撮影しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              梅雨の跡を撮影しました。
-            </p>
+          <div class="tab_name tab_1_18">
+            <span>橋本明奈</span>
           </div>
-        </div>
-        <div class="work grade_1_18" data-image="http://watab0shi.github.io/images/1533020_橋本明奈.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">雨の落とし物</p>
-              <br />
-              <p class="name">橋本　明奈</p>
+          <div class="work grade_1_18" data-image="http://watab0shi.github.io/images/1533020_橋本明奈.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">雨の落とし物</p>
+                <br />
+                <p class="name">橋本　明奈</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                雫に映った光の世界を楽しんでもらえたら光栄です。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              雫に映った光の世界を楽しんでもらえたら光栄です。
-            </p>
+          <div class="tab_name tab_1_19">
+            <span>林優衣奈</span>
           </div>
-        </div>
-        <div class="work grade_1_19" data-image="http://watab0shi.github.io/images/1533021_林優衣奈.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">憂鬱</p>
-              <br />
-              <p class="name">林　優衣奈</p>
+          <div class="work grade_1_19" data-image="http://watab0shi.github.io/images/1533021_林優衣奈.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">憂鬱</p>
+                <br />
+                <p class="name">林　優衣奈</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                明るい少女は魅力的ですが、暗い雰囲気の少女もまた異なる魅力を持っています。暗い雰囲気を全面に押し出して思春期の悩める少女を表現しました。少女は魅力的です。いろんな可能性を秘めていると思います。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              明るい少女は魅力的ですが、暗い雰囲気の少女もまた異なる魅力を持っています。暗い雰囲気を全面に押し出して思春期の悩める少女を表現しました。少女は魅力的です。いろんな可能性を秘めていると思います。
-            </p>
+          <div class="tab_name tab_1_20">
+            <span>日比野令佳</span>
           </div>
-        </div>
-        <div class="work grade_1_20" data-image="http://watab0shi.github.io/images/1533022_日比野令佳.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">水の姿</p>
-              <br />
-              <p class="name">日比野　令佳</p>
+          <div class="work grade_1_20" data-image="http://watab0shi.github.io/images/1533022_日比野令佳.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">水の姿</p>
+                <br />
+                <p class="name">日比野　令佳</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                植物の葉に溜まったなにげない水溜り。そこに焦点を置いて一眼レフからのぞいてみるといつもは違う水の姿をみることができました。そんないつもとは違う水の姿を撮影したいと思い、撮影しました。いつもとは違う”水の姿”を楽しんでみてもらえたら嬉しいです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              植物の葉に溜まったなにげない水溜り。そこに焦点を置いて一眼レフからのぞいてみるといつもは違う水の姿をみることができました。そんないつもとは違う水の姿を撮影したいと思い、撮影しました。いつもとは違う”水の姿”を楽しんでみてもらえたら嬉しいです。
-            </p>
+          <div class="tab_name tab_1_21">
+            <span>福岡亜季子</span>
           </div>
-        </div>
-        <div class="work grade_1_21" data-image="http://watab0shi.github.io/images/1533023_福岡亜季子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">やすらぎ</p>
-              <br />
-              <p class="name">福岡　亜季子</p>
+          <div class="work grade_1_21" data-image="http://watab0shi.github.io/images/1533023_福岡亜季子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">やすらぎ</p>
+                <br />
+                <p class="name">福岡　亜季子</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                暖かな心安らぐ空間を写真に収めました。
+                <br />
+                心安らげる空間をあなたに…
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              暖かな心安らぐ空間を写真に収めました。
-              <br />
-              心安らげる空間をあなたに…
-            </p>
+          <div class="tab_name tab_1_22">
+            <span>藤井雄大</span>
           </div>
-        </div>
-        <div class="work grade_1_22" data-image="http://watab0shi.github.io/images/1533024_藤井雄大.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">アイコンデザイン</p>
-              <br />
-              <p class="name">藤井　雄大</p>
+          <div class="work grade_1_22" data-image="http://watab0shi.github.io/images/1533024_藤井雄大.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">アイコンデザイン</p>
+                <br />
+                <p class="name">藤井　雄大</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                スマートフォンやPCなどでおなじみのアイコン。シンプルなデザインから凝ったデザインまで様々です。普段スマートフォンを使っている中で、自分も作ってみたいと思い制作してみました。このような制作は初めてでつまずいたところもありましたが、よろしければぜひご覧ください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              スマートフォンやPCなどでおなじみのアイコン。シンプルなデザインから凝ったデザインまで様々です。普段スマートフォンを使っている中で、自分も作ってみたいと思い制作してみました。このような制作は初めてでつまずいたところもありましたが、よろしければぜひご覧ください。
-            </p>
+          <div class="tab_name tab_1_23">
+            <span>藤井怜生</span>
           </div>
-        </div>
-        <div class="work grade_1_23" data-image="http://watab0shi.github.io/images/1533025_ 藤井怜生.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">My first story</p>
-              <br />
-              <p class="name">藤井　怜生</p>
+          <div class="work grade_1_23" data-image="http://watab0shi.github.io/images/1533025_ 藤井怜生.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">My first story</p>
+                <br />
+                <p class="name">藤井　怜生</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                イラストレーターで動物を描いてみました。今まで手書きしかした事がなかったのでパソコンで描いてみました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              イラストレーターで動物を描いてみました。今まで手書きしかした事がなかったのでパソコンで描いてみました。
-            </p>
+          <div class="tab_name tab_1_24">
+            <span>前野康太</span>
           </div>
-        </div>
-        <div class="work grade_1_24" data-image="http://watab0shi.github.io/images/1533026_前野康太.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">My Name Is Motorbike</p>
-              <br />
-              <p class="name">前野　康太</p>
+          <div class="work grade_1_24" data-image="http://watab0shi.github.io/images/1533026_前野康太.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">My Name Is Motorbike</p>
+                <br />
+                <p class="name">前野　康太</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                授業の中で学んだことを活かして、この作品を作製しました。これは自分の生年月日、名前を使ってバイクを作りました。これだけのものでこういう形にもできるという事が伝えたい。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              授業の中で学んだことを活かして、この作品を作製しました。これは自分の生年月日、名前を使ってバイクを作りました。これだけのものでこういう形にもできるという事が伝えたい。
-            </p>
+          <div class="tab_name tab_1_25">
+            <span>松井耀子</span>
           </div>
-        </div>
-        <div class="work grade_1_25" data-image="http://watab0shi.github.io/images/1533027_松井耀子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">my world</p>
-              <br />
-              <p class="name">松井　耀子</p>
+          <div class="work grade_1_25" data-image="http://watab0shi.github.io/images/1533027_松井耀子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">my world</p>
+                <br />
+                <p class="name">松井　耀子</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                哀愁感漂う場所からだんだんと光ある場所へ進んでいく様を写真で表現しました。もの悲しさの先にある安らぎを感じていただけたら嬉しいです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              哀愁感漂う場所からだんだんと光ある場所へ進んでいく様を写真で表現しました。もの悲しさの先にある安らぎを感じていただけたら嬉しいです。
-            </p>
+          <div class="tab_name tab_1_26">
+            <span>山本萌子</span>
           </div>
-        </div>
-        <div class="work grade_1_26" data-image="http://watab0shi.github.io/images/1533028_山本萌子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">森のくまさん</p>
-              <br />
-              <p class="name">山本　萌子</p>
+          <div class="work grade_1_26" data-image="http://watab0shi.github.io/images/1533028_山本萌子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">森のくまさん</p>
+                <br />
+                <p class="name">山本　萌子</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                森の中で出会ったくまさん。
+                <br />
+                涼しげな森の中で暖かな日差しを浴びている様な雰囲気で撮りました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              森の中で出会ったくまさん。
-              <br />
-              涼しげな森の中で暖かな日差しを浴びている様な雰囲気で撮りました。
-            </p>
+          <div class="tab_name tab_1_27">
+            <span>弓場健太朗</span>
           </div>
-        </div>
-        <div class="work grade_1_27" data-image="http://watab0shi.github.io/images/1533029_弓場健太朗.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">landscape story</p>
-              <br />
-              <p class="name">弓場　健太朗</p>
+          <div class="work grade_1_27" data-image="http://watab0shi.github.io/images/1533029_弓場健太朗.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">landscape story</p>
+                <br />
+                <p class="name">弓場　健太朗</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                作品を展示するという事で何が好きかと自分と向き合ったところやはり旅かなと思い、行ってみたい所、シチュエーションをイラストにまとめました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              作品を展示するという事で何が好きかと自分と向き合ったところやはり旅かなと思い、行ってみたい所、シチュエーションをイラストにまとめました。
-            </p>
+          <div class="tab_name tab_1_28">
+            <span>西川侑希</span>
           </div>
-        </div>
-        <div class="work grade_1_28" data-image="http://watab0shi.github.io/images/1333021_西川侑希.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">webサイト</p>
-              <br />
-              <p class="name">西川　侑希</p>
+          <div class="work grade_1_28" data-image="http://watab0shi.github.io/images/1333021_西川侑希.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">webサイト</p>
+                <br />
+                <p class="name">西川　侑希</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                授業で制作したものに手を加えました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              授業で制作したものに手を加えました。
-            </p>
-          </div>
         </div>
+
         <!-- grade_2 -->
-        <div class="work grade_2_1" data-image="http://watab0shi.github.io/images/1433001_雨宮千咲.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ういねく！</p>
-              <br />
-              <p class="name">雨宮　千咲</p>
-              <p class="name">羽明　桜子</p>
-              <p class="name">草水　礼奈</p>
-              <p class="name">水野　穂高</p>
+        <div class="tab_grade tab_2">
+          <span>２年生</span>
+        </div>
+        <div class="grade_2">
+          <div class="tab_name tab_2_1">
+            <span>雨宮千咲・羽明桜子・草水礼奈・草水礼奈・水野穂高</span>
+          </div>
+          <div class="work grade_2_1" data-image="http://watab0shi.github.io/images/1433001_雨宮千咲.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ういねく！</p>
+                <br />
+                <p class="name">雨宮　千咲</p>
+                <p class="name">羽明　桜子</p>
+                <p class="name">草水　礼奈</p>
+                <p class="name">水野　穂高</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                前期で行ったアニメ制作の授業で培った技術を生かしたいと思っていたところ、4人の意見が一致したためチームでの制作を決定しました。物語は未来のデジタルメディアデザインコースの3人の学生がとある企画を計画していて...?
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              前期で行ったアニメ制作の授業で培った技術を生かしたいと思っていたところ、4人の意見が一致したためチームでの制作を決定しました。物語は未来のデジタルメディアデザインコースの3人の学生がとある企画を計画していて...?
-            </p>
+          <div class="tab_name tab_2_2">
+            <span>安藤智奈実・佐藤佑一</span>
           </div>
-        </div>
-        <div class="work grade_2_2" data-image="http://watab0shi.github.io/images/1433002_安藤智奈実.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ぷらくてぃか☆</p>
-              <br />
-              <p class="name">安藤　智奈実</p>
-              <p class="name">佐藤　佑一</p>
+          <div class="work grade_2_2" data-image="http://watab0shi.github.io/images/1433002_安藤智奈実.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ぷらくてぃか☆</p>
+                <br />
+                <p class="name">安藤　智奈実</p>
+                <p class="name">佐藤　佑一</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                商業広告を意識したパネル展示です。キラキラしてかわいいを根底に、女性をターゲットにした商品が組み込まれていてもおかしくないよう、今回の作品制作に取り組んだので見ていただけると幸いです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              商業広告を意識したパネル展示です。キラキラしてかわいいを根底に、女性をターゲットにした商品が組み込まれていてもおかしくないよう、今回の作品制作に取り組んだので見ていただけると幸いです。
-            </p>
+          <div class="tab_name tab_2_3">
+            <span>大杉清香</span>
           </div>
-        </div>
-        <div class="work grade_2_3" data-image="http://watab0shi.github.io/images/1433003_大杉清香.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">My MODEL2</p>
-              <br />
-              <p class="name">大杉　清香</p>
+          <div class="work grade_2_3" data-image="http://watab0shi.github.io/images/1433003_大杉清香.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">My MODEL2</p>
+                <br />
+                <p class="name">大杉　清香</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                今年は8頭身キャラモデリング＆自分でモーションをつけました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              今年は8頭身キャラモデリング＆自分でモーションをつけました。
-            </p>
+          <div class="tab_name tab_2_4">
+            <span>香月誠亮・宜野座マヌエル・木本涼介</span>
           </div>
-        </div>
-        <div class="work grade_2_4" data-image="http://watab0shi.github.io/images/1433006_katsukitomoaki.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">CG3</p>
-              <br />
-              <p class="name">香月　誠亮</p>
-              <p class="name">宜野座　マヌエル</p>
-              <p class="name">木本　涼介</p>
+          <div class="work grade_2_4" data-image="http://watab0shi.github.io/images/1433006_katsukitomoaki.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">CG3</p>
+                <br />
+                <p class="name">香月　誠亮</p>
+                <p class="name">宜野座　マヌエル</p>
+                <p class="name">木本　涼介</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                この作品は3DCG集の作品です。各自の得意分野(モデリング、アニメーションなど)、モデリングではロボットや人を制作しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              この作品は3DCG集の作品です。各自の得意分野(モデリング、アニメーションなど)、モデリングではロボットや人を制作しました。
-            </p>
+          <div class="tab_name tab_2_5">
+            <span>久保田祐己也</span>
           </div>
-        </div>
-        <div class="work grade_2_5" data-image="http://watab0shi.github.io/images/1433011_久保田祐己也.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Piano Song Collection 「Mind」</p>
-              <br />
-              <p class="name">久保田　祐己也</p>
+          <div class="work grade_2_5" data-image="http://watab0shi.github.io/images/1433011_久保田祐己也.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Piano Song Collection 「Mind」</p>
+                <br />
+                <p class="name">久保田　祐己也</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                今回の作品のコンセプトはタイトルの通り「Mind」です。ピアノがサウンドが生み出す神秘的な音色で心に響くような曲を制作しました。一音一音、大事に聴いてもらって何か心に感じてもらえるとうれしいです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              今回の作品のコンセプトはタイトルの通り「Mind」です。ピアノがサウンドが生み出す神秘的な音色で心に響くような曲を制作しました。一音一音、大事に聴いてもらって何か心に感じてもらえるとうれしいです。
-            </p>
+          <div class="tab_name tab_2_6">
+            <span>小林眞子</span>
           </div>
-        </div>
-        <div class="work grade_2_6" data-image="http://watab0shi.github.io/images/1433012_小林眞子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">2Dゲーム</p>
-              <br />
-              <p class="name">小林　眞子</p>
+          <div class="work grade_2_6" data-image="http://watab0shi.github.io/images/1433012_小林眞子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">2Dゲーム</p>
+                <br />
+                <p class="name">小林　眞子</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                白いお化けが山の世界で走り回る!走ってゴールを目指せ!簡単な操作でゲームを遊べます。難易度も簡単なのでゲームが苦手な人も楽しむことができます。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              白いお化けが山の世界で走り回る!走ってゴールを目指せ!簡単な操作でゲームを遊べます。難易度も簡単なのでゲームが苦手な人も楽しむことができます。
-            </p>
+          <div class="tab_name tab_2_7">
+            <span>榊原大成</span>
           </div>
-        </div>
-        <div class="work grade_2_7" data-image="http://watab0shi.github.io/images/1433013_榊原大成.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Running Girl</p>
-              <br />
-              <p class="name">榊原　大成</p>
+          <div class="work grade_2_7" data-image="http://watab0shi.github.io/images/1433013_榊原大成.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Running Girl</p>
+                <br />
+                <p class="name">榊原　大成</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                3DCGでキャラクターをモデリングし、それを動かしCM風の簡単なアニメーションにしてみました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              3DCGでキャラクターをモデリングし、それを動かしCM風の簡単なアニメーションにしてみました。
-            </p>
+          <div class="tab_name tab_2_8">
+            <span>佐藤佑一</span>
           </div>
-        </div>
-        <div class="work grade_2_8" data-image="http://watab0shi.github.io/images/1433014_佐藤佑一.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Clap!!</p>
-              <br />
-              <p class="name">佐藤　佑一</p>
+          <div class="work grade_2_8" data-image="http://watab0shi.github.io/images/1433014_佐藤佑一.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Clap!!</p>
+                <br />
+                <p class="name">佐藤　佑一</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                あなたが音を発することで動くインタラクティブコンテンツです。まずは手を叩いてみてください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              あなたが音を発することで動くインタラクティブコンテンツです。まずは手を叩いてみてください。
-            </p>
+          <div class="tab_name tab_2_9">
+            <span>杉浦菜月</span>
           </div>
-        </div>
-        <div class="work grade_2_9" data-image="http://watab0shi.github.io/images/1433015_杉浦菜月.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">My Favorite Vocaloid Song Medley</p>
-              <br />
-              <p class="name">杉浦　菜月</p>
+          <div class="work grade_2_9" data-image="http://watab0shi.github.io/images/1433015_杉浦菜月.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">My Favorite Vocaloid Song Medley</p>
+                <br />
+                <p class="name">杉浦　菜月</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                この作品は映像作品です。VOCALOIDの曲数曲に私がオリジナルpvをつけた作品となっています。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              この作品は映像作品です。VOCALOIDの曲数曲に私がオリジナルpvをつけた作品となっています。
-            </p>
+          <div class="tab_name tab_2_10">
+            <span>松井美帆・田島里紗・東真由・正木汀子・安江佳菜</span>
           </div>
-        </div>
-        <div class="work grade_2_10" data-image="http://watab0shi.github.io/images/1433024_松井美帆.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">onomatopée</p>
-              <br />
-              <p class="name">松井　美帆</p>
-              <p class="name">田島　里紗</p>
-              <p class="name">東　真由</p>
-              <p class="name">正木　汀子</p>
-              <p class="name">安江　佳菜</p>
+          <div class="work grade_2_10" data-image="http://watab0shi.github.io/images/1433024_松井美帆.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">onomatopée</p>
+                <br />
+                <p class="name">松井　美帆</p>
+                <p class="name">田島　里紗</p>
+                <p class="name">東　真由</p>
+                <p class="name">正木　汀子</p>
+                <p class="name">安江　佳菜</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                普段生活している中で自然と耳にしている”音”をテーマに映像、音声を使って表現しました。テンポよく切り替わるオノマトペを映像と音声でお楽しみください!
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              普段生活している中で自然と耳にしている”音”をテーマに映像、音声を使って表現しました。テンポよく切り替わるオノマトペを映像と音声でお楽しみください!
-            </p>
+          <div class="tab_name tab_2_11">
+            <span>田﨑千帆子・橋口綾乃</span>
           </div>
-        </div>
-        <div class="work grade_2_11" data-image="http://watab0shi.github.io/images/1433017_田﨑千帆子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">gerbera</p>
-              <br />
-              <p class="name">田﨑　千帆子</p>
-              <p class="name">橋口　綾乃</p>
+          <div class="work grade_2_11" data-image="http://watab0shi.github.io/images/1433017_田﨑千帆子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">gerbera</p>
+                <br />
+                <p class="name">田﨑　千帆子</p>
+                <p class="name">橋口　綾乃</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                お互いが得意な分野のアニメーションとAfterEffectsの技術を生かし手描きアニメーションを制作しました。悲しい現実を受け入れつつも前向きに生きていくヒロインが描けていたら良いと思います。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              お互いが得意な分野のアニメーションとAfterEffectsの技術を生かし手描きアニメーションを制作しました。悲しい現実を受け入れつつも前向きに生きていくヒロインが描けていたら良いと思います。
-            </p>
+          <div class="tab_name tab_2_12">
+            <span>宮嶋　竜矢</span>
           </div>
-        </div>
-        <div class="work grade_2_12" data-image="http://watab0shi.github.io/images/1433026_宮嶋竜矢.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">私のアニメーション</p>
-              <br />
-              <p class="name">宮嶋　竜矢</p>
+          <div class="work grade_2_12" data-image="http://watab0shi.github.io/images/1433026_宮嶋竜矢.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">私のアニメーション</p>
+                <br />
+                <p class="name">宮嶋　竜矢</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                私が今年一年で作ったアニメーション。アニメーションの作り方を1から学び自分の精一杯をだした作品です。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              私が今年一年で作ったアニメーション。アニメーションの作り方を1から学び自分の精一杯をだした作品です。
-            </p>
+          <div class="tab_name tab_2_13">
+            <span>安江佳菜・田島里紗・東真由</span>
           </div>
-        </div>
-        <div class="work grade_2_13" data-image="http://watab0shi.github.io/images/1433028_安江佳菜.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">dancing snowman</p>
-              <br />
-              <p class="name">安江　佳菜</p>
-              <p class="name">田島　里紗</p>
-              <p class="name">東　真由</p>
+          <div class="work grade_2_13" data-image="http://watab0shi.github.io/images/1433028_安江佳菜.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">dancing snowman</p>
+                <br />
+                <p class="name">安江　佳菜</p>
+                <p class="name">田島　里紗</p>
+                <p class="name">東　真由</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                マッスルポーズをすると雪だるまが表示され、自分が雪だるまになれるインタラクティブ作品です。からだを動かして雪だるまを自由自在に踊らせよう!
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              マッスルポーズをすると雪だるまが表示され、自分が雪だるまになれるインタラクティブ作品です。からだを動かして雪だるまを自由自在に踊らせよう!
-            </p>
+          <div class="tab_name tab_2_14">
+            <span>森川了如</span>
           </div>
-        </div>
-        <div class="work grade_2_14" data-image="http://watab0shi.github.io/images/1433027_森川了如.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">面白ゴミ箱</p>
-              <br />
-              <p class="name">森川　了如</p>
+          <div class="work grade_2_14" data-image="http://watab0shi.github.io/images/1433027_森川了如.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">面白ゴミ箱</p>
+                <br />
+                <p class="name">森川　了如</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                「My Trash Can」というWindows用のフリーウェアの簡単な紹介と、ソフトで使えるゴミ箱のアイコンを紹介、配布します。配布についてはクラウドを使用します。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              「My Trash Can」というWindows用のフリーウェアの簡単な紹介と、ソフトで使えるゴミ箱のアイコンを紹介、配布します。配布についてはクラウドを使用します。
-            </p>
+          <div class="tab_name tab_2_15">
+            <span>矢田菜摘・金山彩恵</span>
           </div>
-        </div>
-        <div class="work grade_2_15" data-image="http://watab0shi.github.io/images/1433029_矢田菜摘.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">欲と二人連れ</p>
-              <br />
-              <p class="name">矢田　菜摘</p>
-              <p class="name">金山　彩恵</p>
+          <div class="work grade_2_15" data-image="http://watab0shi.github.io/images/1433029_矢田菜摘.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">欲と二人連れ</p>
+                <br />
+                <p class="name">矢田　菜摘</p>
+                <p class="name">金山　彩恵</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                人間が出ない、不思議なロボたちの3DCGアニメーションを制作しました。作品内容は、お金に目がないロボがお金を見つけてしまった。そこから繰り出される醜い争い。その先に待ち受ける、ロボたちの運命はどうなるのでしょうか。出来るだけリアルな動きを目指して制作したので、ぜひ見てください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              人間が出ない、不思議なロボたちの3DCGアニメーションを制作しました。作品内容は、お金に目がないロボがお金を見つけてしまった。そこから繰り出される醜い争い。その先に待ち受ける、ロボたちの運命はどうなるのでしょうか。出来るだけリアルな動きを目指して制作したので、ぜひ見てください。
-            </p>
+          <div class="tab_name tab_2_16">
+            <span>吉岡杏奈</span>
           </div>
-        </div>
-        <div class="work grade_2_16" data-image="http://watab0shi.github.io/images/1433030_吉岡杏奈.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Proelium</p>
-              <br />
-              <p class="name">吉岡　杏奈</p>
+          <div class="work grade_2_16" data-image="http://watab0shi.github.io/images/1433030_吉岡杏奈.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Proedivum</p>
+                <br />
+                <p class="name">吉岡　杏奈</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                狭い空間の中でファンタジーな世界感を味わえるゲームが作れないかと思い、ファンタジーな世界観と自由度の高さを追求したボードゲームを作りました。内容は、全滅した方が勝利でいろんな種族が集まって戦う会戦をイメージしました。コマは4種類でそれぞれ個性があり、自分なりの戦略で戦って楽しめるように考えました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              狭い空間の中でファンタジーな世界感を味わえるゲームが作れないかと思い、ファンタジーな世界観と自由度の高さを追求したボードゲームを作りました。内容は、全滅した方が勝利でいろんな種族が集まって戦う会戦をイメージしました。コマは4種類でそれぞれ個性があり、自分なりの戦略で戦って楽しめるように考えました。
-            </p>
+          <div class="tab_name tab_2_17">
+            <span>城山紗織</span>
           </div>
-        </div>
-        <div class="work grade_2_17" data-image="http://watab0shi.github.io/images/1433301_城山紗織.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">あらかると</p>
-              <br />
-              <p class="name">城山　紗織</p>
+          <div class="work grade_2_17" data-image="http://watab0shi.github.io/images/1433301_城山紗織.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">あらかると</p>
+                <br />
+                <p class="name">城山　紗織</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                あなたは、自分の気持ちに素直になれていますか?嬉しい、悲しい、苦しい、楽しい...人には様々な感情があります。これは、ある女の子のお話。“à la carte”...一品ずつ好きなものを注文できる料理。女の子は次々に“あるもの”を食べていきます。果たして女の子が食べているものとは一体...?
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              あなたは、自分の気持ちに素直になれていますか?嬉しい、悲しい、苦しい、楽しい...人には様々な感情があります。これは、ある女の子のお話。“à la carte”...一品ずつ好きなものを注文できる料理。女の子は次々に“あるもの”を食べていきます。果たして女の子が食べているものとは一体...?
-            </p>
+          <div class="tab_name tab_2_18">
+            <span>高橋知子・山田理奈</span>
           </div>
-        </div>
-        <div class="work grade_2_18" data-image="http://watab0shi.github.io/images/1433302_高橋知子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">近未来的スニーカー</p>
-              <br />
-              <p class="name">高橋　知子</p>
-              <p class="name">山田　理奈</p>
+          <div class="work grade_2_18" data-image="http://watab0shi.github.io/images/1433302_高橋知子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">近未来的スニーカー</p>
+                <br />
+                <p class="name">高橋　知子</p>
+                <p class="name">山田　理奈</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                これはそう遠くない未来の商品...「宙に浮く靴」!!!靴が宙に浮けたら何ができるだろうか。そんな想像と妄想が詰まったアニメーションとなっています。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              これはそう遠くない未来の商品...「宙に浮く靴」!!!靴が宙に浮けたら何ができるだろうか。そんな想像と妄想が詰まったアニメーションとなっています。
-            </p>
-          </div>
         </div>
+
         <!-- grade_3 -->
-        <div class="work grade_3_1" data-image="http://watab0shi.github.io/images/1333001_池場未有.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">赤い花</p>
-              <br />
-              <p class="name">池場　未有</p>
+        <div class="tab_grade tab_3">
+          <span>３年生</span>
+        </div>
+        <div class="grade_3">
+          <div class="tab_name tab_3_1">
+            <span>池場未有</span>
+          </div>
+          <div class="work grade_3_1" data-image="http://watab0shi.github.io/images/1333001_池場未有.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">赤い花</p>
+                <br />
+                <p class="name">池場　未有</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                実写映像作品。女の子は欲しいものを探しに歩き続け、手に入れては次に欲しいものを探しにまた歩き続けます。ある日、女の子は欲しかったものを手に入れられず、今までのように歩き進むことができなくなってしまいます。そんな日々をグラウンドの上で作ってみました。成長とともに変化する人間の欲求をテーマに描きました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              実写映像作品。女の子は欲しいものを探しに歩き続け、手に入れては次に欲しいものを探しにまた歩き続けます。ある日、女の子は欲しかったものを手に入れられず、今までのように歩き進むことができなくなってしまいます。そんな日々をグラウンドの上で作ってみました。成長とともに変化する人間の欲求をテーマに描きました。
-            </p>
+          <div class="tab_name tab_3_2">
+            <span>石井　翔</span>
           </div>
-        </div>
-        <div class="work grade_3_2" data-image="http://watab0shi.github.io/images/1333002_石井.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">僕の言場</p>
-              <br />
-              <p class="name">石井　翔</p>
+          <div class="work grade_3_2" data-image="http://watab0shi.github.io/images/1333002_石井.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">僕の言場</p>
+                <br />
+                <p class="name">石井　翔</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                机の上に散らばった言葉たちを自由に触れ、文字同士を組み合わせて言葉を好きに紡ぎ合わせてみてください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              机の上に散らばった言葉たちを自由に触れ、文字同士を組み合わせて言葉を好きに紡ぎ合わせてみてください。
-            </p>
+          <div class="tab_name tab_3_3">
+            <span>伊藤　誌梨</span>
           </div>
-        </div>
-        <div class="work grade_3_3" data-image="http://watab0shi.github.io/images/1333304_伊藤誌梨.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Luna</p>
-              <br />
-              <p class="name">伊藤　誌梨</p>
+          <div class="work grade_3_3" data-image="http://watab0shi.github.io/images/1333304_伊藤誌梨.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Luna</p>
+                <br />
+                <p class="name">伊藤　誌梨</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                月をモチーフにした音楽ゲーム用映像作品
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              月をモチーフにした音楽ゲーム用映像作品
-            </p>
+          <div class="tab_name tab_3_4">
+            <span>伊藤　響</span>
           </div>
-        </div>
-        <div class="work grade_3_4" data-image="http://watab0shi.github.io/images/1333003_伊藤響.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">イラストの研究</p>
-              <br />
-              <p class="name">伊藤　響</p>
+          <div class="work grade_3_4" data-image="http://watab0shi.github.io/images/1333003_伊藤響.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">イラストの研究</p>
+                <br />
+                <p class="name">伊藤　響</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                一年で作成したイラストを展示します。10月から1月まで行ったクロッキー帳での人物クロッキーと、デジタルイラストを数点展示しております。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              一年で作成したイラストを展示します。10月から1月まで行ったクロッキー帳での人物クロッキーと、デジタルイラストを数点展示しております。
-            </p>
+          <div class="tab_name tab_3_5">
+            <span>大塚　彩華</span>
           </div>
-        </div>
-        <div class="work grade_3_5" data-image="http://watab0shi.github.io/images/1333006_大塚 彩華.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ジオラマランド</p>
-              <br />
-              <p class="name">大塚　彩華</p>
+          <div class="work grade_3_5" data-image="http://watab0shi.github.io/images/1333006_大塚 彩華.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ジオラマランド</p>
+                <br />
+                <p class="name">大塚　彩華</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                ステージを探索するゲーム作品です。Unreal Engine 4を使っています。自由に歩き回ってみてください！
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              ステージを探索するゲーム作品です。Unreal Engine 4を使っています。自由に歩き回ってみてください！
-            </p>
+          <div class="tab_name tab_3_6">
+            <span>大野　裕典</span>
           </div>
-        </div>
-        <div class="work grade_3_6" data-image="http://watab0shi.github.io/images/1333007_大野裕典.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Magic in the Smartphone</p>
-              <br />
-              <p class="name">大野　裕典</p>
+          <div class="work grade_3_6" data-image="http://watab0shi.github.io/images/1333007_大野裕典.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Magic in the Smartphone</p>
+                <br />
+                <p class="name">大野　裕典</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                割れた画面が復活したり、選んだカードを当てたり……そのような現象をスマートフォンでお魅せします。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              割れた画面が復活したり、選んだカードを当てたり……そのような現象をスマートフォンでお魅せします。
-            </p>
+          <div class="tab_name tab_3_7">
+            <span>奥田　寛明</span>
           </div>
-        </div>
-        <div class="work grade_3_7" data-image="http://watab0shi.github.io/images/1333008_奥田寛明.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">イラスト製作</p>
-              <br />
-              <p class="name">奥田　寛明</p>
+          <div class="work grade_3_7" data-image="http://watab0shi.github.io/images/1333008_奥田寛明.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">イラスト製作</p>
+                <br />
+                <p class="name">奥田　寛明</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                厚塗りとアニメ塗りで2枚のイラストを描きました。今までに描いたイラストをファイルにまとめてありますのでそちらもご覧ください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              厚塗りとアニメ塗りで2枚のイラストを描きました。今までに描いたイラストをファイルにまとめてありますのでそちらもご覧ください。
-            </p>
+          <div class="tab_name tab_3_8">
+            <span>川添美奈・五十嵐真由・西岡美穂・柳賢智・高井麻未</span>
           </div>
-        </div>
-        <div class="work grade_3_8" data-image="http://watab0shi.github.io/images/1333010_川添美奈.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">あるこまきプロジェクト</p>
-              <br />
-              <p class="name">川添　美奈</p>
-              <p class="name">五十嵐　真由</p>
-              <p class="name">西岡　美穂</p>
-              <p class="name">柳　賢智</p>
-              <p class="name">高井　麻未</p>
+          <div class="work grade_3_8" data-image="http://watab0shi.github.io/images/1333010_川添美奈.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">あるこまきプロジェクト</p>
+                <br />
+                <p class="name">川添　美奈</p>
+                <p class="name">五十嵐　真由</p>
+                <p class="name">西岡　美穂</p>
+                <p class="name">柳　賢智</p>
+                <p class="name">高井　麻未</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                「あるこまきプロジェクト」は大学の所在地である小牧市をとりあげた観光ゲームアプリです。GPSでユーザの位置情報を取得し、現実とバーチャルの世界がリンクしながら物語が展開していきます。物語は小牧市に伝わる昔話をモチーフに、ターゲットである若い世代に愛されるキャラクターデザインにも力を入れています。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              「あるこまきプロジェクト」は大学の所在地である小牧市をとりあげた観光ゲームアプリです。GPSでユーザの位置情報を取得し、現実とバーチャルの世界がリンクしながら物語が展開していきます。物語は小牧市に伝わる昔話をモチーフに、ターゲットである若い世代に愛されるキャラクターデザインにも力を入れています。
-            </p>
+          <div class="tab_name tab_3_9">
+            <span>加藤恵美</span>
           </div>
-        </div>
-        <div class="work grade_3_9" data-image="http://watab0shi.github.io/images/1333306_加藤恵美.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">人線</p>
-              <br />
-              <p class="name">加藤　恵美</p>
+          <div class="work grade_3_9" data-image="http://watab0shi.github.io/images/1333306_加藤恵美.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">人線</p>
+                <br />
+                <p class="name">加藤　恵美</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                私という主人公が腕のみで登場をし、生きて成長していく上で自分の「大切なもの」を描いていくお話。私の価値観で大切なもの（大切になるもの）を３分の映像の中で彩ってみました。実際もっと大切なものがたくさんありますが、わかりやすく単純に表現してみました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              私という主人公が腕のみで登場をし、生きて成長していく上で自分の「大切なもの」を描いていくお話。私の価値観で大切なもの（大切になるもの）を３分の映像の中で彩ってみました。実際もっと大切なものがたくさんありますが、わかりやすく単純に表現してみました。
-            </p>
+          <div class="tab_name tab_3_10">
+            <span>木澤美緒</span>
           </div>
-        </div>
-        <div class="work grade_3_10" data-image="http://watab0shi.github.io/images/1333011_木澤美緒.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">アドべンチャリズム</p>
-              <br />
-              <p class="name">木澤　美緒</p>
+          <div class="work grade_3_10" data-image="http://watab0shi.github.io/images/1333011_木澤美緒.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">アドべンチャリズム</p>
+                <br />
+                <p class="name">木澤　美緒</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                ポップなデザインの横スクロールアクションゲームに、リズムゲーム要素を追加してみました。アクションゲーム、リズムゲームが苦手!という方、一度触ってみてください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              ポップなデザインの横スクロールアクションゲームに、リズムゲーム要素を追加してみました。アクションゲーム、リズムゲームが苦手!という方、一度触ってみてください。
-            </p>
+          <div class="tab_name tab_3_11">
+            <span>阪本和久</span>
           </div>
-        </div>
-        <div class="work grade_3_11" data-image="http://watab0shi.github.io/images/1333013_阪本和久.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">八百万サクセション</p>
-              <br />
-              <p class="name">阪本　和久</p>
+          <div class="work grade_3_11" data-image="http://watab0shi.github.io/images/1333013_阪本和久.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">八百万サクセション</p>
+                <br />
+                <p class="name">阪本　和久</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                空に浮かぶ島を舞台に繰り広げられるアドベンチャーノベルゲームです。落ちこぼれと笑われる主人公が様々な経験を経て成長していくストーリーです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              空に浮かぶ島を舞台に繰り広げられるアドベンチャーノベルゲームです。落ちこぼれと笑われる主人公が様々な経験を経て成長していくストーリーです。
-            </p>
+          <div class="tab_name tab_3_12">
+            <span>陳可然</span>
           </div>
-        </div>
-        <div class="work grade_3_12" data-image="http://watab0shi.github.io/images/1333017_陳可然.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ALIEN GAME</p>
-              <br />
-              <p class="name">陳　可然</p>
+          <div class="work grade_3_12" data-image="http://watab0shi.github.io/images/1333017_陳可然.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">AdivEN GAME</p>
+                <br />
+                <p class="name">陳　可然</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                processingでゲームを作りました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              processingでゲームを作りました。
-            </p>
+          <div class="tab_name tab_3_13">
+            <span>下谷百合子</span>
           </div>
-        </div>
-        <div class="work grade_3_13" data-image="http://watab0shi.github.io/images/1333014_下谷百合子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">fantacy cat</p>
-              <br />
-              <p class="name">下谷　百合子</p>
+          <div class="work grade_3_13" data-image="http://watab0shi.github.io/images/1333014_下谷百合子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">fantacy cat</p>
+                <br />
+                <p class="name">下谷　百合子</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                より多くの人から愛されるようなキャラクターを目指して、fantasy cat というキャラクターと世界観を提案しました。おとぎの国に住む猫たちは、毛色もさまざま。全く新しい、空想の世界に住む猫たちの世界を覗いてみてください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              より多くの人から愛されるようなキャラクターを目指して、fantasy cat というキャラクターと世界観を提案しました。おとぎの国に住む猫たちは、毛色もさまざま。全く新しい、空想の世界に住む猫たちの世界を覗いてみてください。
-            </p>
+          <div class="tab_name tab_3_14">
+            <span>青川沙由美</span>
           </div>
-        </div>
-        <div class="work grade_3_14" data-image="http://watab0shi.github.io/images/1333015_青川沙由美.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">PANCAKE HEROS</p>
-              <br />
-              <p class="name">青川　沙由美</p>
+          <div class="work grade_3_14" data-image="http://watab0shi.github.io/images/1333015_青川沙由美.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">PANCAKE HEROS</p>
+                <br />
+                <p class="name">青川　沙由美</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                名古屋に眠るおいしいパンケーキを探して調査、発信!パンケーキ大好きなヒーローたちが紹介していく。有名パンケーキチェーン店「雪ノ下」様を特集した雑誌です。キャラクターナビゲーションを多用し、10代から20代の方たちが目で楽しみ、読みやすい雑誌を目指してみました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              名古屋に眠るおいしいパンケーキを探して調査、発信!パンケーキ大好きなヒーローたちが紹介していく。有名パンケーキチェーン店「雪ノ下」様を特集した雑誌です。キャラクターナビゲーションを多用し、10代から20代の方たちが目で楽しみ、読みやすい雑誌を目指してみました。
-            </p>
+          <div class="tab_name tab_3_15">
+            <span>塚本布由奈</span>
           </div>
-        </div>
-        <div class="work grade_3_15" data-image="http://watab0shi.github.io/images/1333018_塚本布由奈.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">WallMan</p>
-              <br />
-              <p class="name">塚本　布由奈</p>
+          <div class="work grade_3_15" data-image="http://watab0shi.github.io/images/1333018_塚本布由奈.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">WallMan</p>
+                <br />
+                <p class="name">塚本　布由奈</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                「二次元のキャラクターと触れ合ってみたい」オタクなら、誰もが一度は思った事があるだろう純粋な欲でキャラクターと触れ合えるツールを作りました。キャラクターのうちには必ず仕掛け手の誰かがいるものです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              「二次元のキャラクターと触れ合ってみたい」オタクなら、誰もが一度は思った事があるだろう純粋な欲でキャラクターと触れ合えるツールを作りました。キャラクターのうちには必ず仕掛け手の誰かがいるものです。
-            </p>
+          <div class="tab_name tab_3_16">
+            <span>筒井あさみ</span>
           </div>
-        </div>
-        <div class="work grade_3_16" data-image="http://watab0shi.github.io/images/1333019_筒井あさみ.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ぱらぱら音ハコ</p>
-              <br />
-              <p class="name">筒井　あさみ</p>
+          <div class="work grade_3_16" data-image="http://watab0shi.github.io/images/1333019_筒井あさみ.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ぱらぱら音ハコ</p>
+                <br />
+                <p class="name">筒井　あさみ</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                ブロックで組み立てた オルゴール付きパラパラ漫画です。是非、手にとって遊んでみてください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              ブロックで組み立てた オルゴール付きパラパラ漫画です。是非、手にとって遊んでみてください。
-            </p>
+          <div class="tab_name tab_3_17">
+            <span>秦絵里加・江原志帆・松本唯</span>
           </div>
-        </div>
-        <div class="work grade_3_17" data-image="http://watab0shi.github.io/images/1333022_秦絵里加.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">とある森の小さなドラゴン</p>
-              <br />
-              <p class="name">秦　絵里加</p>
-              <p class="name">江原　志帆</p>
-              <p class="name">松本　唯</p>
+          <div class="work grade_3_17" data-image="http://watab0shi.github.io/images/1333022_秦絵里加.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">とある森の小さなドラゴン</p>
+                <br />
+                <p class="name">秦　絵里加</p>
+                <p class="name">江原　志帆</p>
+                <p class="name">松本　唯</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                3DCGの子供向け短編アニメーション。食いしん坊の子供ドラゴンはお菓子の入った瓶を見つけ、瓶の中に入っていってしまい…。初めて制作した3DCGアニメーションです。純粋な心でみてください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              3DCGの子供向け短編アニメーション。食いしん坊の子供ドラゴンはお菓子の入った瓶を見つけ、瓶の中に入っていってしまい…。初めて制作した3DCGアニメーションです。純粋な心でみてください。
-            </p>
+          <div class="tab_name tab_3_18">
+            <span>水白侑希</span>
           </div>
-        </div>
-        <div class="work grade_3_18" data-image="http://watab0shi.github.io/images/1333028_水白侑希.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ガチャポンファイト</p>
-              <br />
-              <p class="name">水白　侑希</p>
+          <div class="work grade_3_18" data-image="http://watab0shi.github.io/images/1333028_水白侑希.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ガチャポンファイト</p>
+                <br />
+                <p class="name">水白　侑希</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                ロボットが登場する短編アニメーションです。兄弟がおもちゃのロボットに乗って戦います。ギャグ満載です。この女性はCMが入るときに登場します。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              ロボットが登場する短編アニメーションです。兄弟がおもちゃのロボットに乗って戦います。ギャグ満載です。この女性はCMが入るときに登場します。
-            </p>
+          <div class="tab_name tab_3_19">
+            <span>水野晴晶</span>
           </div>
-        </div>
-        <div class="work grade_3_19" data-image="http://watab0shi.github.io/images/1333029_水野晴晶.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">戦車どーんVer.2</p>
-              <br />
-              <p class="name">水野　晴晶</p>
+          <div class="work grade_3_19" data-image="http://watab0shi.github.io/images/1333029_水野晴晶.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">戦車どーんVer.2</p>
+                <br />
+                <p class="name">水野　晴晶</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                そうだ
+                <br />
+                戦車を
+                <br />
+                つくろう
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              そうだ
-              <br />
-              戦車を
-              <br />
-              つくろう
-            </p>
+          <div class="tab_name tab_3_20">
+            <span>山本千聖</span>
           </div>
-        </div>
-        <div class="work grade_3_20" data-image="http://watab0shi.github.io/images/1333030_山本千聖.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ホラーゲームプロモーション</p>
-              <br />
-              <p class="name">山本　千聖</p>
+          <div class="work grade_3_20" data-image="http://watab0shi.github.io/images/1333030_山本千聖.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ホラーゲームプロモーション</p>
+                <br />
+                <p class="name">山本　千聖</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                架空のゲーム会社でホラーゲームをプロモーションするために製作したAR(オーグメンテッド・リアリティ)作品です。怖がったり、驚いたり、楽しんでいただいてどういうゲームなのか興味を持っていただければと思っています。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              架空のゲーム会社でホラーゲームをプロモーションするために製作したAR(オーグメンテッド・リアリティ)作品です。怖がったり、驚いたり、楽しんでいただいてどういうゲームなのか興味を持っていただければと思っています。
-            </p>
+          <div class="tab_name tab_3_21">
+            <span>千葉弥生</span>
           </div>
-        </div>
-        <div class="work grade_3_21" data-image="http://watab0shi.github.io/images/1333302_千葉弥生.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ドライブ(予告編)</p>
-              <br />
-              <p class="name">千葉　弥生</p>
+          <div class="work grade_3_21" data-image="http://watab0shi.github.io/images/1333302_千葉弥生.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ドライブ(予告編)</p>
+                <br />
+                <p class="name">千葉　弥生</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                約3分の手描きアニメーションです。今回はストーリーの冒頭を上映します。荒廃した地球で目を覚ましたロボットが花畑を探すお話です。来年の12月に全編完成する予定です。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              約3分の手描きアニメーションです。今回はストーリーの冒頭を上映します。荒廃した地球で目を覚ましたロボットが花畑を探すお話です。来年の12月に全編完成する予定です。
-            </p>
+          <div class="tab_name tab_3_22">
+            <span>長瀬瑠菜</span>
           </div>
-        </div>
-        <div class="work grade_3_22" data-image="http://watab0shi.github.io/images/1333303_長瀬瑠菜.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">social place</p>
-              <br />
-              <p class="name">長瀬　瑠菜</p>
+          <div class="work grade_3_22" data-image="http://watab0shi.github.io/images/1333303_長瀬瑠菜.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">social place</p>
+                <br />
+                <p class="name">長瀬　瑠菜</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                2 月に公開する実写映像作品の予告編です。人の向き、不向きというテーマを介して、主人公の恋愛と仕事を描き現代社会の人の在り方を表しています。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              2 月に公開する実写映像作品の予告編です。人の向き、不向きというテーマを介して、主人公の恋愛と仕事を描き現代社会の人の在り方を表しています。
-            </p>
+          <div class="tab_name tab_3_23">
+            <span>柿川沙耶加</span>
           </div>
-        </div>
-        <div class="work grade_3_23" data-image="http://watab0shi.github.io/images/1333305_柿川沙耶加.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ねことおしるこ</p>
-              <br />
-              <p class="name">柿川　沙耶加</p>
+          <div class="work grade_3_23" data-image="http://watab0shi.github.io/images/1333305_柿川沙耶加.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ねことおしるこ</p>
+                <br />
+                <p class="name">柿川　沙耶加</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                私は今年一年、様々なスタイルのアニメーション制作を経験しました。今回はその中の一作品を展示します。題名は「ねことおしるこ」です。子どものときの自分を思い出しながら製作しました。おしるこのような温かい気持ちでお楽しみいただければ幸いです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              私は今年一年、様々なスタイルのアニメーション制作を経験しました。今回はその中の一作品を展示します。題名は「ねことおしるこ」です。子どものときの自分を思い出しながら製作しました。おしるこのような温かい気持ちでお楽しみいただければ幸いです。
-            </p>
+          <div class="tab_name tab_3_24">
+            <span>藤田貴正</span>
           </div>
-        </div>
-        <div class="work grade_3_24" data-image="http://watab0shi.github.io/images/1333025_藤田貴正.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Highschool Girl’s Memorial</p>
-              <br />
-              <p class="name">藤田　貴正</p>
+          <div class="work grade_3_24" data-image="http://watab0shi.github.io/images/1333025_藤田貴正.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Highschool Girl’s Memorial</p>
+                <br />
+                <p class="name">藤田　貴正</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                学園モノをテーマとしたイラストを多数展示しています。カレンダーも販売していますのでぜひ会場でご覧ください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              学園モノをテーマとしたイラストを多数展示しています。カレンダーも販売していますのでぜひ会場でご覧ください。
-            </p>
-          </div>
         </div>
+
         <!-- grade_4 -->
-        <div class="work grade_4_1" data-image="http://watab0shi.github.io/images/1233002_一柳祐子.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">The Desertion</p>
-              <br />
-              <p class="name">一柳　祐子</p>
-              <p class="name">藤井　瑠南</p>
-              <p class="name">目黒　香奈子</p>
+        <div class="tab_grade tab_4">
+          <span>４年生</span>
+        </div>
+        <div class="grade_4">
+          <div class="tab_name tab_4_1">
+            <span>一柳祐子・藤井瑠南・目黒香奈子</span>
+          </div>
+          <div class="work grade_4_1" data-image="http://watab0shi.github.io/images/1233002_一柳祐子.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">The Desertion</p>
+                <br />
+                <p class="name">一柳　祐子</p>
+                <p class="name">藤井　瑠南</p>
+                <p class="name">目黒　香奈子</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                動物園で飼育されている3匹のペンギン達が、柵の向こうへと脱走を試みる。果たして彼らは無事脱出できるのか…。
+                <br />
+                ※2分ほどのショートムービーです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              動物園で飼育されている3匹のペンギン達が、柵の向こうへと脱走を試みる。果たして彼らは無事脱出できるのか…。
-              <br />
-              ※2分ほどのショートムービーです。
-            </p>
+          <div class="tab_name tab_4_2">
+            <span>今野晴歌</span>
           </div>
-        </div>
-        <div class="work grade_4_2" data-image="http://watab0shi.github.io/images/1233004_今野晴歌.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">インフォアニメディアの研究</p>
-              <br />
-              <p class="name">今野　晴歌</p>
+          <div class="work grade_4_2" data-image="http://watab0shi.github.io/images/1233004_今野晴歌.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">インフォアニメディアの研究</p>
+                <br />
+                <p class="name">今野　晴歌</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                IT技術やデザイン、イラストやアニメーションによって医師の画力不足を補い、医者からの的確な説明とその補足に役立てる事、それによって手術前の患者の理解を高め、不安を取り除き、インフォームドコンセントを得る事ができる。そんなソフトウェアの開発と研究を行っています。今年度はツール内全体の見直しを行った。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              IT技術やデザイン、イラストやアニメーションによって医師の画力不足を補い、医者からの的確な説明とその補足に役立てる事、それによって手術前の患者の理解を高め、不安を取り除き、インフォームドコンセントを得る事ができる。そんなソフトウェアの開発と研究を行っています。今年度はツール内全体の見直しを行った。
-            </p>
+          <div class="tab_name tab_4_3">
+            <span>大林寛昂</span>
           </div>
-        </div>
-        <div class="work grade_4_3" data-image="http://watab0shi.github.io/images/1233005_大林寛昂.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">マルモⅡ</p>
-              <br />
-              <p class="name">大林　寛昂</p>
+          <div class="work grade_4_3" data-image="http://watab0shi.github.io/images/1233005_大林寛昂.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">マルモⅡ</p>
+                <br />
+                <p class="name">大林　寛昂</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                絵コンテに手詰まり、制作が進まず困っている主人とペットのマルモ。ある日主人が置いていってしまった絵コンテにマルモがアクシデントを起こすことで主人の制作に影響を与えていく…
+                <br />
+                *実写映像とアニメーションを組み合わせた8分ほどの合成アニメーションです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              絵コンテに手詰まり、制作が進まず困っている主人とペットのマルモ。ある日主人が置いていってしまった絵コンテにマルモがアクシデントを起こすことで主人の制作に影響を与えていく…
-              <br />
-              *実写映像とアニメーションを組み合わせた8分ほどの合成アニメーションです。
-            </p>
+          <div class="tab_name tab_4_4">
+            <span>加藤良波</span>
           </div>
-        </div>
-        <div class="work grade_4_4" data-image="http://watab0shi.github.io/images/1233009_加藤良波.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Dreamy</p>
-              <br />
-              <p class="name">加藤　良波</p>
+          <div class="work grade_4_4" data-image="http://watab0shi.github.io/images/1233009_加藤良波.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Dreamy</p>
+                <br />
+                <p class="name">加藤　良波</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                女子大生のミユは映画を作っている。ライバルは友人でもあるユカコ。ある時、ミユは子どもの頃に初めて作った映像作品「ドリーミー」をテレビで再生する。・・・が、そのDVDには不思議な力が秘められていたのだった。
+                <br />
+                ＊２０分程度の実写映像です。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              女子大生のミユは映画を作っている。ライバルは友人でもあるユカコ。ある時、ミユは子どもの頃に初めて作った映像作品「ドリーミー」をテレビで再生する。・・・が、そのDVDには不思議な力が秘められていたのだった。
-              <br />
-              ＊２０分程度の実写映像です。
-            </p>
+          <div class="tab_name tab_4_5">
+            <span>沢田万恵</span>
           </div>
-        </div>
-        <div class="work grade_4_5" data-image="http://watab0shi.github.io/images/1233011_沢田万恵.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">bonds</p>
-              <br />
-              <p class="name">沢田　万恵</p>
+          <div class="work grade_4_5" data-image="http://watab0shi.github.io/images/1233011_沢田万恵.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">bonds</p>
+                <br />
+                <p class="name">沢田　万恵</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                昔の物から新しい物を作ることで、昔と今を繋げる服を制作。デザインされた服を再デザインすることでその服の新しい一面を発見し、新品にはない素材感•オールド感を活かしつつ新しい服を制作。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              昔の物から新しい物を作ることで、昔と今を繋げる服を制作。デザインされた服を再デザインすることでその服の新しい一面を発見し、新品にはない素材感•オールド感を活かしつつ新しい服を制作。
-            </p>
+          <div class="tab_name tab_4_6">
+            <span>竹山実希</span>
           </div>
-        </div>
-        <div class="work grade_4_6" data-image="http://watab0shi.github.io/images/1233013_竹山実希.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">バッドエンドなんかにはさせない</p>
-              <br />
-              <p class="name">竹山　実希</p>
+          <div class="work grade_4_6" data-image="http://watab0shi.github.io/images/1233013_竹山実希.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">バッドエンドなんかにはさせない</p>
+                <br />
+                <p class="name">竹山　実希</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                薔薇の中で眠る美しいお姫様は、王子様に助けてもらえませんでした。バッドエンドだと?冗談じゃない!お姫様が、幽閉されていた屋敷から自力で脱出するRPG。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              薔薇の中で眠る美しいお姫様は、王子様に助けてもらえませんでした。バッドエンドだと?冗談じゃない!お姫様が、幽閉されていた屋敷から自力で脱出するRPG。
-            </p>
+          <div class="tab_name tab_4_7">
+            <span>早野史朗・伊藤蓮</span>
           </div>
-        </div>
-        <div class="work grade_4_7" data-image="http://watab0shi.github.io/images/1233015_早野史朗.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">The Visitors from Next Door</p>
-              <br />
-              <p class="name">早野　史朗</p>
-              <p class="name">伊藤　蓮</p>
+          <div class="work grade_4_7" data-image="http://watab0shi.github.io/images/1233015_早野史朗.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">The Visitors from Next Door</p>
+                <br />
+                <p class="name">早野　史朗</p>
+                <p class="name">伊藤　蓮</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                突如として現れた謎の侵略者。奴らの目的は何なのか、次々に落とされていく仲間たち。反撃の糸口となるのは...
+                <br />
+                ハイスピード3Dメカアクションショートムービー
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              突如として現れた謎の侵略者。奴らの目的は何なのか、次々に落とされていく仲間たち。反撃の糸口となるのは...
-              <br />
-              ハイスピード3Dメカアクションショートムービー
-            </p>
+          <div class="tab_name tab_4_8">
+            <span>本間晋作</span>
           </div>
-        </div>
-        <div class="work grade_4_8" data-image="http://watab0shi.github.io/images/1233017_本間晋作.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">ウンナ(試験版)</p>
-              <br />
-              <p class="name">本間　晋作</p>
+          <div class="work grade_4_8" data-image="http://watab0shi.github.io/images/1233017_本間晋作.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">ウンナ(試験版)</p>
+                <br />
+                <p class="name">本間　晋作</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                三人称視点3Dアクションゲームのつもり。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              三人称視点3Dアクションゲームのつもり。
-            </p>
+          <div class="tab_name tab_4_9">
+            <span>松原景太</span>
           </div>
-        </div>
-        <div class="work grade_4_9" data-image="http://watab0shi.github.io/images/1233018_松原景太.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">紡ぎの言葉</p>
-              <br />
-              <p class="name">松原　景太</p>
+          <div class="work grade_4_9" data-image="http://watab0shi.github.io/images/1233018_松原景太.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">紡ぎの言葉</p>
+                <br />
+                <p class="name">松原　景太</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                オリジナル曲のミュージックビデオです。モニターという枠を超えた、映像＋拡張現実による新しい映像表現を追求しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              オリジナル曲のミュージックビデオです。モニターという枠を超えた、映像＋拡張現実による新しい映像表現を追求しました。
-            </p>
+          <div class="tab_name tab_4_10">
+            <span>松本卓也</span>
           </div>
-        </div>
-        <div class="work grade_4_10" data-image="http://watab0shi.github.io/images/1233019_松本卓也.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">マスクガール</p>
-              <br />
-              <p class="name">松本　卓也</p>
+          <div class="work grade_4_10" data-image="http://watab0shi.github.io/images/1233019_松本卓也.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">マスクガール</p>
+                <br />
+                <p class="name">松本　卓也</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                アニメ作品です。本音を言えない少女「千里(ちさと)」が、不思議なマスクを手に入れ自分と向き合い成長するお話です。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              アニメ作品です。本音を言えない少女「千里(ちさと)」が、不思議なマスクを手に入れ自分と向き合い成長するお話です。
-            </p>
+          <div class="tab_name tab_4_11">
+            <span>水野隆文</span>
           </div>
-        </div>
-        <div class="work grade_4_11" data-image="http://watab0shi.github.io/images/1233021_水野隆文.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">360°風景画</p>
-              <br />
-              <p class="name">水野　隆文</p>
+          <div class="work grade_4_11" data-image="http://watab0shi.github.io/images/1233021_水野隆文.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">360°風景画</p>
+                <br />
+                <p class="name">水野　隆文</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                OculusRiftを使用し、水彩で描いた風景画を360度ぐるっと一周、一人称視点で見ることができます。一面に広がる水彩の世界をぜひ会場でご覧ください。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              OculusRiftを使用し、水彩で描いた風景画を360度ぐるっと一周、一人称視点で見ることができます。一面に広がる水彩の世界をぜひ会場でご覧ください。
-            </p>
+          <div class="tab_name tab_4_12">
+            <span>峰村柚比</span>
           </div>
-        </div>
-        <div class="work grade_4_12" data-image="http://watab0shi.github.io/images/1233022_minemura.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">てのひらメルヘン</p>
-              <br />
-              <p class="name">峰村　柚比</p>
+          <div class="work grade_4_12" data-image="http://watab0shi.github.io/images/1233022_minemura.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">てのひらメルヘン</p>
+                <br />
+                <p class="name">峰村　柚比</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                本とアニメーションを一つにした作品。ページをめくると、皆さんおなじみの童話の世界が動き出します。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              本とアニメーションを一つにした作品。ページをめくると、皆さんおなじみの童話の世界が動き出します。
-            </p>
+          <div class="tab_name tab_4_13">
+            <span>宮田真帆・梶野翔太・村山智紀・山田千夏</span>
           </div>
-        </div>
-        <div class="work grade_4_13" data-image="http://watab0shi.github.io/images/1233024_宮田真帆.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Myo Game Project</p>
-              <br />
-              <p class="name">宮田　真帆</p>
-              <p class="name">梶野　翔太</p>
-              <p class="name">村山　智紀</p>
-              <p class="name">山田　千夏</p>
+          <div class="work grade_4_13" data-image="http://watab0shi.github.io/images/1233024_宮田真帆.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">Myo Game Project</p>
+                <br />
+                <p class="name">宮田　真帆</p>
+                <p class="name">梶野　翔太</p>
+                <p class="name">村山　智紀</p>
+                <p class="name">山田　千夏</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                “Myo”という腕につけるウエアラブルデバイスを使用した作品です。筋電センサーや加速度センサー、ジャイロセンサーが内蔵されており、腕の筋肉の動きを感知して操作します。飛行機を操作するゲームと、音で敵の位置を判断して倒すゲームを制作しました。どちらも触って楽しんでいただきたいです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              “Myo”という腕につけるウエアラブルデバイスを使用した作品です。筋電センサーや加速度センサー、ジャイロセンサーが内蔵されており、腕の筋肉の動きを感知して操作します。飛行機を操作するゲームと、音で敵の位置を判断して倒すゲームを制作しました。どちらも触って楽しんでいただきたいです。
-            </p>
+          <div class="tab_name tab_4_14">
+            <span>藪谷留衣</span>
           </div>
-        </div>
-        <div class="work grade_4_14" data-image="http://watab0shi.github.io/images/1233026_藪谷留衣.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">イヴの肋骨</p>
-              <br />
-              <p class="name">藪谷　留衣</p>
+          <div class="work grade_4_14" data-image="http://watab0shi.github.io/images/1233026_藪谷留衣.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">イヴの肋骨</p>
+                <br />
+                <p class="name">藪谷　留衣</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                『のぞくとそこには違う世界が広がっている』私はＶＲｓｃoｐe（360度パノラマの動画や静止画コンテンツを、凸版印刷が独自開発した専用のビューアにセットし見ることで立体感・臨場感あるVRコンテンツ）を使用し、レースの世界を表現した。立体視を利用することで平面では表現が難しかったレース独特の質感を表現した。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              『のぞくとそこには違う世界が広がっている』私はＶＲｓｃoｐe（360度パノラマの動画や静止画コンテンツを、凸版印刷が独自開発した専用のビューアにセットし見ることで立体感・臨場感あるVRコンテンツ）を使用し、レースの世界を表現した。立体視を利用することで平面では表現が難しかったレース独特の質感を表現した。
-            </p>
+          <div class="tab_name tab_4_15">
+            <span>横山おりえ</span>
           </div>
-        </div>
-        <div class="work grade_4_15" data-image="http://watab0shi.github.io/images/1233030_横山おりえ.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">コースプロモーション</p>
-              <br />
-              <p class="name">横山　おりえ</p>
+          <div class="work grade_4_15" data-image="http://watab0shi.github.io/images/1233030_横山おりえ.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">コースプロモーション</p>
+                <br />
+                <p class="name">横山　おりえ</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                コースのプロモーション活動を制作としてまとめています。今回のデジメ展では新しくタッチパネルディスプレイを使用した会場案内を制作しました。会場では来年度の展示会をより良くするためのアンケートも行っています。ぜひ会場までお越し下さい！
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              コースのプロモーション活動を制作としてまとめています。今回のデジメ展では新しくタッチパネルディスプレイを使用した会場案内を制作しました。会場では来年度の展示会をより良くするためのアンケートも行っています。ぜひ会場までお越し下さい！
-            </p>
+          <div class="tab_name tab_4_16">
+            <span>山崎　かれん</span>
           </div>
-        </div>
-        <div class="work grade_4_16" data-image="http://watab0shi.github.io/images/1233028_山﨑かれん.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">Little stage</p>
-              <br />
-              <p class="name">山崎　かれん</p>
+          <div class="work grade_4_16" data-image="http://watab0shi.github.io/images/1233028_山﨑かれん.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">divttle stage</p>
+                <br />
+                <p class="name">山崎　かれん</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                ペッパーズゴースト手法を用いたディスプレイの提案。ペッパーズゴーストとは劇場などで使用される視覚トリックである。この手法を利用し、商品を魅力的に宣伝する為のディスプレイを制作。今回は商品ではなく、この媒体自体の魅力を引き出す為、森の中で踊る小さな妖精をテーマに、クラシックバレエを投影している。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              ペッパーズゴースト手法を用いたディスプレイの提案。ペッパーズゴーストとは劇場などで使用される視覚トリックである。この手法を利用し、商品を魅力的に宣伝する為のディスプレイを制作。今回は商品ではなく、この媒体自体の魅力を引き出す為、森の中で踊る小さな妖精をテーマに、クラシックバレエを投影している。
-            </p>
+          <div class="tab_name tab_4_17">
+            <span>落葉麻由美</span>
           </div>
-        </div>
-        <div class="work grade_4_17" data-image="http://watab0shi.github.io/images/1233301_落葉麻由美.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">4K高精細モニターを応用した</p>
-              <p class="title">テーブルトップ型サービスのデザイン</p>
-              <br />
-              <p class="name">落葉　麻由美</p>
+          <div class="work grade_4_17" data-image="http://watab0shi.github.io/images/1233301_落葉麻由美.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">4K高精細モニターを応用した</p>
+                <p class="title">テーブルトップ型サービスのデザイン</p>
+                <br />
+                <p class="name">落葉　麻由美</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                飲食店に行った時、複数人で来店している人達が、スマートフォンを触っている食事風景を見ました。そこで、「飲食店にメディアを導入し、来店者にも飲食店側にもプラスになるシステムを作ることができないか?」ということを思いつき、制作しました。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              飲食店に行った時、複数人で来店している人達が、スマートフォンを触っている食事風景を見ました。そこで、「飲食店にメディアを導入し、来店者にも飲食店側にもプラスになるシステムを作ることができないか?」ということを思いつき、制作しました。
-            </p>
-          </div>
         </div>
+
         <!-- grade_5 -->
-        <div class="work grade_5_1" data-image="http://watab0shi.github.io/images/aki_meiji.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">宵の明治村</p>
-              <p class="title">あかりの明治村</p>
-              <br />
-              <p class="name">プロジェクションマッピングプロジェクト</p>
+        <div class="tab_grade tab_5">
+          <span>院１年生</span>
+        </div>
+        <div class="grade_5">
+          <div class="tab_name tab_5_17">
+            <span>プロジェクションマッピングプロジェクト</span>
+          </div>
+          <div class="work grade_5_1" data-image="http://watab0shi.github.io/images/aki_meiji.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">宵の明治村</p>
+                <p class="title">あかりの明治村</p>
+                <br />
+                <p class="name">プロジェクションマッピングプロジェクト</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                2015年、あかりの明治村で行われたプロジェクションマッピングです。昨年同様に聖ザビエル天主堂を使用し、今年の宵街映写の続編を制作を行いました。実写と手描きアニメーションを混ぜた表現や、曲の雰囲気に合わせた映像制作にこだわりました。その完成映像を模型に投影し展示しています。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              2015年、あかりの明治村で行われたプロジェクションマッピングです。昨年同様に聖ザビエル天主堂を使用し、今年の宵街映写の続編を制作を行いました。実写と手描きアニメーションを混ぜた表現や、曲の雰囲気に合わせた映像制作にこだわりました。その完成映像を模型に投影し展示しています。
-            </p>
-          </div>
         </div>
+
         <!-- grade_6 -->
-        <div class="work grade_6_1" data-image="http://watab0shi.github.io/images/1481001_池内祐貴.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">3DCGを初心者が楽しく覚えるには</p>
-              <br />
-              <p class="name">池内　祐貴</p>
-            </div>
-          </div>
-          <div class="right">
-            <p class="caption">
-              3DCGを初めて学ぶ人を対象とした解説サイトです。実際の制作の工程を追っていくかたちで、専門用語も分かり易く言い換えるなどの工夫をしています。3DCG初学者が全体的なイメージを掴めることを目的に作っているので自分の中で制作の工程をイメージしながら見てもらいたいです。
-            </p>
-          </div>
+        <div class="tab_grade tab_6">
+          <span>院２年生</span>
         </div>
-        <div class="work grade_6_2" data-image="http://watab0shi.github.io/images/1481003_可児亘.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">on your palm</p>
-              <br />
-              <p class="name">可児　亘</p>
+        <div class="grade_6">
+          <div class="tab_name tab_6_1">
+            <span>池内祐貴</span>
+          </div>
+          <div class="work grade_6_1" data-image="http://watab0shi.github.io/images/1481001_池内祐貴.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">3DCGを初心者が楽しく覚えるには</p>
+                <br />
+                <p class="name">池内　祐貴</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                3DCGを初めて学ぶ人を対象とした解説サイトです。実際の制作の工程を追っていくかたちで、専門用語も分かり易く言い換えるなどの工夫をしています。3DCG初学者が全体的なイメージを掴めることを目的に作っているので自分の中で制作の工程をイメージしながら見てもらいたいです。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-              画面の中で動き回っているいきものたちの上に手を出すことで、いきものたちをすくい上げることができます。すくわれたいきものたちはヒトの掌の上にいる間に徐々に変化していき、画面に戻したときにほかのいきものたちが寄ってきたり離れていったり、ヒトが関わることによって画面の中の生態系が変化していきます。
-            </p>
+          <div class="tab_name tab_6_2">
+            <span>可児亘</span>
           </div>
-        </div>
-        <div class="work grade_6_3" data-image="http://watab0shi.github.io/images/1481004_川内沢真.png">
-          <div class="left">
-            <div class="left_box">
-              <p class="title">様々な視点で見た大草の映像作品</p>
-              <br />
-              <p class="name">川内　沢真</p>
+          <div class="work grade_6_2" data-image="http://watab0shi.github.io/images/1481003_可児亘.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">on your palm</p>
+                <br />
+                <p class="name">可児　亘</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                画面の中で動き回っているいきものたちの上に手を出すことで、いきものたちをすくい上げることができます。すくわれたいきものたちはヒトの掌の上にいる間に徐々に変化していき、画面に戻したときにほかのいきものたちが寄ってきたり離れていったり、ヒトが関わることによって画面の中の生態系が変化していきます。
+              </p>
             </div>
           </div>
-          <div class="right">
-            <p class="caption">
-               ”ありのままを正直に”映します4kならではの性質を活かして大草ならではの映像を映し出します。大草の地図を転々としながら1年間を春夏秋冬の4つに区切って観ていきます。
-            </p>
+          <div class="tab_name tab_6_3">
+            <span>川内沢真</span>
+          </div>
+          <div class="work grade_6_3" data-image="http://watab0shi.github.io/images/1481004_川内沢真.png">
+            <div class="left">
+              <div class="left_box">
+                <p class="title">様々な視点で見た大草の映像作品</p>
+                <br />
+                <p class="name">川内　沢真</p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="caption">
+                 ”ありのままを正直に”映します4kならではの性質を活かして大草ならではの映像を映し出します。大草の地図を転々としながら1年間を春夏秋冬の4つに区切って観ていきます。
+              </p>
+            </div>
           </div>
         </div>
       </div>
+      <div class="content_access">
+        <h2 style="color:#222">Access</h2>
+      </div>
+      <div class="content_contact">
+        <h2 style="color:#222">Contact</h2>
+      </div>
+      <canvas id="sCanvas" width="300" height="300"></canvas>
     </div>
   </body>
 </html>
