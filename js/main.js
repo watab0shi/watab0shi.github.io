@@ -382,11 +382,11 @@ $( function(){
 
           if( currentPct > ( i * Math.floor( 100 / HEX_NUM_ANGLES ) ) ){
             lCtx.fillStyle = cs[ i ];
-            drawHexIndicator( x, y, r * 0.9, i * a );
+            drawHexIndicator( x, y, r * 1.0, i * a );
 
             if( i == 5 ){
               lCtx.fillStyle = "rgba( 255, 255, 255, 0.27 )";
-              drawHexIndicator( x, y, r * 0.9 * 0.7, i * a );
+              drawHexIndicator( x, y, r * 1.0 * 0.7, i * a );
             }
           }
         }
