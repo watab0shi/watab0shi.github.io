@@ -539,17 +539,17 @@ function setCanvasSize(){
   $( '.left_box' ).css( 'width', SEL_MAX_IN_RADIUS * 1.75 );
 
   // transform left
-  $( '.left_box' ).each( function( index ){
-    var left = $( '.left' ).get( index );
-    if( $( left ).css( 'display' ) == 'none' ){
-      $( left ).css( 'display', 'block' );
-      $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
-      $( left ).css( 'display', 'none' );
-    }
-    else{
-      $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
-    }
-  } );
+  // $( '.left_box' ).each( function( index ){
+  //   var left = $( '.left' ).get( index );
+  //   if( $( left ).css( 'display' ) == 'none' ){
+  //     $( left ).css( 'display', 'block' );
+  //     $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
+  //     $( left ).css( 'display', 'none' );
+  //   }
+  //   else{
+  //     $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
+  //   }
+  // } );
 
 
   $( '.right' ).css( {
@@ -563,17 +563,17 @@ function setCanvasSize(){
   // $( '.caption' ).css( { transform: 'translate( ' + ( -$( '.caption' ).width() / 2 ) + 'px, ' + ( -$( '.caption' ).height() / 2 ) + 'px )' } );
 
   // transform right
-  $( '.caption' ).each( function( index ){
-    var right = $( '.right' ).get( index );
-    if( $( right ).css( 'display' ) == 'none' ){
-      $( right ).css( 'display', 'block' );
-      $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
-      $( right ).css( 'display', 'none' );
-    }
-    else{
-      $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
-    }
-  } );
+  // $( '.caption' ).each( function( index ){
+  //   var right = $( '.right' ).get( index );
+  //   if( $( right ).css( 'display' ) == 'none' ){
+  //     $( right ).css( 'display', 'block' );
+  //     $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
+  //     $( right ).css( 'display', 'none' );
+  //   }
+  //   else{
+  //     $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
+  //   }
+  // } );
 
 }
 
