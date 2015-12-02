@@ -351,8 +351,8 @@ $( function(){
   function lResize(){
   	clearTimeout( lQueue );
   	lQueue = setTimeout( function(){
-      lCanvas.width  = window.innerWidth;
-      lCanvas.height = window.innerHeight;
+      lCanvas.width  = $( window ).width();
+      lCanvas.height = $( window ).height();
   	}, 20 );
   }
 
@@ -496,10 +496,10 @@ function resize(){
 
 //---------------------------------------------------------------------------------------------------- setCanvasSize
 function setCanvasSize(){
-	canvas.width   = window.innerWidth;
-	canvas.height  = window.innerHeight;
-  sCanvas.width  = window.innerWidth;
-  sCanvas.height = window.innerHeight;
+	canvas.width   = $( window ).width();
+	canvas.height  = $( window ).height();
+  sCanvas.width  = $( window ).width();
+  sCanvas.height = $( window ).height();
 	cw             = canvas.width;
 	ch             = canvas.height;
 	hw             = cw / 2;
