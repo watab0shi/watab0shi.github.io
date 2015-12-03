@@ -534,23 +534,28 @@ function setCanvasSize(){
     top: hh + ( HEX_MAX_RADIUS * 0.77 ) + ( Math.sin( Math.PI / 6 ) * HEX_MAX_RADIUS * 0.1 ),
     left: hw - ( Math.cos( Math.PI / 6 ) * HEX_MAX_RADIUS * 0.1 + ( SEL_MAX_IN_RADIUS * 2 ) ),
     width: ( SEL_MAX_IN_RADIUS ) * 2,
-    height: SEL_MAX_RADIUS,
+    height: SEL_MAX_RADIUS
   } );
-  // $( '.left_box' ).css( 'width', SEL_MAX_IN_RADIUS * 1.75 );
-  $( '.left_box' ).css( 'width', '100%' );
+  $( '.left_box' ).css( 'width', SEL_MAX_IN_RADIUS * 1.75 );
 
   // transform left
-  // $( '.left_box' ).each( function( index ){
-  //   var left = $( '.left' ).get( index );
-  //   if( $( left ).css( 'display' ) == 'none' ){
-  //     $( left ).css( 'display', 'block' );
-  //     $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
-  //     $( left ).css( 'display', 'none' );
-  //   }
-  //   else{
-  //     $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
-  //   }
-  // } );
+  $( '.left_box' ).each( function( index ){
+    var left = $( '.left' ).get( index );
+    if( $( left ).css( 'display' ) == 'none' ){
+      $( left ).css( 'display', 'block' );
+      $( this ).css( {
+        top: ( $( left ).height() - $( this ).height() ) / 2,
+        left: ( $( left ).width() - $( this ).width() ) / 2,
+      } );
+      $( left ).css( 'display', 'none' );
+    }
+    else{
+      $( this ).css( {
+        top: ( $( left ).height() - $( this ).height() ) / 2,
+        left: ( $( left ).width() - $( this ).width() ) / 2,
+      } );
+    }
+  } );
 
 
   $( '.right' ).css( {
@@ -561,20 +566,25 @@ function setCanvasSize(){
     fontSize: SEL_MAX_RADIUS * 0.07,
   } );
   $( '.caption' ).css( 'width', SEL_MAX_IN_RADIUS * 1.7 );
-  // $( '.caption' ).css( { transform: 'translate( ' + ( -$( '.caption' ).width() / 2 ) + 'px, ' + ( -$( '.caption' ).height() / 2 ) + 'px )' } );
 
   // transform right
-  // $( '.caption' ).each( function( index ){
-  //   var right = $( '.right' ).get( index );
-  //   if( $( right ).css( 'display' ) == 'none' ){
-  //     $( right ).css( 'display', 'block' );
-  //     $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
-  //     $( right ).css( 'display', 'none' );
-  //   }
-  //   else{
-  //     $( this ).css( { transform: 'translate( ' + ( -$( this ).width() / 2 ) + 'px, ' + ( -$( this ).height() / 2 ) + 'px )' } );
-  //   }
-  // } );
+  $( '.caption' ).each( function( index ){
+    var right = $( '.right' ).get( index );
+    if( $( right ).css( 'display' ) == 'none' ){
+      $( right ).css( 'display', 'block' );
+      $( this ).css( {
+        top: ( $( right ).height() - $( this ).height() ) / 2,
+        left: ( $( right ).width() - $( this ).width() ) / 2,
+      } );
+      $( right ).css( 'display', 'none' );
+    }
+    else{
+      $( this ).css( {
+        top: ( $( right ).height() - $( this ).height() ) / 2,
+        left: ( $( right ).width() - $( this ).width() ) / 2,
+      } );
+    }
+  } );
 
 }
 
