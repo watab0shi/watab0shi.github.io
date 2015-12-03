@@ -399,7 +399,8 @@ $( function(){
       $( '#loadWrapper' ).fadeOut( 'slow', function(){
         $( '#wrapper' ).fadeIn( 'slow' );
 
-        init();
+        if( window.innerWidth > 768 ) init_pc();
+        else                          init_mobile();
       } );
     }
   }, 20 );
@@ -417,8 +418,66 @@ $( function(){
 } );
 
 
-//---------------------------------------------------------------------------------------------------- init
-function init(){
+//---------------------------------------------------------------------------------------------------- init_mobile
+function init_mobile(){
+  $( '.content_title' ).height( window.innerHeight );
+  $( '.tab_grade, .tab_name' ).css( {
+    display: 'block',
+    position: 'relative'
+  } );
+
+  $( '.tab_grade' ).css( 'backgroundColor', '#eee' );
+
+  $( '.left, .right' ).css( {
+    display: 'block',
+    position: 'static',
+    width: '100%',
+    height: 'auto'
+  } );
+  $( '.name' ).css( 'display', 'none' );
+  $( '.work' ).css( {
+    display: 'block',
+    width: '100%',
+    height: 100
+  } );
+
+  $( '.tab_grade' ).each( function( index ){
+    var tg = '.tab_' + ( index + 1 );
+    var g  = '.grade_' + ( index + 1 );
+
+    $( tg ).click( function(){
+      if( $( g ).is( ':hidden' ) ){
+        $( g ).slideDown();
+      }
+      else{
+        $( g ).slideUp();
+      }
+    } );
+
+    $( g + '>.tab_name' ).each( function( index_ ){
+      var tn = tg + '_' + ( index_ + 1 );
+      var wg = g + '_' + ( index_ + 1 );
+
+      $( wg ).append( $( '<img/>' ).attr( 'src', $( wg ).data( 'image' ) ) );
+      $( wg ).slideUp();
+
+      $( tn ).click( function(){
+        if( $( wg ).is( ':hidden' ) ){
+          $( '.work' ).slideUp();
+          $( wg ).slideDown();
+        }
+        else{
+          $( wg ).slideUp();
+        }
+      } );
+    } );
+  } );
+
+}
+
+
+//---------------------------------------------------------------------------------------------------- init_pc
+function init_pc(){
   var gIdx = [ 0, 0, 0, 0, 0, 0 ];
   for( var i = 0; i < HEX_WORKS_GRADES.length; ++i ){
     ++gIdx[ HEX_WORKS_GRADES[ i ] - 1 ];
@@ -452,6 +511,7 @@ function init(){
 
 	// resize event
 	window.addEventListener( 'resize', resize, false );
+
   // mouse event
 	window.addEventListener( 'mousemove', mouseMove );
 
