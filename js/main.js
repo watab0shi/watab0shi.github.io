@@ -399,7 +399,15 @@ $( function(){
       $( '#loadWrapper' ).fadeOut( 'slow', function(){
         $( '#wrapper' ).fadeIn( 'slow' );
 
-        var w = ( window.innerWidth > 768 ) ? init_pc(): init_mobile();
+        var device = ( window.screen.width > 768 ) ? 'pc': 'mobile';
+
+        if( device == 'pc' ){
+          if( window.innerWidth > 768 ) init_pc();
+          else                          init_mobile();
+        }
+        else{
+          init_mobile();
+        }
       } );
     }
   }, 20 );
@@ -508,7 +516,7 @@ function init_pc(){
 
   ctx  = canvas.getContext( '2d' );
 	sCtx = sCanvas.getContext( '2d' );
-
+  $( '#sCanvas' ).css( 'display', 'none' );
 
 
 	// set canvas size
@@ -684,6 +692,8 @@ function mouseClick(){
 
         $( '.left' ).css( 'display', 'none' );
         $( '.right' ).css( 'display', 'none' );
+
+        $( '#sCanvas' ).css( 'display', 'none' );
         return;
       }
 
@@ -764,6 +774,8 @@ function mouseClick(){
       $( work + '>.right' ).delay( 400 ).fadeIn( 'slow', function(){
         enableClick = true;
       } );
+
+      $( '#sCanvas' ).css( 'display', 'block' );
     }
     ctx.restore();
   }
