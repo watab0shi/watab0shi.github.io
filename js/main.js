@@ -399,8 +399,7 @@ $( function(){
       $( '#loadWrapper' ).fadeOut( 'slow', function(){
         $( '#wrapper' ).fadeIn( 'slow' );
 
-        if( window.innerWidth > 768 ) init_pc();
-        else                          init_mobile();
+        var w = ( window.innerWidth > 768 ) ? init_pc(): init_mobile();
       } );
     }
   }, 20 );
@@ -438,18 +437,24 @@ function init_mobile(){
   $( '.work' ).css( {
     display: 'block',
     width: '100%',
-    height: 100
+    height: 700
   } );
+
 
   $( '.tab_grade' ).each( function( index ){
     var tg = '.tab_' + ( index + 1 );
     var g  = '.grade_' + ( index + 1 );
 
+    $( g ).slideUp();
+
     $( tg ).click( function(){
       if( $( g ).is( ':hidden' ) ){
+        $( '.work' ).slideUp();
+        $( '.grade' ).slideUp();
         $( g ).slideDown();
       }
       else{
+        $( '.work' ).slideUp();
         $( g ).slideUp();
       }
     } );
@@ -458,7 +463,7 @@ function init_mobile(){
       var tn = tg + '_' + ( index_ + 1 );
       var wg = g + '_' + ( index_ + 1 );
 
-      $( wg ).append( $( '<img/>' ).attr( 'src', $( wg ).data( 'image' ) ) );
+      $( wg ).prepend( $( '<img/>' ).attr( 'src', $( wg ).data( 'image' ) ) );
       $( wg ).slideUp();
 
       $( tn ).click( function(){
