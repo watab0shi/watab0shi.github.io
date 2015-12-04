@@ -359,7 +359,7 @@ $( function(){
   var lCtx       = lCanvas.getContext( '2d' );
   lCanvas.width  = window.innerWidth;
   lCanvas.height = window.innerHeight;
-  var r          = 40;
+  var r          = 30;
   var inR        = r * Math.cos( Math.PI / HEX_NUM_ANGLES );
   var a          = ( Math.PI * 2 ) / HEX_NUM_ANGLES;
   var cs         = [ "rgb( 232, 84, 107 )", "rgb( 240, 155, 165 )", "rgb( 116, 131, 192 )", "rgb( 249, 218, 217 )", "rgb( 255, 246, 151 )", "rgb( 162, 179, 219 )" ];
@@ -448,7 +448,6 @@ function init_mobile(){
     height: 700
   } );
 
-
   $( '.tab_grade' ).each( function( index ){
     var tg = '.tab_' + ( index + 1 );
     var g  = '.grade_' + ( index + 1 );
@@ -491,6 +490,25 @@ function init_mobile(){
 
 //---------------------------------------------------------------------------------------------------- init_pc
 function init_pc(){
+  $( '.tab_grade' ).each( function( index ){
+    var tg = '.tab_' + ( index + 1 );
+    var g  = '.grade_' + ( index + 1 );
+
+    $( g + '>.tab_name' ).each( function( index_ ){
+      var nn = g + '_' + ( index_ + 1 ) + '>.left>.left_box>.name:first';
+      var gn = '<span>' + ( index + 1 ) + '年</span>';
+
+      if( index + 1 == 5 ){
+        gn = '<span>院' + ( index - 3 ) + '年</span>'
+      }
+      else if( index + 1 == 6 ){
+        gn = '<span>院' + ( index - 3 ) + '年</span>'
+      }
+
+      if( index + 1 != 5 ) $( nn ).prepend( $( gn ).css( 'display', 'block' ) );
+    } );
+  } );
+
   var gIdx = [ 0, 0, 0, 0, 0, 0 ];
   for( var i = 0; i < HEX_WORKS_GRADES.length; ++i ){
     ++gIdx[ HEX_WORKS_GRADES[ i ] - 1 ];
