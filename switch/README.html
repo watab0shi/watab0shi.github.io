@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta content="width=device-width,initial-scale=1" name="viewport" />
+	<title>Switch README</title>
+	<style>
+		body {
+			font-famiry: "メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", "arial", "helvetica", "sans-serif";
+			font-size: 14px;
+		}
+		ol, ul {
+			padding: 0 0 0 1.5em;
+		}
+		ol {
+			list-style-type: none;
+		}
+		ul {
+			list-style-type: disc;
+		}
+		ol>li {
+			margin-top: 5em;
+		}
+		.wrp {
+			margin: 0.5em;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrp">
+		<h1>Switch README</h1>
+		<ol>
+			<li>
+				<h2>1.作品の実装に入る前に必ずスケッチを描いておく</h2>
+				<ul>
+					<li>グループ内での共通認識を持っておくため。</li>
+				</ul>
+			</li>
+			<li>
+				<h2>2.実装するのに必要なものを洗い出す</h2>
+				<ul>
+					<li>application, addon, device, ...etc</li>
+				</ul>
+			</li>
+			<li>
+				<h2>3.早い段階でパーツごとの技術検証をしておく</h2>
+				<ul>
+					<li>Kinect、画像認識、物理演算、など個々の機能が実装可能かを検証する。</li>
+					<li>不可能な場合は別の方法を探す。</li>
+				</ul>
+			</li>
+			<li>
+				<h2>4.addonを使う場合はなるべくググらない</h2>
+				<ul>
+					<li>addonには複数のバージョンがあるものが多くありバージョンごとに仕様が違うため、ネット上に上がっている記事で扱っているaddonといま自分が使っているaddonのバージョンが一致しないことがある。</li>
+					<li>addonを使う際はまずofxXXX/exampleのsrcを見て、それでもわからなかったらググる。</li>
+					<li>ググるときは記事の日付やバージョンが同じかどうかを確認する。</li>
+				</ul>
+			</li>
+			<li>
+				<h2>5.技術検証ができたらパーツを組み合わせてデモをつくる</h2>
+				<ul>
+					<li>この段階ではシステムが動作していればOK。見た目はどうでもいい。</li>
+				</ul>
+			</li>
+			<li>
+				<h2>6.見た目を整える</h2>
+				<ul>
+					<li>プロジェクター、モニターを仕様する場合は、最終的に表示される画面サイズでちゃんと表示されるようにする。</li>
+				</ul>
+			</li>
+			<li>
+				<h2>7.実機で動作検証、耐久テスト</h2>
+				<ul>
+					<li>なるべく展示と同じ状況、同じ時間でテストする。</li>
+				</ul>
+			</li>
+			<li>
+				<h2>8.管理、運用のしやすさを追求</h2>
+				<ul>
+					<li>キーアサインなどをapp内に表示しておき、マニュアルがなくても操作できるようにしておく。</li>
+					<li>関係者以外でも操作できるくらいにしておくとなお良し。</li>
+					<li>
+						2の段階でsensorApp,renderAppなど機能別にアプリケーションを分割しておくと管理がしやすい。
+						<ul>
+							<li>ひとつに全部つめこんでしまうと一部の機能が落ちたときにアプリケーション全体が道連れになってしまう</li>
+							<li>デスクトップが見えるのだけは絶対に阻止したい</li>
+							<li>分けておくと、途中でセンサーが落ちても表示側のアプリケーションには影響しない</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ol>
+	</div>
+</body>
+</html>
