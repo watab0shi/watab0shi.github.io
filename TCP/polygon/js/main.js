@@ -397,6 +397,7 @@
     h = $window.height();
 
     setCanvasSize();
+    clear();
   }
 
   // setCanvas
