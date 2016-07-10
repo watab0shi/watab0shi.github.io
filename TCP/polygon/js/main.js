@@ -258,8 +258,8 @@
       translate(this.pos.x, this.pos.y);
       rotate(this.rot);
       beginShape();
-      // ctx.shadowBlur = 50;
-      // ctx.shadowColor = "rgba(0,0,0, 0.4)";
+      ctx.shadowBlur = 50;
+      ctx.shadowColor = "rgba(0,0,0, 0.4)";
         for(var i = 0; i <= this.num; ++i){
           var p0 = new Vector(cos(i * this.a) * this.radius, sin(i * this.a) * this.radius);
           var p1 = new Vector(cos((i + 1) * this.a) * this.radius, sin((i + 1) * this.a) * this.radius);
