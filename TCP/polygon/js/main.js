@@ -229,7 +229,7 @@
     this.rot += this.rotInc;
     this.curveStep += this.curveStepInc;
 
-    if(this.pos.y > $doc.height() + this.radius){
+    if((this.pos.y > $doc.height() + this.radius) || (this.pos.x < -this.radius) || (this.pos.x > w + this.radius)){
       this.dead = true;
     }
   };
@@ -345,7 +345,7 @@
     polygons = new Array();
     gravity  = (random(QUARTER_PI / 4) - (QUARTER_PI / 8)) + HALF_PI;
 
-    for(var i = 0; i < 32; ++i){
+    for(var i = 0; i < 30; ++i){
       addRandomPolygon(random(w), random($doc.height()) - h / 2);
     }
 
@@ -368,9 +368,9 @@
     }
 
     // update scroll
-    if(abs(scrollTop - scroll) > 1){
-      scroll += (scrollTop - scroll) / 10;
-    }
+    // if(abs(scrollTop - scroll) > 1){
+    //   scroll += (scrollTop - scroll) / 10;
+    // }
   }
 
   // draw
@@ -383,7 +383,7 @@
     // clear background
     clear();
     push();
-      translate(0, -scroll);
+      translate(0, -scrollTop);
       for(var i = 0; i < polygons.length; ++i){
         polygons[i].draw();
       }
@@ -413,8 +413,8 @@
     var i = floor(random(10));
     var num = (i % 5 === 0) ? 64: floor(random(3)) + 3;
     var wh = min(w, h);
-    var radius = (random(wh * 0.1) + (wh * 0.1)) + (floor(random(1)) * random(wh * 0.1));
-    var strength = 0.1 + random(0.6) + (1.0 - (radius / (wh * 0.3))) * 1.5;
+    var radius = (random(wh * 0.1) + (wh * 0.15)) + (floor(random(1)) * random(wh * 0.1));
+    var strength = 0.1 + random(0.6) + (1.0 - (radius / (wh * 0.3)));
     var fill = i % 4 === 0;
     var c = PALLETE[i % PALLETE.length];
 
