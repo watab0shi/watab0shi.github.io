@@ -111,9 +111,7 @@ body {
 	position: relative;
 	background-color: #3949AB;
 	box-sizing: border-box;
-	font-size: 10px;
-	font-size: 1.0rem;
-	font-family: "メイリオ","Meiryo","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","ＭＳ Ｐゴシック","MS PGothic","arial","helvetica","sans-serif";
+	overflow: visible;
 }
 div {
 	display: block;
