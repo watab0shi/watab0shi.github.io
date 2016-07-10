@@ -343,7 +343,7 @@
     scroll    = 0;
 
     polygons = new Array();
-    gravity  = (random(QUARTER_PI / 2) - (QUARTER_PI / 4)) + HALF_PI;
+    gravity  = (random(QUARTER_PI / 4) - (QUARTER_PI / 8)) + HALF_PI;
 
     for(var i = 0; i < 32; ++i){
       addRandomPolygon(random(w), random($doc.height()) - h / 2);
@@ -411,15 +411,15 @@
   // ----------------------------------------
   function addRandomPolygon(_x, _y){
     var i = floor(random(10));
-    var str    = 0.1 + random(0.6);
-    var num    = (i % 5 === 0) ? 64: floor(random(3)) + 3;
+    var num = (i % 5 === 0) ? 64: floor(random(3)) + 3;
     var wh = min(w, h);
     var radius = (random(wh * 0.1) + (wh * 0.1)) + (floor(random(1)) * random(wh * 0.1));
-    var fill   = i % 4 === 0;
-    var c      = PALLETE[i % PALLETE.length];
+    var strength = 0.1 + random(0.6) + (1.0 - (radius / (wh * 0.3))) * 1.5;
+    var fill = i % 4 === 0;
+    var c = PALLETE[i % PALLETE.length];
 
     polygons.push(new Polygon(num).setPosition(_x, _y)
-                    .setVelocity(cos(gravity) * str, sin(gravity) * str)
+                    .setVelocity(cos(gravity) * strength, sin(gravity) * strength)
                     .setRadius(radius)
                     .setFill(fill)
                     .setColor(c.r, c.g, c.b, 255));
