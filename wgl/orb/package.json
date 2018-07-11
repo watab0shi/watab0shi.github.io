@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify --transform babelify .src/script.js --outfile ./dist/script.js ",
-    "watch": "watchify ./src/script.js -t babelify -o ./dist/script.js -v",
+    "build": "browserify --transform babelify .src/script.js --outfile ./js/script.js ",
+    "watch": "watchify ./src/script.js -t babelify -o ./js/script.js -v",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

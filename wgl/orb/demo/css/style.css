@@ -1,0 +1,17 @@
+@charset "utf8";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: block;
+  font-size: 0;
+}
+
+#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
