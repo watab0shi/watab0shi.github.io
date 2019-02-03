@@ -270,6 +270,19 @@ body {
   display: block;
 }
 
+.opening_hdg,
+.opening_txt-date {
+  font-size: 18px;
+}
+.opening_txt-date .txt-small,
+.opening_txt-location {
+  font-size: 14px;
+}
+.opening_txt-location .txt-small {
+  font-size: 12px;
+  display: block;
+}
+
 .only-sp {
   display: block;
 }
