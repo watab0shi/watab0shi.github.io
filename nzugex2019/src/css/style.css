@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700');
+
+@keyframes scroll-anim {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 10px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 14px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: #fff;
+}
+
+#canvas-container-back,
+#canvas-container-front {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#canvas-container-back  canvas,
+#canvas-container-front canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#canvas-container-front {
+  pointer-events: none;
+}
+
+
+.main {
+  display: block;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: calc(100% - 50px);
+  max-width: 1000px;
+  margin: 100vh auto;
+  padding: 120px 15px;
+  border-radius: 10px;
+}
+
+.hdg-title-en,
+.hdg-title-jp,
+.txt-date,
+.txt-free,
+.txt-location,
+.opening {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 60px;
+}
+.hdg-title-en {
+  font-family: 'Righteous', sans-serif;
+}
+.hdg-title-en .txt {
+  display: block;
+}
+.hdg-title-en .txt-grad {
+  font-size: 52px;
+  letter-spacing: 0.05em;
+}
+.hdg-title-en .txt-nagoya {
+  font-size: 24px;
+  letter-spacing: 0.2em;
+}
+
+.hdg-title-jp {
+  font-size: 20px;
+  letter-spacing: 0.025em;
+}
+.hdg-title-jp .txt-times {
+  margin-right: 15px;
+}
+.hdg-title-jp .txt-small {
+  font-size: 18px;
+}
+.hdg-title-jp .txt-small:last-child {
+  margin-left: 10px;
+}
+
+
+.txt-date {
+  font-size: 28px;
+  font-weight: 700;
+}
+.txt-date .txt-day-of-week {
+  font-size: 20px;
+  margin: 0 10px;
+}
+.txt-date .txt-note {
+  font-size: 16px;
+  font-weight: 400;
+  display: block;
+}
+
+.txt-link {
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.txt-link .txt-official {
+  display: block;
+}
+.txt-link .link {
+  display: inline-block;
+  transition: color .25s ease;
+}
+.txt-link .link,
+.txt-link .link:link,
+.txt-link .link:visited {
+  color: #fff;
+  text-decoration: none;
+}
+.txt-link .link:hover {
+  color: #ff0;
+}
+
+.txt-free {
+  display: inline-block;
+  position: relative;
+  border: 1px solid #fff;
+
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  padding: 2px 6px;
+}
+
+.txt-location .txt-gallery {
+  font-size: 20px;
+  font-weight: 700;
+}
+.txt-location .txt-address {
+  display: block;
+}
+
+.txt-scroll {
+  position: fixed;
+  left: 50%;
+  bottom: 50px;
+  color: #000;
+  font-family: 'Righteous', sans-serif;
+  letter-spacing: 0.2em;
+  transform: translateX(-50%);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+.txt-scroll::after {
+  content: '';
+  position: absolute;
+
+  width: 20px;
+  height: 20px;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  left: 50%;
+  margin-top: 20px;
+  transform: translateX(-55%) rotateZ(45deg);
+
+  animation: scroll-anim 1s ease infinite;
+}
+.txt-scroll.is-hidden {
+  opacity: 0;
+}
+
+.opening_hdg {
+  font-size: 20px;
+  font-weight: 400;
+}
+.opening_txt-date {
+  font-size: 20px;
+  font-weight: 700;
+}
+.opening_txt-date .txt-small {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 10px;
+}
+.opening_txt-location {
+  font-size: 16px;
+  font-weight: 400;
+}
+.opening_txt-location .txt-small {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.only-sp {
+  display: none;
+}
+
+
+/* SP */
+@media screen and (max-width:767px) {
+
+.main {
+  width: calc(100% - 15px);
+  padding: 60px 10px;
+}
+
+.hdg-title-en,
+.hdg-title-jp,
+.txt-date {
+  margin-bottom: 30px;
+}
+
+.hdg-title-en .txt-grad {
+  font-size: 36px;
+}
+.hdg-title-en .txt-nagoya {
+  font-size: 16px;
+  letter-spacing: 0.025em;
+}
+
+.hdg-title-jp {
+  font-size: 14px;
+}
+.hdg-title-jp .txt-times {
+  margin-right: 12px;
+}
+.hdg-title-jp .txt-small {
+  font-size: 12px;
+}
+
+.txt-date {
+  font-size: 18px;
+  font-weight: 700;
+}
+.txt-date .txt-day-of-week {
+  font-size: 14px;
+  margin: 0 5px;
+}
+.txt-date .txt-note {
+  font-size: 12px;
+}
+
+.txt-link {
+  font-size: 12px;
+}
+
+.txt-location .txt-gallery {
+  font-size: 18px;
+}
+.txt-location .txt-address {
+  font-size: 12px;
+}
+.txt-location .txt-access {
+  display: block;
+}
+
+.only-sp {
+  display: block;
+}
+
+}
+
