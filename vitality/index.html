@@ -1,19 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Vitality</title>
-  <script src="js/dat.gui.min.js"></script>
+  <meta name="viewport" content="width=device-width">
+  <title>活力メーター</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    #vitality {
+      font-size: 50px;
+      position: fixed;
+      display: inline-block;
+      top: 50%;
+      left: 50%;
+      transform: translate( -50%, -50% );
+    }
+  </style>
+  <script src="./js/dat.gui.min.js"></script>
 </head>
 <body>
+  <h1 id="vitality"></h1>
   <script>
+    let   EMOJI  = '🌟';
     const NAME   = window.prompt( '名前を入力してください', '' );
     const params = { '活力': 5 };
+    const eHdg   = document.getElementById( 'vitality' );
 
     const gui    = new dat.GUI();
     const folder = gui.addFolder( NAME );
-    folder.add( params, '活力' ).min( 1 ).max( 10 ).step( 1 );
+    folder.add( params, '活力' ).min( 1 ).max( 10 ).step( 1 ).onChange( () => {
+      const starArr = (new Array( params[ '活力' ] )).fill( EMOJI );
+      const starStr = starArr.toString().replace( /,/g, '' );
+      console.log( starStr );
+
+      starStr.slice( -params[ '活力' ] );
+      eHdg.textContent = starStr;
+    } );
     folder.open();
+
+    const setEmoji = e => { EMOJI = e };
   </script>
 </body>
 </html>
