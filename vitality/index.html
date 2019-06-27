@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vitality</title>
+  <script src="js/dat.gui.min.js"></script>
+</head>
+<body>
+  <script>
+    const NAME   = window.prompt( '名前を入力してください', '' );
+    const params = { '活力': 5 };
+
+    const gui    = new dat.GUI();
+    const folder = gui.addFolder( NAME );
+    folder.add( params, '活力' ).min( 1 ).max( 10 ).step( 1 );
+    folder.open();
+  </script>
+</body>
+</html>
