@@ -32,15 +32,19 @@
     const params = { '活力': 5 };
     const eHdg   = document.getElementById( 'vitality' );
 
+    const updateVitality = num => {
+      const starArr = (new Array( num )).fill( EMOJI );
+      const starStr = starArr.toString().replace( /,/g, '' );
+      console.log( starStr );
+      eHdg.textContent = starStr;
+    };
+
+    updateVitality( params[ '活力' ] );
+
     const gui    = new dat.GUI();
     const folder = gui.addFolder( NAME );
     folder.add( params, '活力' ).min( 1 ).max( 10 ).step( 1 ).onChange( () => {
-      const starArr = (new Array( params[ '活力' ] )).fill( EMOJI );
-      const starStr = starArr.toString().replace( /,/g, '' );
-      console.log( starStr );
-
-      starStr.slice( -params[ '活力' ] );
-      eHdg.textContent = starStr;
+      updateVitality( params[ '活力' ] );
     } );
     folder.open();
 
