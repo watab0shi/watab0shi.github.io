@@ -39,7 +39,10 @@
       eHdg.textContent = starStr;
     };
 
-    updateVitality( params[ '活力' ] );
+    const setEmoji = e => {
+      EMOJI = e;
+      updateVitality( params[ '活力' ] );
+    };
 
     const gui    = new dat.GUI();
     const folder = gui.addFolder( NAME );
@@ -48,7 +51,7 @@
     } );
     folder.open();
 
-    const setEmoji = e => { EMOJI = e };
+    updateVitality( params[ '活力' ] );
   </script>
 </body>
 </html>
