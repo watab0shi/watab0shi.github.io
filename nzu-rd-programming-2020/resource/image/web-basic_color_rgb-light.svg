@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" id="レイヤー_1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+	 overflow="visible" xml:space="preserve">
+<rect x="0.1" width="512" height="512"/>
+<g>
+	<path fill="#00FF00" d="M414.5,185.1c0-87.5-71-158.5-158.5-158.5S97.5,97.6,97.5,185.1"/>
+	<path fill="#0000FF" d="M97.5,185.1c-75.8,43.8-101.8,140.7-58,216.5s140.7,101.8,216.5,58"/>
+	<path fill="#FF0000" d="M256,459.6c75.8,43.8,172.7,17.8,216.5-58s17.8-172.7-58-216.5"/>
+	<path fill="#00FFFF" d="M256,185.1c-49-28.3-109.4-28.3-158.5,0c0,56.6,30.2,108.9,79.2,137.2"/>
+	<path fill="#FF00FF" d="M176.8,322.3c0,56.6,30.2,108.9,79.2,137.2c49-28.3,79.2-80.6,79.2-137.2"/>
+	<path fill="#FFFF00" d="M335.2,322.3c49-28.3,79.2-80.6,79.2-137.2c-49-28.3-109.4-28.3-158.5,0"/>
+	<path fill="#FFFFFF" d="M256,185.1c-49,28.3-79.2,80.6-79.2,137.2c49,28.3,109.4,28.3,158.5,0C335.2,265.7,305,213.4,256,185.1"/>
+</g>
+</svg>
