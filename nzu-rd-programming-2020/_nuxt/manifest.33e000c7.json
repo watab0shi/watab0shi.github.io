@@ -1,0 +1,11 @@
+{
+  "name": "nzu-rd-programming-2020",
+  "short_name": "nzu-rd-programming-2020",
+  "description": "## Setup",
+  "icons": [],
+  "start_url": "/nzu-rd-programming-2020/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "black",
+  "lang": "en"
+}
