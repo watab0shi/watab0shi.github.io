@@ -3,8 +3,8 @@ const onHashChange = () => {
   console.log('onHashChange', hashname);
 
   if (typeof window.ga === 'function') {
-    ga('set', 'page', `/ga-test/${ hashname }.html`);
-    ga('send', 'pageview');
+    ga('create', 'UA-209086237-1', 'auto');
+    ga('send', 'pageview', { 'page': `/ga-test/${ hashname }.html`, 'title': hashname });
   }
 };
 
@@ -14,8 +14,8 @@ const init = () => {
 
 document.addEventListener('DOMContentLoaded', init);
 
-window.addEventListener('load', () => {
-  if (typeof window.ga === 'function') {
-    ga('create', 'UA-209086237-1', 'auto');
-  }
-});
+// window.addEventListener('load', () => {
+//   if (typeof window.ga === 'function') {
+//     ga('create', 'UA-209086237-1', 'auto');
+//   }
+// });
