@@ -11,3 +11,9 @@ const init = () => {
 };
 
 document.addEventListener('DOMContentLoaded', init);
+
+window.addEventListener('load', () => {
+  if (typeof window.ga === 'function') {
+    ga('create', 'UA-209086237-1', 'auto');
+  }
+});
