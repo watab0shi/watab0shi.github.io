@@ -3,7 +3,7 @@ const onHashChange = () => {
   console.log('onHashChange', hashname);
 
   if (typeof window.ga === 'function') {
-    ga('create', 'UA-209086237-1', 'auto');
+    // ga('create', 'UA-209086237-1', 'auto');
     ga('send', 'pageview', { 'page': `/ga-test/${ hashname }.html`, 'title': hashname });
   }
 };
