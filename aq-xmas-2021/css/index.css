@@ -8,5 +8,16 @@ html, body {
 }
 
 #app {
+  position: relative;
   font-size: 0;
+}
+
+#progress {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #ed225d;
 }

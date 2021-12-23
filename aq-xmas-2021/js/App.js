@@ -20,6 +20,7 @@ class App {
    */
   _init({ element }) {
     this._element = element;
+    this._progressElement = this._element.querySelector('#progress');
     this._width = window.innerWidth;
     this._height = window.innerHeight;
     this._iframe = null;
@@ -60,12 +61,19 @@ class App {
   }
 
   async loop() {
+    gsap.set(this._progressElement, {
+      x: '-100%'
+    });
     this.clear();
     this.addSketch(this._sketchUrlArr[this._index]);
     this._index = (this._index + 1) % this._sketchUrlArr.length;
     console.log(this._index);
-    
-    await delay(INTERVAL_SEC * 1000);
+    await gsap.to(this._progressElement, {
+      x: '0%',
+      duration: INTERVAL_SEC,
+      ease: 'linear'
+    });
+    // await delay(INTERVAL_SEC * 1000);
     this.loop();
   }
 }
