@@ -1,4 +1,4 @@
-import { delay } from './delay.js';
+// import { delay } from './delay.js';
 
 const INTERVAL_SEC = 30;
 
@@ -37,7 +37,8 @@ class App {
       'https://editor.p5js.org/nagaya-takeru/full/GU5_Hrtre',
       'https://editor.p5js.org/misako-baba/full/phLc5_ilp',
       'https://editor.p5js.org/wataru-kani/full/Oi4T9Uxiq',
-      'https://editor.p5js.org/fujishige-yuji/full/SOpO0lM8l'
+      'https://editor.p5js.org/fujishige-yuji/full/SOpO0lM8l',
+      'https://editor.p5js.org/matsumoto-yutaro/full/TVLO45QgG'
     ];
 
     this.loop();
