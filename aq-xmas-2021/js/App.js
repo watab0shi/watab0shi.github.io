@@ -1,6 +1,6 @@
 import { delay } from './delay.js';
 
-const INTERVAL_SEC = 10;
+const INTERVAL_SEC = 30;
 
 /**
  * 
